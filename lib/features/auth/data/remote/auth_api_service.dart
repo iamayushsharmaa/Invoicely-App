@@ -32,7 +32,7 @@ class AuthService {
     );
   }
 
-  Future<AuthenticationResponse> register(SignUpRequest request) async {
+  Future<AuthenticationResponse> register(RegisterRequest request) async {
     try {
       final response = await dio.post(
         '/api/v1/auth/register',
