@@ -15,7 +15,7 @@ GoRouter createRouter(AuthBloc authBloc) {
 
   final initialLocation = authBloc.state is AuthAuthenticated
       ? '/home'
-      : 'onboarding';
+      : '/onboarding';
 
   return GoRouter(
     debugLogDiagnostics: true,

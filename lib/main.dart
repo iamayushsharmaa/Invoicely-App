@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invoice/config/routes.dart';
+import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -10,6 +14,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc()..add(CheckAuthStatus())),
+      ],
+      child: Builder(
+        builder: (context) => MaterialApp.router(
+          routerConfig: createRouter(context.read<AuthBloc>()),
+          debugShowCheckedModeBanner: false,
+        ),
+      ),
+    );
   }
 }
