@@ -17,7 +17,11 @@ void main() async {
   final googleSignIn = GoogleSignIn();
   final storage = FlutterSecureStorage();
 
-  final authService = AuthService(dio: dio, googleSignIn: googleSignIn, storage: storage);
+  final authService = AuthService(
+    dio: dio,
+    googleSignIn: googleSignIn,
+    storage: storage,
+  );
   final authRepository = AuthRepositoryImpl(authService);
 
   runApp(MyApp(authRepository));
@@ -41,6 +45,7 @@ class MyApp extends StatelessWidget {
           final authBloc = context.read<AuthBloc>();
           return MaterialApp.router(
             routerConfig: createRouter(context.read<AuthBloc>()),
+            theme: ThemeData(fontFamily: 'Poppins'),
             debugShowCheckedModeBanner: false,
           );
         },
