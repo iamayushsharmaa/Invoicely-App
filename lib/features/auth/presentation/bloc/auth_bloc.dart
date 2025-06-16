@@ -12,6 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc(this.repository) : super(AuthInitial()) {
     on<CheckAuthStatus>((event, emit) async {});
+    on<ContinueWithGoogleEvent>(_continueWithGoogle);
     on<SignInEvent>(_signIn);
     on<SignUpEvent>(_signUp);
     on<SignOutEvent>(_onSignOut);
@@ -43,5 +44,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     await repository.signOut();
     emit(Unauthenticated());
+  }
+
+  FutureOr<void> _continueWithGoogle(
+    ContinueWithGoogleEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+    final result = await repository.continueWithGoogle();
+    result.fold(
+      (failure) => emit(AuthError(message: failure.message)),
+      (token) => Authenticated(token.token),
+    );
   }
 }
