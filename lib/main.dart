@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -45,7 +46,20 @@ class MyApp extends StatelessWidget {
           final authBloc = context.read<AuthBloc>();
           return MaterialApp.router(
             routerConfig: createRouter(context.read<AuthBloc>()),
-            theme: ThemeData(fontFamily: 'Poppins'),
+            theme: ThemeData(
+              primaryColor: Colors.black,
+              scaffoldBackgroundColor: Colors.grey.shade100,
+              appBarTheme: AppBarTheme(
+                backgroundColor: Colors.grey.shade100,
+                centerTitle: true,
+                elevation: 0,
+                systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+                  statusBarColor: Colors.grey.shade100,
+                  statusBarIconBrightness: Brightness.dark,
+                ),
+              ),
+              fontFamily: 'Poppins',
+            ),
             debugShowCheckedModeBanner: false,
           );
         },
