@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:invoice/config/bloc_listenable.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
@@ -11,30 +10,29 @@ import 'package:invoice/features/home/presentation/widget_tree.dart';
 import '../features/home/presentation/home_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final listenable = BlocListenable(authBloc);
 
-  final initialLocation = authBloc.state is AuthAuthenticated
+  final initialLocation = authBloc.state is Authenticated
       ? '/home'
       : '/onboarding';
 
   return GoRouter(
     debugLogDiagnostics: true,
     initialLocation: initialLocation,
-    refreshListenable: listenable,
+    refreshListenable: GoRouterRefresh(authBloc),
     routes: [
       GoRoute(
         path: '/onboarding',
-        name: 'onboarding',
+        name: 'onBoarding',
         builder: (context, state) => const OnBoardingScreen(),
       ),
       GoRoute(
         path: '/signin',
-        name: 'signin',
+        name: 'signIn',
         builder: (context, state) => SigninScreen(),
       ),
       GoRoute(
         path: '/signup',
-        name: 'signup',
+        name: 'signUp',
         builder: (context, state) => SignupScreen(),
       ),
 
@@ -58,10 +56,10 @@ GoRouter createRouter(AuthBloc authBloc) {
         '/signup',
       ].contains(currentPath);
 
-      if (authState is AuthAuthenticated && isPublicRoute) {
+      if (authState is Authenticated && isPublicRoute) {
         return '/home';
       }
-      if (authState is AuthUnauthenticated && !isPublicRoute) {
+      if (authState is Unauthenticated && !isPublicRoute) {
         return '/onboarding';
       }
       return null;
@@ -69,4 +67,15 @@ GoRouter createRouter(AuthBloc authBloc) {
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text('Page not found: ${state.uri}'))),
   );
+}
+
+
+class GoRouterRefresh extends ChangeNotifier {
+  final AuthBloc bloc;
+
+  GoRouterRefresh(this.bloc) {
+    bloc.stream.listen(( _) {
+      notifyListeners();
+    });
+  }
 }
