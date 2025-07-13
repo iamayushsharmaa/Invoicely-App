@@ -9,6 +9,7 @@ import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signup_screen.dart';
+import 'package:invoice/features/home/presentation/splash_screen.dart';
 import 'package:invoice/features/home/presentation/widget_tree.dart';
 
 import '../features/auth/data/remote/auth_api_service.dart';
@@ -16,7 +17,7 @@ import '../features/home/presentation/home_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
   final initialLocation = authBloc.state is Authenticated
-      ? '/home'
+      ? '/splash'
       : '/onboarding';
 
   final dio = DioClient.create();
@@ -32,6 +33,11 @@ GoRouter createRouter(AuthBloc authBloc) {
     initialLocation: initialLocation,
     refreshListenable: GoRouterRefresh(authBloc),
     routes: [
+      GoRoute(
+        path: '/splash',
+        name: 'splash',
+        builder: (context, state) => const InvoiceSplash(),
+      ),
       GoRoute(
         path: '/onboarding',
         name: 'onBoarding',
