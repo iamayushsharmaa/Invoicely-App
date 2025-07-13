@@ -20,10 +20,11 @@ class _InvoiceSplashState extends State<InvoiceSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Text(
           'Invoicely.',
-          style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
     );
