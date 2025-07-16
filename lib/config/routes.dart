@@ -9,8 +9,12 @@ import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signup_screen.dart';
+import 'package:invoice/features/client/presentation/screens/add_client_screen.dart';
+import 'package:invoice/features/client/presentation/screens/client_screen.dart';
 import 'package:invoice/features/home/presentation/splash_screen.dart';
 import 'package:invoice/features/home/presentation/widget_tree.dart';
+import 'package:invoice/features/invoice/presentation/screens/add_invoice.dart';
+import 'package:invoice/features/invoice/presentation/screens/invoices_screen.dart';
 
 import '../features/auth/data/remote/auth_api_service.dart';
 import '../features/home/presentation/home_screen.dart';
@@ -57,6 +61,16 @@ GoRouter createRouter(AuthBloc authBloc) {
         builder: (context, state) => SignupScreen(),
       ),
 
+      GoRoute(
+        path: '/add-client',
+        name: 'addClient',
+        builder: (context, state) => const AddClientScreen(),
+      ),
+      GoRoute(
+        path: '/add-invoice',
+        name: 'addInvoice',
+        builder: (context, state) => const AddInvoiceScreen(),
+      ),
       ShellRoute(
         builder: (context, state, child) => WidgetTree(child: child),
         routes: [
@@ -64,6 +78,16 @@ GoRouter createRouter(AuthBloc authBloc) {
             path: '/home',
             name: 'home',
             builder: (context, state) => const HomeScreen(),
+          ),
+          GoRoute(
+            path: '/invoice',
+            name: 'invoice',
+            builder: (context, state) => const InvoiceScreen(),
+          ),
+          GoRoute(
+            path: '/clients',
+            name: 'clients',
+            builder: (context, state) => const ClientScreen(),
           ),
         ],
       ),
