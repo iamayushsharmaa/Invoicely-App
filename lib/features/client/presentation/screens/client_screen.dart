@@ -14,7 +14,10 @@ class _ClientScreenState extends State<ClientScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Clients', style: TextStyle(fontSize: 30, color: Colors.black),),
+        title: Text(
+          'Clients',
+          style: TextStyle(fontSize: 30, color: Colors.black),
+        ),
       ),
       body: Column(
         children: [

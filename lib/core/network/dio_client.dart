@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DioClient {
-  static Dio create() {
+  static Dio create(FlutterSecureStorage storage) {
     final options = BaseOptions(
-      baseUrl: 'https://6857a33021f5d3463e55b51a.mockapi.io/petadoption/v1/',
+      baseUrl: 'https://invoicely-367c.onrender.com',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       responseType: ResponseType.json,
@@ -15,6 +16,18 @@ class DioClient {
       requestBody: true,
       responseBody: true,
     ));
+
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = await storage.read(key: 'token');
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+    );
 
     return dio;
   }

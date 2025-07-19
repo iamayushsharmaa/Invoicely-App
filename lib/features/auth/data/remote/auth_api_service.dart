@@ -14,23 +14,9 @@ class AuthService {
 
   AuthService({
     required this.dio,
-    FlutterSecureStorage? storage,
+    required this.storage,
     GoogleSignIn? googleSignIn,
-  }) : storage = storage ?? FlutterSecureStorage(),
-       googleSignIn = googleSignIn ?? GoogleSignIn() {
-    dio.options.baseUrl = baseUrl;
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          final token = await getToken();
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          return handler.next(options);
-        },
-      ),
-    );
-  }
+  }) : googleSignIn = googleSignIn ?? GoogleSignIn();
 
   Future<AuthenticationResponse> register(RegisterRequest request) async {
     try {

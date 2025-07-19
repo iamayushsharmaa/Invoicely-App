@@ -24,11 +24,12 @@ GoRouter createRouter(AuthBloc authBloc) {
       ? '/splash'
       : '/onboarding';
 
-  final dio = DioClient.create();
+  final storage = FlutterSecureStorage();
+  final dio = DioClient.create(storage);
   final authService = AuthService(
     dio: dio,
     googleSignIn: GoogleSignIn(),
-    storage: FlutterSecureStorage(),
+    storage: storage,
   );
   final authRepository = AuthRepositoryImpl(authService);
 
