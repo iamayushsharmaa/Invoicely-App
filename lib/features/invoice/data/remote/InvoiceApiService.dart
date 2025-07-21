@@ -22,7 +22,7 @@ class InvoiceApiService {
   Future<InvoiceModel> searchInvoice(InvoiceModel request) async {
     try {
       final response = await dio.get(
-        '/api/v1/invoice',
+        '/api/v1/invoices/search',
         queryParameters: request.toMap(),
       );
       return InvoiceModel.fromMap(response.data);
@@ -34,7 +34,11 @@ class InvoiceApiService {
 
   Future<InvoiceModel> getAllInvoices(InvoiceModel request) async {
     try {
-
+      final response = await dio.get(
+        '/api/v1/invoices',
+        queryParameters: request.toMap(),
+      );
+      return InvoiceModel.fromMap(response.data);
     } catch (e) {
       print('Error: \$e');
     }
@@ -42,7 +46,11 @@ class InvoiceApiService {
 
   Future<InvoiceModel> getInvoiceById(InvoiceModel request) async {
     try {
-
+      final response = await dio.get(
+        '/api/v1/invoice/{id}',
+        queryParameters: request.toMap(),
+      );
+      return InvoiceModel.fromMap(response.data);
     } catch (e) {
       print('Error: \$e');
     }
@@ -58,7 +66,11 @@ class InvoiceApiService {
 
   Future<InvoiceModel> deleteInvoice(InvoiceModel request) async {
     try {
-
+      final response = await dio.get(
+        '/api/v1/invoices/delete',
+        queryParameters: request.toMap(),
+      );
+      return InvoiceModel.fromMap(response.data);
     } catch (e) {
       print('Error: \$e');
     }
