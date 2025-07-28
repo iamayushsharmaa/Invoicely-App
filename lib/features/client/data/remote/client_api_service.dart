@@ -20,4 +20,15 @@ class ClientApiService{
       print('Error: \$e');
     }
   }
+
+  Future<ClientModel> getAllClients() async {
+    try {
+      final response = await dio.post(
+        '/api/v1/invoice',
+      );
+      return ClientModel.fromMap(response.data);
+    } catch (e) {
+      print('Error: \$e');
+    }
+  }
 }
