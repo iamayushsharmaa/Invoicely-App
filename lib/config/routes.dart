@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:invoice/core/network/dio_client.dart';
+import 'package:invoice/features/analytics/presentation/screens/analytics_screen.dart';
 import 'package:invoice/features/auth/domain/repository/auth_repository_impl.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
@@ -89,6 +90,11 @@ GoRouter createRouter(AuthBloc authBloc) {
             path: '/clients',
             name: 'clients',
             builder: (context, state) => const ClientScreen(),
+          ),
+          GoRoute(
+            path: '/analytics',
+            name: 'analytics',
+            builder: (context, state) => AnalyticsScreen(),
           ),
         ],
       ),
