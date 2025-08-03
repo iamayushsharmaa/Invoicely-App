@@ -23,7 +23,9 @@ class _AddClientScreenState extends State<AddClientScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(children: [Text("")]),
+        child: Column(
+          children: [Text("Fill all the information to create client")],
+        ),
       ),
     );
   }
