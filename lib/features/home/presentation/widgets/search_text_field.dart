@@ -45,14 +45,12 @@ class SearchTextField extends StatelessWidget {
             Icons.search,
             color: iconColor,
           ),
-          // To make the background color visible and have rounded corners
           filled: true,
           fillColor: fillColor,
-          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0), // Adjust padding as needed
+          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
 
-          // Border when the TextField is not focused
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(28.0), // Adjust corner radius
+            borderRadius: BorderRadius.circular(22.0), // Adjust corner radius
             borderSide: BorderSide(
               color: borderColor ?? Colors.transparent, // Subtle border or transparent
               width: 1.0,
@@ -60,7 +58,7 @@ class SearchTextField extends StatelessWidget {
           ),
           // Border when the TextField is focused
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(28.0), // Adjust corner radius
+            borderRadius: BorderRadius.circular(22.0), // Adjust corner radius
             borderSide: BorderSide(
               color: theme.colorScheme.primary, // Use primary color when focused
               width: 1.5,
@@ -68,7 +66,7 @@ class SearchTextField extends StatelessWidget {
           ),
           // Border when the TextField has an error (if you use validation)
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(28.0),
+            borderRadius: BorderRadius.circular(22.0),
             borderSide: BorderSide(
               color: theme.colorScheme.error,
               width: 1.5,
@@ -76,7 +74,7 @@ class SearchTextField extends StatelessWidget {
           ),
           // Border when the TextField has an error and is focused
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(28.0),
+            borderRadius: BorderRadius.circular(22.0),
             borderSide: BorderSide(
               color: theme.colorScheme.error,
               width: 1.5,

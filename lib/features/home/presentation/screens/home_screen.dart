@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/invoice_card.dart';
 import '../widgets/overview_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text(
               'Overview',
               style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 26,
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
                 color: Colors.white,
               ),
             ),
@@ -59,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
               ),
             ),
+            const SizedBox(height: 15),
+            InvoiceCard(),
           ],
         ),
       ),
@@ -70,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 57,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: Colors.grey[900],
         borderRadius: BorderRadius.circular(12),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -105,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               status,
               style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),

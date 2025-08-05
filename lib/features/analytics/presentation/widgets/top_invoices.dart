@@ -1,29 +1,58 @@
 import 'package:flutter/material.dart';
 
-class InvoiceCard extends StatelessWidget {
-  const InvoiceCard({super.key});
+class TopInvoices extends StatelessWidget {
+  const TopInvoices({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
       width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.grey.shade900,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 10),
+          Text(
+            'Top Invoices',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 10),
+          _topInvoiceDesign(),
+          const SizedBox(height: 4),
+          _topInvoiceDesign(),
+          const SizedBox(height: 4),
+          _topInvoiceDesign(),
+          const SizedBox(height: 4),
+          _topInvoiceDesign(),
+        ],
+      ),
+    );
+  }
+
+  Widget _topInvoiceDesign() {
+    return Container(
+      height: 68,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: 60,
-              width: 60,
+              height: 45,
+              width: 45,
               decoration: BoxDecoration(
                 color: Colors.lightBlue.shade200,
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(60),
               ),
 
               child: Icon(Icons.not_interested_outlined),
@@ -40,7 +69,7 @@ class InvoiceCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Created : 14 Jan 2023',
+                  '14 Jan 2023',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                 ),
               ],
@@ -57,25 +86,6 @@ class InvoiceCard extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.do_not_disturb_on_total_silence_rounded,
-                      size: 14,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      'Open',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

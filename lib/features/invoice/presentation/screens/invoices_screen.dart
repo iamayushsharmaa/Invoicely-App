@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/features/invoice/presentation/widgets/status_invoice_card.dart';
 
 import '../../../home/presentation/widgets/search_text_field.dart';
 
@@ -30,6 +31,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             SizedBox(
@@ -42,6 +44,20 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 onSubmitted: (value) {},
               ),
             ),
+            const SizedBox(height: 14),
+            InvoiceStatusCard(),
+            const SizedBox(height: 14),
+            Text(
+              'Invoices',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+
+            const SizedBox(height: 14),
+            
           ],
         ),
       ),
