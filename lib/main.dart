@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:invoice/config/routes.dart';
+import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/data/remote/auth_api_service.dart';
 import 'package:invoice/features/auth/domain/repository/auth_repository_impl.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
@@ -43,23 +43,11 @@ class MyApp extends StatelessWidget {
       ],
       child: Builder(
         builder: (context) {
-          final authBloc = context.read<AuthBloc>();
           return MaterialApp.router(
             routerConfig: createRouter(context.read<AuthBloc>()),
-            theme: ThemeData(
-              primaryColor: Colors.black,
-              scaffoldBackgroundColor: Colors.grey.shade100,
-              appBarTheme: AppBarTheme(
-                backgroundColor: Colors.grey.shade100,
-                centerTitle: true,
-                elevation: 0,
-                systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
-                  statusBarColor: Colors.grey.shade100,
-                  statusBarIconBrightness: Brightness.dark,
-                ),
-              ),
-              fontFamily: 'Poppins',
-            ),
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
           );
         },

@@ -12,18 +12,16 @@ import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signup_screen.dart';
 import 'package:invoice/features/client/presentation/screens/add_client_screen.dart';
 import 'package:invoice/features/client/presentation/screens/client_screen.dart';
-import 'package:invoice/features/home/presentation/splash_screen.dart';
-import 'package:invoice/features/home/presentation/widget_tree.dart';
+import 'package:invoice/features/home/presentation/screens/splash_screen.dart';
+import 'package:invoice/features/home/presentation/screens/widget_tree.dart';
 import 'package:invoice/features/invoice/presentation/screens/add_invoice.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoices_screen.dart';
 
 import '../features/auth/data/remote/auth_api_service.dart';
-import '../features/home/presentation/home_screen.dart';
+import '../features/home/presentation/screens/home_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = authBloc.state is Authenticated
-      ? '/splash'
-      : '/onboarding';
+  final initialLocation = '/home';
 
   final storage = FlutterSecureStorage();
   final dio = DioClient.create(storage);
@@ -42,7 +40,8 @@ GoRouter createRouter(AuthBloc authBloc) {
       GoRoute(
         path: '/splash',
         name: 'splash',
-        builder: (context, state) => const InvoiceSplash(),
+        builder: (context, state) =>
+            BlocProvider.value(value: authBloc, child: const InvoiceSplash()),
       ),
       GoRoute(
         path: '/onboarding',
