@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   AppTheme._();
+  static const String _fontFamily = 'Poppins';
 
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.black,
+    fontFamily: _fontFamily,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.black,
@@ -47,8 +49,10 @@ class AppTheme {
   );
 
   static final ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: Colors.white,
+    fontFamily: _fontFamily,
     scaffoldBackgroundColor: Colors.black,
     colorScheme: const ColorScheme.dark(
       primary: Colors.white,
@@ -75,7 +79,6 @@ class AppTheme {
       bodyLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.white70),
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      // Define other text styles as needed
     ),
     iconTheme: const IconThemeData(color: Colors.white),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(

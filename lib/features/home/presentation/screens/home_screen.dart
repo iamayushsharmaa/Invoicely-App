@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/search_text_field.dart';
+import '../widgets/overview_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
+  String _selectedStatus = 'All';
 
   @override
   void dispose() {
@@ -32,19 +33,84 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            SizedBox(
-              height: 60,
-              width: double.infinity,
-              child: SearchTextField(
-                controller: _searchController,
-                hintText: 'Search here',
-                onChanged: (value) {},
-                onSubmitted: (value) {},
+            const Text(
+              'Overview',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 26,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 15),
+            OverviewCard(),
+            const SizedBox(height: 15),
+            _statusInvoices(),
+            const SizedBox(height: 15),
+
+            Text(
+              'This month',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _statusInvoices() {
+    return Container(
+      height: 57,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _statusOption('All'),
+          _statusOption('Pending'),
+          _statusOption('Paid'),
+        ],
+      ),
+    );
+  }
+
+  Widget _statusOption(String status) {
+    final isSelected = _selectedStatus == status;
+
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedStatus = status;
+          });
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+          decoration: BoxDecoration(
+            color: isSelected ? const Color(0xFF3F51B5) : Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              status,
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+          ),
         ),
       ),
     );
