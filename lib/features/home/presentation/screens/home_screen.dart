@@ -10,7 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final _searchController = TextEditingController();
 
   @override
@@ -34,23 +33,17 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            const SizedBox(height: 10,),
+            const SizedBox(height: 10),
             SizedBox(
-                height: 60,
-                width: double.infinity,
-                child: SearchTextField(
-                  controller: _searchController,
-                  hintText: 'Search for items...',
-                  onChanged: (value) {
-                    print('Search query: $value');
-                    // Implement your search logic here
-                  },
-                  onSubmitted: (value) {
-                    print('Search submitted: $value');
-                    // Implement action on search submission
-                  },
-                ),
-            )
+              height: 60,
+              width: double.infinity,
+              child: SearchTextField(
+                controller: _searchController,
+                hintText: 'Search here',
+                onChanged: (value) {},
+                onSubmitted: (value) {},
+              ),
+            ),
           ],
         ),
       ),

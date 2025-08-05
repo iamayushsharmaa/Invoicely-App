@@ -78,17 +78,17 @@ GoRouter createRouter(AuthBloc authBloc) {
           GoRoute(
             path: '/home',
             name: 'home',
-            builder: (context, state) => const HomeScreen(),
+            builder: (context, state) => HomeScreen(),
           ),
           GoRoute(
             path: '/invoice',
             name: 'invoice',
-            builder: (context, state) => const InvoiceScreen(),
+            builder: (context, state) => InvoiceScreen(),
           ),
           GoRoute(
             path: '/clients',
             name: 'clients',
-            builder: (context, state) => const ClientScreen(),
+            builder: (context, state) => ClientScreen(),
           ),
           GoRoute(
             path: '/analytics',
