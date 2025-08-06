@@ -27,7 +27,7 @@ class MainInvoiceCard extends StatelessWidget {
                       color: Colors.lightBlue.shade300,
                       borderRadius: BorderRadius.circular(50),
                     ),
-                    child: Icon(Icons.person),
+                    child: Icon(Icons.receipt),
                   ),
 
                   const SizedBox(width: 10),
@@ -78,13 +78,12 @@ class MainInvoiceCard extends StatelessWidget {
           const SizedBox(height: 20),
 
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-            height: 66,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            height: 68,
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.grey.shade700,
               borderRadius: BorderRadius.circular(12),
-              // border: Border.all(color: Colors.grey, width: 1),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,18 +108,18 @@ class MainInvoiceCard extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 13,
               color: Colors.white,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w400,
             ),
           ),
-          const SizedBox(height: 0),
+          const SizedBox(height: 2),
           Text(
             '$value',
             style: TextStyle(
               fontSize: 18,
               color: Colors.white,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

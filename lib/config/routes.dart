@@ -19,9 +19,10 @@ import 'package:invoice/features/invoice/presentation/screens/invoices_screen.da
 
 import '../features/auth/data/remote/auth_api_service.dart';
 import '../features/home/presentation/screens/home_screen.dart';
+import '../features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = '/invoice';
+  final initialLocation = '/invoice-details';
 
   final storage = FlutterSecureStorage();
   final dio = DioClient.create(storage);
@@ -72,6 +73,12 @@ GoRouter createRouter(AuthBloc authBloc) {
         name: 'addInvoice',
         builder: (context, state) => const AddInvoiceScreen(),
       ),
+      GoRoute(
+        path: '/invoice-details',
+        name: 'invoiceDetails',
+        builder: (context, state) => InvoiceDetailScreen(),
+      ),
+
       ShellRoute(
         builder: (context, state, child) => WidgetTree(child: child),
         routes: [
@@ -81,8 +88,8 @@ GoRouter createRouter(AuthBloc authBloc) {
             builder: (context, state) => HomeScreen(),
           ),
           GoRoute(
-            path: '/invoice',
-            name: 'invoice',
+            path: '/invoices',
+            name: 'invoices',
             builder: (context, state) => InvoiceScreen(),
           ),
           GoRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/features/client/presentation/widgets/client_card.dart';
 
 import '../../../home/presentation/widgets/search_text_field.dart';
 
@@ -43,7 +44,13 @@ class _ClientScreenState extends State<ClientScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            Text(''),
+            ClientCard(name: 'Noah Henry', email: 'noahhenry@gmail.com'),
+            const SizedBox(height: 10),
+            ClientCard(name: 'Noah Henry', email: 'noahhenry@gmail.com'),
+            const SizedBox(height: 10),
+            ClientCard(name: 'Noah Henry', email: 'noahhenry@gmail.com'),
+            const SizedBox(height: 10),
+            ClientCard(name: 'Noah Henry', email: 'noahhenry@gmail.com'),
           ],
         ),
       ),

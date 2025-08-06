@@ -29,7 +29,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,12 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
             ),
 
             const SizedBox(height: 14),
-            MainInvoiceCard()
+            MainInvoiceCard(),
+            const SizedBox(height: 10),
+            MainInvoiceCard(),
+            const SizedBox(height: 10),
+            MainInvoiceCard(),
+            const SizedBox(height: 10),
           ],
         ),
       ),
