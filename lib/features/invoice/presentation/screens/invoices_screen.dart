@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/features/invoice/presentation/widgets/main_invoice_card.dart';
 import 'package:invoice/features/invoice/presentation/widgets/status_invoice_card.dart';
 
 import '../../../home/presentation/widgets/search_text_field.dart';
@@ -39,7 +40,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               width: double.infinity,
               child: SearchTextField(
                 controller: _searchController,
-                hintText: 'Search here',
+                hintText: 'Search invoices',
                 onChanged: (value) {},
                 onSubmitted: (value) {},
               ),
@@ -57,7 +58,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
             ),
 
             const SizedBox(height: 14),
-            
+            MainInvoiceCard()
           ],
         ),
       ),

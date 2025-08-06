@@ -21,7 +21,7 @@ import '../features/auth/data/remote/auth_api_service.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = '/home';
+  final initialLocation = '/invoice';
 
   final storage = FlutterSecureStorage();
   final dio = DioClient.create(storage);
