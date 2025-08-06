@@ -19,8 +19,105 @@ class InvoiceDetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(children: [_invoiceInformation()]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _invoiceInformation(),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF3F51B5),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      12,
+                    ), // Optional: Rounded corners
+                  ),
+                  elevation: 4, // Optional: Shadow depth
+                ),
+                icon: const Icon(Icons.check), // Your desired icon
+                label: const Text(
+                  'Mark as paid',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'BILL TO',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            ),
+
+            const SizedBox(height: 12),
+            _billToClientCard(),
+            const SizedBox(height: 20),
+
+            Text(
+              'ITEMS',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            ),
+
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _itemCard(),
+                  _itemCard(),
+                  _itemCard(),
+                  _itemCard(),
+                  _itemCard(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _itemCard() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Item Name',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              '1 x \$300',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+        Text(
+          '\$300',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
   }
 
@@ -158,6 +255,47 @@ class InvoiceDetailScreen extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w600,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _billToClientCard() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      height: 65,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade900,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            height: 30,
+            width: 30,
+            decoration: BoxDecoration(
+              color: Colors.lightBlue.shade300,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Icon(Icons.person),
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Noah Henry',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              ),
+              Text(
+                'noahhenry@gmail.com',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              ),
+            ],
           ),
         ],
       ),
