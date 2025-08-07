@@ -75,8 +75,6 @@ class InvoiceDetailScreen extends StatelessWidget {
                   _itemCard(),
                   _itemCard(),
                   _itemCard(),
-                  _itemCard(),
-                  _itemCard(),
                 ],
               ),
             ),
