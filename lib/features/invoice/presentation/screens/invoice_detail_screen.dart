@@ -73,8 +73,7 @@ class InvoiceDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _itemCard(),
-                  _itemCard(),
-                  _itemCard(),
+                  _itemCard()
                 ],
               ),
             ),
