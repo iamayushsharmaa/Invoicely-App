@@ -30,24 +30,24 @@ class _SigninScreenState extends State<SigninScreen> {
                     const Text(
                       'Sign in',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 36),
                     Text(
                       'Email',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                        fontSize: 14,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     AuthTextField(
                       controller: emailController,
-                      hint: 'Email',
+                      hint: 'Enter Your Email',
                       prefixIcon: Icons.email,
                       keyboardType: TextInputType.emailAddress,
                       validator: (input) =>
@@ -55,19 +55,19 @@ class _SigninScreenState extends State<SigninScreen> {
                           ? 'Enter a valid email'
                           : null,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     Text(
                       'Password',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                        fontSize: 14,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     AuthTextField(
                       controller: passwordController,
-                      hint: 'Password',
+                      hint: 'Enter Your Password',
                       prefixIcon: Icons.lock,
                       obscureText: true,
                       validator: (input) => (input == null || input.length < 6)
@@ -81,8 +81,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         Text(
                           'Forget Password?',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
+                            color: Colors.white60,
                           ),
                         ),
                       ],
@@ -90,14 +91,14 @@ class _SigninScreenState extends State<SigninScreen> {
                     const SizedBox(height: 25),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 58,
+                      height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           if (Form.of(context).validate()) {}
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -105,8 +106,8 @@ class _SigninScreenState extends State<SigninScreen> {
                         child: Text(
                           'Sign in',
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -116,7 +117,7 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  context.pushNamed('signUp'); // navigate to SignupScreen
+                  context.pushNamed('signUp');
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -125,13 +126,14 @@ class _SigninScreenState extends State<SigninScreen> {
                       children: [
                         TextSpan(
                           text: "Don’t have an account? ",
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(fontSize: 14, color: Colors.white),
                         ),
                         TextSpan(
                           text: "Sign up",
                           style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],

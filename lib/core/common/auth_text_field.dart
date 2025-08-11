@@ -52,7 +52,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
               )
             : null,
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Colors.grey.shade900,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 18,
@@ -61,7 +61,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
-        hintStyle: TextStyle(color: Colors.black45),
+        hintStyle: TextStyle(color: Colors.grey),
       ),
     );
   }

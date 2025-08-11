@@ -103,7 +103,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
           IconButton(
             icon: Icon(
               Icons.check,
-              color: _currentStep == 3 ? Colors.tealAccent : Colors.grey,
+              color: _currentStep == 3 ? Colors.white : Colors.grey.shade800,
             ),
             onPressed: () => _currentStep == 3, //? //_saveInvoice : null,
           ),

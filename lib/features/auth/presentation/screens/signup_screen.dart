@@ -32,24 +32,24 @@ class _SignupScreenState extends State<SignupScreen> {
                     const Text(
                       'Sign up',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     const SizedBox(height: 32),
                     Text(
                       'Name',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                        fontSize: 14,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     AuthTextField(
                       controller: nameController,
-                      hint: 'Name',
+                      hint: 'Enter Your Name',
                       prefixIcon: Icons.person,
                       keyboardType: TextInputType.text,
                     ),
@@ -57,15 +57,15 @@ class _SignupScreenState extends State<SignupScreen> {
                     Text(
                       'Email',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                        fontSize: 14,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     AuthTextField(
                       controller: emailController,
-                      hint: 'Email',
+                      hint: 'Enter Your Email',
                       prefixIcon: Icons.email,
                       keyboardType: TextInputType.emailAddress,
                       validator: (input) =>
@@ -77,15 +77,15 @@ class _SignupScreenState extends State<SignupScreen> {
                     Text(
                       'Password',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
+                        fontSize: 14,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     AuthTextField(
                       controller: passwordController,
-                      hint: 'Password',
+                      hint: 'Enter Your Password',
                       prefixIcon: Icons.lock,
                       obscureText: true,
                       validator: (input) => (input == null || input.length < 6)
@@ -95,14 +95,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(height: 30),
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 58,
+                      height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           if (Form.of(context).validate()) {}
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -120,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: () => context.pushNamed('signIn'),
+                onTap: () => context.pop(),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: RichText(
@@ -128,13 +128,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       children: [
                         TextSpan(
                           text: 'Already have an account? ',
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         TextSpan(
                           text: 'Sign in',
                           style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
