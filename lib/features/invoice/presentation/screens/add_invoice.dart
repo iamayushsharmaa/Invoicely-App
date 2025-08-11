@@ -296,9 +296,75 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Client: ${clientName ?? 'Not selected'}"),
-        Text("Email: ${clientEmail ?? ''}"),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade900,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            children: [
+              textNumberRow('Invoice Number', "0022"),
+              _buildDivider(),
+              textNumberRow('Invoice Date', "23 Jan 2025"),
+              _buildDivider(),
+              textNumberRow('Due Date', "30 Jan 2025"),
+              _buildDivider(),
+              textNumberRow('Amount', "\$1,200"),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade900,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('To', style: TextStyle(fontSize: 14, color: Colors.white)),
+              const SizedBox(height: 10),
+              textNumberRow('Client Name', clientName ?? ""),
+              _buildDivider(),
+              textNumberRow('Client Email', clientEmail ?? ""),
+              _buildDivider(),
+              textNumberRow('Client Address', clientAddress ?? ""),
+            ],
+          ),
+        ),
       ],
+    );
+  }
+
+  Widget textNumberRow(String text, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+        ),
+        Text(value, style: TextStyle(fontSize: 15, color: Colors.white)),
+      ],
+    );
+  }
+
+  Widget _buildDivider() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 2),
+        height: 1,
+        color: Colors.grey.shade800,
+      ),
     );
   }
 
@@ -324,40 +390,48 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           if (_currentStep > 0)
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.blue),
-                foregroundColor: Colors.blue,
+            if (isLastStep)
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.blue),
+                  foregroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: details.onStepCancel,
+                child: const Text("Back", style: TextStyle(fontSize: 16)),
+              )
+            else
+              const SizedBox(width: 88),
+
+          if (isLastStep)
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.black,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
+                  horizontal: 28,
+                  vertical: 14,
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
+                elevation: 0,
               ),
-              onPressed: details.onStepCancel,
-              child: const Text("Back", style: TextStyle(fontSize: 16)),
-            )
-          else
-            const SizedBox(width: 88),
-
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.black,
-              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+              onPressed: details.onStepContinue,
+              child: Text(
+                isLastStep ? "Save" : "Next",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-              elevation: 0,
             ),
-            onPressed: details.onStepContinue,
-            child: Text(
-              isLastStep ? "Save" : "Next",
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-          ),
         ],
       ),
     );
