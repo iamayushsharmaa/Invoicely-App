@@ -9,8 +9,8 @@ class AddInvoiceScreen extends StatefulWidget {
 
 class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   int _currentStep = 0;
+  List<Map<String, dynamic>> _items = [];
 
-  // Mock DB Clients
   List<Map<String, String>> dbClients = [
     {"name": "John Doe", "email": "john@example.com"},
     {"name": "Sarah Smith", "email": "sarah@example.com"},
@@ -29,7 +29,8 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   final _invoiceNumberController = TextEditingController();
   final _invoiceDateController = TextEditingController();
   final _invoiceDueDateController = TextEditingController();
-  final _invoiceController = TextEditingController();
+  final _taxController = TextEditingController();
+  final _discountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -289,7 +290,57 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   }
 
   Widget _buildItemsStep() {
-    return Column(children: const [Text("Items section here...")]);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 2),
+        Text(
+          'Tax (%)',
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 8),
+        _buildDarkTextField(_taxController, "Enter Tax %", (p0) {}),
+        const SizedBox(height: 12),
+        Text(
+          'Discount (%)',
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 8),
+        _buildDarkTextField(_taxController, "Enter Discount %", (p0) {}),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 50,
+          width: double.infinity,
+          child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            icon: const Icon(Icons.add),
+            label: const Text("Add Item"),
+            onPressed: _showAddItemBottomSheet,
+          ),
+        ),
+        const SizedBox(height: 20),
+        if (_items.isEmpty)
+          const Text(
+            "No items added yet",
+            style: TextStyle(color: Colors.grey),
+          ),
+      ],
+    );
   }
 
   Widget _buildReviewStep() {
@@ -498,6 +549,122 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
           ],
         );
       },
+    );
+  }
+
+  void _showAddItemBottomSheet() {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController priceController = TextEditingController();
+    final TextEditingController quantityController = TextEditingController();
+    final TextEditingController taxController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.grey.shade900,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      isScrollControlled: true,
+      builder: (_) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "Add Item",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                _buildBottomSheetTextField(nameController, "Item Name"),
+                _buildBottomSheetTextField(
+                  priceController,
+                  "Price",
+                  isNumber: true,
+                ),
+                _buildBottomSheetTextField(
+                  quantityController,
+                  "Quantity",
+                  isNumber: true,
+                ),
+                _buildBottomSheetTextField(
+                  taxController,
+                  "Tax %",
+                  isNumber: true,
+                ),
+
+                const SizedBox(height: 20),
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 16,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _items.add({
+                        "name": nameController.text,
+                        "price": double.tryParse(priceController.text) ?? 0,
+                        "quantity": int.tryParse(quantityController.text) ?? 1,
+                      });
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Save Item",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildBottomSheetTextField(
+    TextEditingController controller,
+    String hint, {
+    bool isNumber = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: TextField(
+        controller: controller,
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+        style: const TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          filled: true,
+          fillColor: Colors.grey.shade800,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 14,
+          ),
+        ),
+      ),
     );
   }
 }
