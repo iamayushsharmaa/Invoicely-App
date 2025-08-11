@@ -6,7 +6,7 @@ class WidgetTree extends StatelessWidget {
 
   const WidgetTree({super.key, required this.child});
 
-  static const _tabs = ['/home', '/invoice', '/clients', '/analytics'];
+  static const _tabs = ['/home', '/invoices', '/clients', '/analytics'];
 
   int _getSelectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();

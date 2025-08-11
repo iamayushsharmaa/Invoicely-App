@@ -9,7 +9,11 @@ class InvoiceDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Invoice Details',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color : Colors.white),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         leading: Padding(
@@ -60,6 +64,7 @@ class InvoiceDetailScreen extends StatelessWidget {
               'ITEMS',
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
+            const SizedBox(height: 12),
 
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -68,13 +73,17 @@ class InvoiceDetailScreen extends StatelessWidget {
                 color: Colors.grey.shade900,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _itemCard(),
-                  _itemCard()
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _itemCard(),
+                    const SizedBox(height: 10),
+                    _itemCard(),
+                  ],
+                ),
               ),
             ),
           ],
