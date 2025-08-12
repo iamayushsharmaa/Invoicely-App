@@ -17,11 +17,11 @@ class _InvoiceSplashState extends State<InvoiceSplash> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       final authState = context.read<AuthBloc>().state;
-      if (authState is Authenticated) {
+      //if (authState is Authenticated) {
         context.go('/home');
-      } else {
-        context.go('/onboarding');
-      }
+      // } else {
+      //   context.go('/onboarding');
+      // }
     });
   }
 
@@ -29,13 +29,23 @@ class _InvoiceSplashState extends State<InvoiceSplash> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Text(
-          'Invoicely.',
-          style: TextStyle(
-            fontSize: 48,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Color(0xFF3F51B5), Colors.black],
+            stops: [0.20, 0.7],
+          ),
+        ),
+        child: Center(
+          child: Text(
+            'Invoicely.',
+            style: TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

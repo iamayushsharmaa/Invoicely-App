@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AddInvoiceScreen extends StatefulWidget {
   const AddInvoiceScreen({super.key});
@@ -35,7 +36,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.black, // Stepper background
@@ -77,38 +78,38 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      // prevents default back arrow
+      leading: IconButton(
+        icon: const Icon(Icons.close, color: Colors.white),
+        onPressed: () => context.pop(), // GoRouter pop
+      ),
+      title: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            icon: const Icon(Icons.close, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
+          const Text(
+            'Create Invoice',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
-          Column(
-            children: [
-              const Text(
-                'Create Invoice',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Step ${_currentStep + 1} of 4',
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.check,
-              color: _currentStep == 3 ? Colors.white : Colors.grey.shade800,
-            ),
-            onPressed: () => _currentStep == 3, //? //_saveInvoice : null,
+          const SizedBox(height: 4),
+          Text(
+            'Step ${_currentStep + 1} of 4',
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
           ),
         ],
       ),
+      centerTitle: true,
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.check,
+            color: _currentStep == 3 ? Colors.white : Colors.grey.shade800,
+          ),
+          onPressed: () {}, //_currentStep == 3 //? _saveInvoice : null,
+        ),
+      ],
     );
   }
 

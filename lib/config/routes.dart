@@ -22,7 +22,7 @@ import '../features/home/presentation/screens/home_screen.dart';
 import '../features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = '/onboarding';
+  final initialLocation = '/splash';
 
   final storage = FlutterSecureStorage();
   final dio = DioClient.create(storage);
