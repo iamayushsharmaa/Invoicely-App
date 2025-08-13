@@ -510,6 +510,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
     );
   }
 
+
   void _showClientBottomSheet() {
     showModalBottomSheet(
       context: context,

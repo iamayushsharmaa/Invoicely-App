@@ -10,7 +10,6 @@ import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signup_screen.dart';
-import 'package:invoice/features/client/presentation/screens/add_client_screen.dart';
 import 'package:invoice/features/client/presentation/screens/client_screen.dart';
 import 'package:invoice/features/home/presentation/screens/splash_screen.dart';
 import 'package:invoice/features/home/presentation/screens/widget_tree.dart';
@@ -22,7 +21,7 @@ import '../features/home/presentation/screens/home_screen.dart';
 import '../features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = '/splash';
+  final initialLocation = '/home';
 
   final storage = FlutterSecureStorage();
   final dio = DioClient.create(storage);
@@ -47,10 +46,11 @@ GoRouter createRouter(AuthBloc authBloc) {
       GoRoute(
         path: '/onboarding',
         name: 'onBoarding',
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthBloc(authRepository),
-          child: OnBoardingScreen(),
-        ),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => AuthBloc(authRepository),
+              child: OnBoardingScreen(),
+            ),
       ),
       GoRoute(
         path: '/signin',
@@ -61,12 +61,6 @@ GoRouter createRouter(AuthBloc authBloc) {
         path: '/signup',
         name: 'signUp',
         builder: (context, state) => SignupScreen(),
-      ),
-
-      GoRoute(
-        path: '/add-client',
-        name: 'addClient',
-        builder: (context, state) => const AddClientScreen(),
       ),
       GoRoute(
         path: '/add-invoice',
@@ -106,7 +100,9 @@ GoRouter createRouter(AuthBloc authBloc) {
       ),
     ],
     redirect: (context, state) {
-      final authState = context.read<AuthBloc>().state;
+      final authState = context
+          .read<AuthBloc>()
+          .state;
       final currentPath = state.uri.path;
       final isPublicRoute = [
         '/onboarding',
