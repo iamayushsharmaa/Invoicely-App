@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:invoice/config/routes.dart';
 import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/data/remote/auth_api_service.dart';
@@ -10,6 +12,7 @@ import 'package:invoice/features/auth/domain/repository/auth_repository_impl.dar
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'features/auth/data/repository/auth_repository.dart';
+import 'features/invoice/data/model/invoice_response.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,10 @@ void main() async {
   );
   final authRepository = AuthRepositoryImpl(authService);
 
+  await Hive.initFlutter();
+  Hive.registerAdapter(InvoiceResponseAdapter());
+
+  await Hive.openBox<InvoiceResponse>('invoiceCache');
   runApp(MyApp(authRepository));
 }
 

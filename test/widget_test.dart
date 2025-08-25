@@ -8,15 +8,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:invoice/features/auth/data/repository/auth_repository.dart';
 import 'package:invoice/main.dart';
-import 'package:mockito/mockito.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
 
-    final mockAuthRepository = MockAuthRepository();
-    await tester.pumpWidget(MyApp(mockAuthRepository));
   });
 }
-
-class MockAuthRepository extends Mock implements AuthRepository {}

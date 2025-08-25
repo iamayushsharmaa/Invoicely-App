@@ -1,22 +1,62 @@
 
+import 'package:hive/hive.dart';
+part 'invoice_response.g.dart';
+
+@HiveType(typeId: 0)
 class InvoiceResponse {
+
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String clientId;
+
+  @HiveField(2)
   final String invoiceNumber;
+
+  @HiveField(3)
   final DateTime invoiceDate;
+
+  @HiveField(4)
   final DateTime dueDate;
+
+  @HiveField(5)
   final String billingFrom;
+
+  @HiveField(6)
   final String billingTo;
+
+  @HiveField(7)
   final String? notes;
+
+  @HiveField(8)
   final String status;
+
+  @HiveField(9)
   final double subTotal;
+
+  @HiveField(10)
   final double discount;
+
+  @HiveField(11)
   final double tax;
+
+  @HiveField(12)
   final double totalAmount;
+
+  @HiveField(13)
   final String? logoUrl;
+
+  @HiveField(14)
   final String currency;
+
+  @HiveField(15)
   final bool paid;
+
+  @HiveField(16)
   final DateTime? paymentDate;
+
+  @HiveField(17)
   final List<InvoiceItemResponse> items;
 
   InvoiceResponse({

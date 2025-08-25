@@ -1,11 +1,24 @@
+import '../../../../core/type_def.dart';
+import '../model/invoice_request.dart';
+import '../model/invoice_response.dart';
+
 abstract class InvoiceRepository {
-  Future<void> createInvoice();
+  FutureEither<InvoiceResponse?> createInvoice(InvoiceRequest request);
 
-  Future<void> searchInvoice();
+  FutureEither<List<InvoiceResponse>> searchInvoices({
+    String? invoiceNumber,
+    String? clientName,
+    DateTime? fromDate,
+    DateTime? toDate,
+  });
 
-  Future<void> getAllInvoices();
+  FutureEither<List<InvoiceResponse>> getAllInvoices();
 
-  Future<void> getInvoiceById();
+  FutureEither<InvoiceResponse?> getInvoiceById(String id);
 
-  Future<void> deleteInvoice();
+  FutureEither<void> deleteInvoice(String invoiceId);
+
+  FutureEither<InvoiceResponse?> updateInvoice(String invoiceId, InvoiceRequest request);
+
+  void clearCache();
 }
