@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
+
 import 'package:dio/dio.dart';
 
 import '../model/invoice_request.dart';
@@ -117,6 +119,35 @@ class InvoiceApiService {
       return InvoiceResponse.fromJson(response.data);
     } catch (e) {
       print('Error marking invoice as paid: $e');
+      return null;
+    }
+  }
+
+  Future<bool> sendInvoiceEmail(String invoiceId) async {
+    try {
+      final response = await dio.post('$baseUrl/invoices/$invoiceId/send-mail');
+      return response.statusCode == 200;
+    } catch (e) {
+      print("Error sending invoice email: $e");
+      return false;
+    }
+  }
+
+  Future<Uint8List?> downloadInvoicePdf(
+    String invoiceId, {
+    String template = "default",
+  }) async {
+    try {
+      final response = await dio.post(
+        '$baseUrl/invoices/$invoiceId/pdf',
+        queryParameters: {'template': template},
+        options: Options(
+          responseType: ResponseType.bytes,
+        ), // Important for binary data
+      );
+      return Uint8List.fromList(response.data);
+    } catch (e) {
+      print("Error downloading PDF: $e");
       return null;
     }
   }

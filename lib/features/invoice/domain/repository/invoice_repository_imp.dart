@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:invoice/features/invoice/data/repository/invoice_repository.dart';
 
