@@ -1,81 +1,84 @@
 import 'package:dio/dio.dart';
-import 'package:invoice/features/invoice/data/model/invoice_model.dart';
+
+import '../model/invoice_request.dart';
+import '../model/invoice_response.dart';
 
 class InvoiceApiService {
   final Dio dio;
-  static final String baseUrl = 'https://invoicely-367c.onrender.com';
+  static const String baseUrl =
+      'https://invoicely-367c.onrender.com/api/v1/invoices';
 
   InvoiceApiService({required this.dio});
 
-  Future<InvoiceModel?> createInvoice(InvoiceModel request) async {
+  Future<InvoiceResponse?> createInvoice(InvoiceRequest request) async {
     try {
-      final response = await dio.post('/api/v1/invoice', data: request.toMap());
-      return InvoiceModel.fromMap(response.data);
+      final response = await dio.post(baseUrl, data: request.toJson());
+      return InvoiceResponse.fromJson(response.data);
     } catch (e) {
-      print('Error: \$e');
+      print('Error creating invoice: $e');
+      return null;
     }
-    return null;
   }
 
-  Future<InvoiceModel?> searchInvoice(InvoiceModel request) async {
+  Future<List<InvoiceResponse>> searchInvoices(
+    Map<String, dynamic> queryParams,
+  ) async {
     try {
       final response = await dio.get(
-        '/api/v1/invoices/search',
-        queryParameters: request.toMap(),
+        '$baseUrl/search',
+        queryParameters: queryParams,
       );
-      return InvoiceModel.fromMap(response.data);
+      return (response.data as List)
+          .map((item) => InvoiceResponse.fromJson(item))
+          .toList();
     } catch (e) {
-      print('Error: \$e');
+      print('Error searching invoices: $e');
+      return [];
     }
-    return null;
   }
 
-  Future<InvoiceModel?> getAllInvoices() async {
+  Future<List<InvoiceResponse>> getAllInvoices() async {
     try {
-      final response = await dio.get('/api/v1/invoices');
-      return InvoiceModel.fromMap(response.data);
+      final response = await dio.get(baseUrl);
+      return (response.data as List)
+          .map((item) => InvoiceResponse.fromJson(item))
+          .toList();
     } catch (e) {
-      print('Error: \$e');
+      print('Error fetching invoices: $e');
+      return [];
     }
-    return null;
   }
 
-  Future<InvoiceModel?> getInvoiceById(InvoiceModel request) async {
+  Future<InvoiceResponse?> getInvoiceById(String id) async {
     try {
-      final response = await dio.get(
-        '/api/v1/invoice/{id}',
-        queryParameters: request.toMap(),
-      );
-      return InvoiceModel.fromMap(response.data);
+      final response = await dio.get('$baseUrl/$id');
+      return InvoiceResponse.fromJson(response.data);
     } catch (e) {
-      print('Error: \$e');
+      print('Error fetching invoice by ID: $e');
+      return null;
     }
-    return null;
   }
 
-  Future<InvoiceModel?> updateInvoice(InvoiceModel request) async {
+  Future<InvoiceResponse?> updateInvoice(
+    String id,
+    InvoiceRequest request,
+  ) async {
     try {
-      final response = await dio.put(
-        '/api/v1/invoices/update',
-        queryParameters: request.toMap(),
-      );
-      return InvoiceModel.fromMap(response.data);
+      final response = await dio.put('$baseUrl/$id', data: request.toJson());
+      return InvoiceResponse.fromJson(response.data);
     } catch (e) {
-      print('Error: \$e');
+      print('Error updating invoice: $e');
+      return null;
     }
-    return null;
   }
 
-  Future<InvoiceModel?> deleteInvoice(InvoiceModel request) async {
+  Future<bool> deleteInvoice(String id) async {
     try {
-      final response = await dio.delete(
-        '/api/v1/invoices/delete',
-        queryParameters: request.toMap(),
-      );
-      return InvoiceModel.fromMap(response.data);
+      await dio.delete('$baseUrl/$id');
+      return true;
     } catch (e) {
-      print('Error: \$e');
+      print('Error deleting invoice: $e');
+      return false;
     }
-    return null;
   }
 }
