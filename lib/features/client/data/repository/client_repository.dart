@@ -1,15 +1,20 @@
 import 'package:invoice/core/type_def.dart';
-import 'package:invoice/features/client/data/models/client_model.dart';
-import 'package:invoice/features/client/domain/entities/client_enitity.dart';
+import 'package:invoice/features/client/data/models/client_response.dart';
+
+import '../../../invoice/data/model/client_request.dart';
+import '../../../invoice/data/model/invoice_response.dart';
 
 abstract class ClientRepository {
-  FutureEither<ClientModel?> createClients(ClientEntity request);
+  FutureEither<ClientResponse> createClient(ClientRequest request);
 
-  FutureEither<ClientModel?> getAllClients();
+  FutureEither<List<ClientResponse>> fetchClients();
 
-  FutureEither<ClientModel?> getClientById(String clientId);
+  FutureEither<List<InvoiceResponse>> getInvoicesByClientId(String clientId);
 
-  FutureEither<ClientModel?> updateClient(String clientId);
+  FutureEither<ClientResponse> updateClient(
+    String clientId,
+    ClientRequest request,
+  );
 
-  FutureEither<ClientModel?> deleteClient(String clientId);
+  FutureVoid deleteClient(String clientId);
 }

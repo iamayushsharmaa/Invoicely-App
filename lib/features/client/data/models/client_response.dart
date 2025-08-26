@@ -1,31 +1,33 @@
-class ClientModel {
+class ClientResponse {
+  final String id;
   final String name;
   final String email;
-  final String phoneNumber;
+  final String phone;
   final String address;
 
-  ClientModel({
+  ClientResponse({
+    required this.id,
     required this.name,
     required this.email,
-    required this.phoneNumber,
+    required this.phone,
     required this.address,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': this.name,
-      'email': this.email,
-      'phoneNumber': this.phoneNumber,
-      'address': this.address,
-    };
-  }
-
-  factory ClientModel.fromMap(Map<String, dynamic> map) {
-    return ClientModel(
-      name: map['name'] as String,
-      email: map['email'] as String,
-      phoneNumber: map['phoneNumber'] as String,
-      address: map['address'] as String,
+  factory ClientResponse.fromJson(Map<String, dynamic> json) {
+    return ClientResponse(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      phone: json['phone'],
+      address: json['address'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'email': email,
+    'phone': phone,
+    'address': address,
+  };
 }

@@ -10,6 +10,7 @@ import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signup_screen.dart';
+import 'package:invoice/features/client/presentation/screens/client_detail_screen.dart';
 import 'package:invoice/features/client/presentation/screens/client_screen.dart';
 import 'package:invoice/features/home/presentation/screens/splash_screen.dart';
 import 'package:invoice/features/home/presentation/screens/widget_tree.dart';
@@ -17,7 +18,9 @@ import 'package:invoice/features/invoice/presentation/screens/add_invoice.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoices_screen.dart';
 
 import '../features/auth/data/remote/auth_api_service.dart';
+import '../features/client/presentation/screens/edit_client_info.dart';
 import '../features/home/presentation/screens/home_screen.dart';
+import '../features/invoice/presentation/screens/edit_invoice.dart';
 import '../features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
@@ -46,11 +49,10 @@ GoRouter createRouter(AuthBloc authBloc) {
       GoRoute(
         path: '/onboarding',
         name: 'onBoarding',
-        builder: (context, state) =>
-            BlocProvider(
-              create: (context) => AuthBloc(authRepository),
-              child: OnBoardingScreen(),
-            ),
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthBloc(authRepository),
+          child: OnBoardingScreen(),
+        ),
       ),
       GoRoute(
         path: '/signin',
@@ -71,6 +73,32 @@ GoRouter createRouter(AuthBloc authBloc) {
         path: '/invoice-details',
         name: 'invoiceDetails',
         builder: (context, state) => InvoiceDetailScreen(),
+      ),
+
+      GoRoute(
+        path: '/client-details',
+        name: 'clientDetails',
+        builder: (context, state) => ClientDetailScreen(),
+      ),
+      GoRoute(
+        path: '/edit-invoice',
+        name: 'editInvoice',
+        builder: (context, state) => EditInvoice(
+          invoiceNumber: "#0111",
+          date: "2025-08-30",
+          amount: "\$1200",
+          status: "Paid",
+        ),
+      ),
+      GoRoute(
+        path: '/edit-client',
+        name: 'editClient',
+        builder: (context, state) => EditClientInfo(
+          name: "Noah Henry",
+          phone: "919999999999",
+          email: "naohghr@gmail.com",
+          address: "House no. 84, Bhopal",
+        ),
       ),
 
       ShellRoute(
@@ -100,9 +128,7 @@ GoRouter createRouter(AuthBloc authBloc) {
       ),
     ],
     redirect: (context, state) {
-      final authState = context
-          .read<AuthBloc>()
-          .state;
+      final authState = context.read<AuthBloc>().state;
       final currentPath = state.uri.path;
       final isPublicRoute = [
         '/onboarding',
