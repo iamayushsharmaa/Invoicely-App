@@ -1,16 +1,24 @@
-# invoice
+# 📄 Invoicely
 
-A new Flutter project.
+### A modern invoice management application built with Flutter, following Clean Architecture principles.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+### Invoicely allows businesses and freelancers to manage invoices, clients, and payments efficiently with offline support and API integration.
 
-A few resources to get you started if this is your first Flutter project:
+# ✨ Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✅ Create, update, and delete invoices
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✅ Manage client information
+
+✅ Apply discounts, taxes, and multiple currencies
+
+✅ Offline caching with Hive for better performance
+
+✅ Search and filter invoices by client, date, or invoice number
+
+✅ Sync with remote API for real-time updates
+
+✅ Follows Clean Architecture (Domain, Data, Presentation layers)
+
+✅ Supports Bloc for state management
