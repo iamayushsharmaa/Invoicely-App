@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/invoice_card.dart';
 import '../widgets/overview_widget.dart';
@@ -61,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 15),
-            InvoiceCard(),
+            GestureDetector(
+              onTap: () => context.pushNamed("invoiceDetails"),
+              child: InvoiceCard(),
+            ),
           ],
         ),
       ),

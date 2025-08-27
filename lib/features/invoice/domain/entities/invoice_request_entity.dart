@@ -1,7 +1,6 @@
 import 'invoice_item_entity.dart';
 
-class InvoiceEntity {
-  final String id;
+class InvoiceRequestEntity {
   final String clientId;
   final String invoiceNumber;
   final DateTime invoiceDate;
@@ -9,19 +8,13 @@ class InvoiceEntity {
   final String billingFrom;
   final String billingTo;
   final String? notes;
-  final String status; // e.g., 'pending', 'paid', 'overdue'
-  final double subTotal;
   final double discount;
   final double tax;
-  final double totalAmount;
-  final String? logoUrl;
   final String currency;
-  final bool paid;
-  final DateTime? paymentDate;
+  final String? logoUrl;
   final List<InvoiceItemEntity> items;
 
-  const InvoiceEntity({
-    required this.id,
+  const InvoiceRequestEntity({
     required this.clientId,
     required this.invoiceNumber,
     required this.invoiceDate,
@@ -29,15 +22,10 @@ class InvoiceEntity {
     required this.billingFrom,
     required this.billingTo,
     this.notes,
-    required this.status,
-    required this.subTotal,
     required this.discount,
     required this.tax,
-    required this.totalAmount,
-    this.logoUrl,
     required this.currency,
-    required this.paid,
-    this.paymentDate,
+    this.logoUrl,
     required this.items,
   });
 }

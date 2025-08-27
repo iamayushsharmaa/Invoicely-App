@@ -1,24 +1,29 @@
+import 'package:invoice/features/invoice/domain/entities/invoice_request_entity.dart';
+
 import '../../../../core/type_def.dart';
+import '../../domain/entities/invoice_enitity.dart';
 import '../model/invoice_request.dart';
-import '../model/invoice_response.dart';
 
 abstract class InvoiceRepository {
-  FutureEither<InvoiceResponse?> createInvoice(InvoiceRequest request);
+  FutureEither<InvoiceEntity?> createInvoice(InvoiceRequestEntity entity);
 
-  FutureEither<List<InvoiceResponse>> searchInvoices({
+  FutureEither<List<InvoiceEntity>> searchInvoices({
     String? invoiceNumber,
     String? clientName,
     DateTime? fromDate,
     DateTime? toDate,
   });
 
-  FutureEither<List<InvoiceResponse>> getAllInvoices();
+  FutureEither<List<InvoiceEntity>> getAllInvoices();
 
-  FutureEither<InvoiceResponse?> getInvoiceById(String id);
+  FutureEither<InvoiceEntity?> getInvoiceById(String id);
 
   FutureEither<void> deleteInvoice(String invoiceId);
 
-  FutureEither<InvoiceResponse?> updateInvoice(String invoiceId, InvoiceRequest request);
+  FutureEither<InvoiceEntity?> updateInvoice(
+    String invoiceId,
+    InvoiceRequest request,
+  );
 
   void clearCache();
 }

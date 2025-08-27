@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:invoice/features/invoice/presentation/widgets/main_invoice_card.dart';
 import 'package:invoice/features/invoice/presentation/widgets/status_invoice_card.dart';
 
@@ -58,11 +59,20 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
             ),
 
             const SizedBox(height: 14),
-            MainInvoiceCard(),
+            GestureDetector(
+              onTap: () => context.pushNamed("invoiceDetails"),
+              child: MainInvoiceCard(),
+            ),
             const SizedBox(height: 10),
-            MainInvoiceCard(),
+            GestureDetector(
+              onTap: () => context.pushNamed("invoiceDetails"),
+              child: MainInvoiceCard(),
+            ),
             const SizedBox(height: 10),
-            MainInvoiceCard(),
+            GestureDetector(
+              onTap: () => context.pushNamed("invoiceDetails"),
+              child: MainInvoiceCard(),
+            ),
             const SizedBox(height: 10),
           ],
         ),

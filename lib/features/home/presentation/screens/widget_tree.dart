@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class WidgetTree extends StatelessWidget {
@@ -40,12 +41,57 @@ class WidgetTree extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Theme.of(context).colorScheme.primary,
           unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.receipt), label: 'Invoices'),
-            BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Clients'),
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.analytics),
+              icon: SvgPicture.asset(
+                'assets/icons/home.svg',
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  selectedIndex == 0
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'assets/icons/invoice.svg',
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  selectedIndex == 1
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: 'Invoices',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'assets/icons/client.svg',
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  selectedIndex == 1
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: 'Clients',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'assets/icons/analytic.svg',
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  selectedIndex == 1
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                  BlendMode.srcIn,
+                ),
+              ),
               label: 'Analytics',
             ),
           ],

@@ -1,14 +1,14 @@
-import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:invoice/features/invoice/data/repository/invoice_repository.dart';
+import 'package:invoice/features/invoice/domain/entities/invoice_request_entity.dart';
+import 'package:invoice/features/invoice/domain/mapper/invoice_mapper.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/type_def.dart';
 import '../../data/local/invoice_cache_service.dart';
 import '../../data/model/invoice_request.dart';
-import '../../data/model/invoice_response.dart';
 import '../../data/remote/InvoiceApiService.dart';
+import '../entities/invoice_enitity.dart';
 
 class InvoiceRepositoryImpl implements InvoiceRepository {
   final InvoiceApiService apiService;
@@ -17,12 +17,14 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
   InvoiceRepositoryImpl({required this.apiService, required this.cacheService});
 
   @override
-  FutureEither<InvoiceResponse> createInvoice(InvoiceRequest request) async {
+  FutureEither<InvoiceEntity> createInvoice(InvoiceRequestEntity entity) async {
     try {
+      final request = entity.toDto(status: 'pending');
+      await apiService.createInvoice(request);
       final response = await apiService.createInvoice(request);
       if (response != null) {
         await _refreshCache();
-        return Right(response);
+        return Right(response.toEntity());
       } else {
         return Left(Failure('Failed to create invoice'));
       }
@@ -30,40 +32,41 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
       return Left(Failure(e.toString()));
     }
   }
+
   @override
-  FutureEither<List<InvoiceResponse>> getAllInvoices() async {
+  FutureEither<List<InvoiceEntity>> getAllInvoices() async {
     try {
       if (await cacheService.isCacheValid()) {
         final cachedInvoices = await cacheService.getCachedInvoices();
         if (cachedInvoices != null) {
-          return Right(cachedInvoices);
+          return Right(cachedInvoices.map((e) => e.toEntity()).toList());
         }
       }
 
       final invoices = await apiService.getAllInvoices();
       await cacheService.cacheInvoices(invoices);
-      return Right(invoices);
+      return Right(invoices.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(Failure(e.toString()));
     }
   }
 
   @override
-  FutureEither<InvoiceResponse> getInvoiceById(String id) async {
+  FutureEither<InvoiceEntity> getInvoiceById(String id) async {
     try {
       final cachedInvoices = await cacheService.getCachedInvoices();
       if (cachedInvoices != null) {
         final invoice = cachedInvoices.firstWhere(
-              (inv) => inv.id == id,
+          (inv) => inv.id == id,
           orElse: () => throw Exception('Invoice not found'),
         );
-        if (invoice != null) return Right(invoice);
+        return Right(invoice.toEntity());
       }
 
       final invoice = await apiService.getInvoiceById(id);
       if (invoice != null) {
         await _refreshCache();
-        return Right(invoice);
+        return Right(invoice.toEntity());
       } else {
         return Left(Failure('Invoice not found'));
       }
@@ -73,7 +76,7 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
   }
 
   @override
-  FutureEither<List<InvoiceResponse>> searchInvoices({
+  FutureEither<List<InvoiceEntity>> searchInvoices({
     String? invoiceNumber,
     String? clientName,
     DateTime? fromDate,
@@ -86,7 +89,7 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
         fromDate: fromDate,
         toDate: toDate,
       );
-      return Right(results);
+      return Right(results.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -108,12 +111,15 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
   }
 
   @override
-  FutureEither<InvoiceResponse> updateInvoice(String id, InvoiceRequest request) async {
+  FutureEither<InvoiceEntity> updateInvoice(
+    String id,
+    InvoiceRequest request,
+  ) async {
     try {
       final updated = await apiService.updateInvoice(id, request);
       if (updated != null) {
         await _refreshCache();
-        return Right(updated);
+        return Right(updated.toEntity());
       } else {
         return Left(Failure('Failed to update invoice'));
       }
