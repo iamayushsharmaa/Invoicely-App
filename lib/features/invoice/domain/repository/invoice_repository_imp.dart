@@ -6,7 +6,6 @@ import 'package:invoice/features/invoice/domain/mapper/invoice_mapper.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/type_def.dart';
 import '../../data/local/invoice_cache_service.dart';
-import '../../data/model/invoice_request.dart';
 import '../../data/remote/InvoiceApiService.dart';
 import '../entities/invoice_enitity.dart';
 
@@ -113,10 +112,13 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
   @override
   FutureEither<InvoiceEntity> updateInvoice(
     String id,
-    InvoiceRequest request,
+    InvoiceRequestEntity request,
   ) async {
     try {
-      final updated = await apiService.updateInvoice(id, request);
+      final updated = await apiService.updateInvoice(
+        id,
+        request.toDto(status: 'paid'),
+      );
       if (updated != null) {
         await _refreshCache();
         return Right(updated.toEntity());

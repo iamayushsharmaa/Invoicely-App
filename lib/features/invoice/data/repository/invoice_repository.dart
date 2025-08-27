@@ -22,7 +22,7 @@ abstract class InvoiceRepository {
 
   FutureEither<InvoiceEntity?> updateInvoice(
     String invoiceId,
-    InvoiceRequest request,
+    InvoiceRequestEntity request,
   );
 
   void clearCache();

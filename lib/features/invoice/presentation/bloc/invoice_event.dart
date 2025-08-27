@@ -1,64 +1,27 @@
-part of 'invoice_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:invoice/features/invoice/domain/entities/invoice_request_entity.dart';
 
-abstract class InvoiceEvent extends Equatable {
-  const InvoiceEvent();
+part 'invoice_event.freezed.dart';
 
-  @override
-  List<Object?> get props => [];
-}
+@freezed
+class InvoiceEvent with _$InvoiceEvent {
+  const factory InvoiceEvent.loadInvoices() = LoadInvoices;
 
-class LoadInvoices extends InvoiceEvent {}
+  const factory InvoiceEvent.getInvoiceById(String id) = GetInvoiceById;
 
-class GetInvoiceById extends InvoiceEvent {
-  final String id;
+  const factory InvoiceEvent.createInvoice(InvoiceRequestEntity request) =
+      CreateInvoice;
 
-  const GetInvoiceById(this.id);
+  const factory InvoiceEvent.updateInvoice(String id, InvoiceRequestEntity request) =
+      UpdateInvoice;
 
-  @override
-  List<Object?> get props => [id];
-}
+  const factory InvoiceEvent.deleteInvoice(String id) = DeleteInvoice;
 
-class CreateInvoiceEvent extends InvoiceEvent {
-  final InvoiceRequestEntity request;
-
-  const CreateInvoiceEvent(this.request);
-
-  @override
-  List<Object?> get props => [request];
-}
-
-class UpdateInvoice extends InvoiceEvent {
-  final String id;
-  final InvoiceRequestEntity request;
-
-  const UpdateInvoice(this.id, this.request);
-
-  @override
-  List<Object?> get props => [id, request];
-}
-
-class DeleteInvoice extends InvoiceEvent {
-  final String id;
-
-  const DeleteInvoice(this.id);
-
-  @override
-  List<Object?> get props => [id];
-}
-
-class SearchInvoices extends InvoiceEvent {
-  final String? invoiceNumber;
-  final String? clientName;
-  final String? fromDate;
-  final String? toDate;
-
-  const SearchInvoices({
-    this.invoiceNumber,
-    this.clientName,
-    this.fromDate,
-    this.toDate,
-  });
-
-  @override
-  List<Object?> get props => [invoiceNumber, clientName, fromDate, toDate];
+  const factory InvoiceEvent.searchInvoices({
+    String? invoiceNumber,
+    String? clientName,
+    DateTime? fromDate,
+    DateTime? toDate,
+  }) = SearchInvoices;
 }

@@ -50,7 +50,7 @@ GoRouter createRouter(AuthBloc authBloc) {
         path: '/onboarding',
         name: 'onBoarding',
         builder: (context, state) => BlocProvider(
-          create: (context) => AuthBloc(authRepository),
+          create: (context) => AuthBloc(repository: authRepository),
           child: OnBoardingScreen(),
         ),
       ),

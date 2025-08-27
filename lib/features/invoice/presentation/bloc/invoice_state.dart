@@ -1,48 +1,20 @@
-part of 'invoice_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
 
-abstract class InvoiceState extends Equatable {
-  const InvoiceState();
+part 'invoice_state.freezed.dart';
 
-  @override
-  List<Object?> get props => [];
-}
+@freezed
+class InvoiceState with _$InvoiceState {
+  const factory InvoiceState.initial() = _Initial;
 
-class InvoiceInitial extends InvoiceState {}
+  const factory InvoiceState.loading() = _Loading;
 
-class InvoiceLoading extends InvoiceState {}
+  const factory InvoiceState.loaded(List<InvoiceEntity> invoices) = _Loaded;
 
-class InvoiceLoaded extends InvoiceState {
-  final List<InvoiceEntity> invoices;
+  const factory InvoiceState.singleInvoiceLoaded(InvoiceEntity? invoice) =
+      _SingleInvoiceLoaded;
 
-  const InvoiceLoaded(this.invoices);
+  const factory InvoiceState.success(String message) = _Success;
 
-  @override
-  List<Object?> get props => [invoices];
-}
-
-class SingleInvoiceLoaded extends InvoiceState {
-  final InvoiceEntity invoice;
-
-  const SingleInvoiceLoaded(this.invoice);
-
-  @override
-  List<Object?> get props => [invoice];
-}
-
-class InvoiceSuccess extends InvoiceState {
-  final String message;
-
-  const InvoiceSuccess(this.message);
-
-  @override
-  List<Object?> get props => [message];
-}
-
-class InvoiceError extends InvoiceState {
-  final String error;
-
-  const InvoiceError(this.error);
-
-  @override
-  List<Object?> get props => [error];
+  const factory InvoiceState.error(String error) = _Error;
 }
