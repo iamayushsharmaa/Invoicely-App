@@ -1,6 +1,3 @@
-Here’s an **enhanced and beautiful GitHub README** version with proper emoji usage, spacing, and visually appealing structure:
-
----
 
 # 📄 **Invoicely**
 
