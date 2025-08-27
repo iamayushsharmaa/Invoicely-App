@@ -99,7 +99,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     Emitter<InvoiceState> emit,
   ) async {
     emit(const InvoiceState.loading());
-    final result = await invoiceRepository.updateInvoice(
+    final result = await invoiceRepository.markPaidInvoice(
       event.id,
       event.request,
     );

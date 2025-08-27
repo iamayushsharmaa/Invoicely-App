@@ -115,15 +115,33 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
     InvoiceRequestEntity request,
   ) async {
     try {
-      final updated = await apiService.updateInvoice(
-        id,
-        request.toDto(status: 'paid'),
-      );
+      final updated = await apiService.updateInvoice(id, request.toDto());
       if (updated != null) {
         await _refreshCache();
         return Right(updated.toEntity());
       } else {
         return Left(Failure('Failed to update invoice'));
+      }
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  FutureEither<InvoiceEntity> markPaidInvoice(
+    String id,
+    InvoiceRequestEntity request,
+  ) async {
+    try {
+      final updated = await apiService.updateInvoice(
+        id,
+        request.toDto(status: 'Paid'),
+      );
+      if (updated != null) {
+        await _refreshCache();
+        return Right(updated.toEntity());
+      } else {
+        return Left(Failure('Failed to update invoice status'));
       }
     } catch (e) {
       return Left(Failure(e.toString()));

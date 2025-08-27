@@ -5,7 +5,7 @@ import '../entities/invoice_item_entity.dart';
 import '../entities/invoice_request_entity.dart';
 
 extension InvoiceRequestEntityMapper on InvoiceRequestEntity {
-  InvoiceRequest toDto({required String status}) {
+  InvoiceRequest toDto({String status = 'Pending'}) {
     final subTotal = items.fold(0.0, (sum, item) => sum + item.total);
     final totalAmount = subTotal - discount + tax;
 
