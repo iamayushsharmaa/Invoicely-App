@@ -16,6 +16,9 @@ class InvoiceEvent with _$InvoiceEvent {
   const factory InvoiceEvent.updateInvoice(String id, InvoiceRequestEntity request) =
       UpdateInvoice;
 
+  const factory InvoiceEvent.markPaidInvoice(String id, InvoiceRequestEntity request) =
+      MarkPaidInvoice;
+
   const factory InvoiceEvent.deleteInvoice(String id) = DeleteInvoice;
 
   const factory InvoiceEvent.searchInvoices({

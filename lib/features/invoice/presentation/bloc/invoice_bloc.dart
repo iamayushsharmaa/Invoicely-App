@@ -14,6 +14,11 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     : super(const InvoiceState.initial()) {
     on<LoadInvoices>(_onLoadInvoice);
     on<GetInvoiceById>(_getInvoiceById);
+    on<CreateInvoice>(_createInvoice);
+    on<SearchInvoices>(_searchInvoices);
+    on<UpdateInvoice>(_updateInvoice);
+    on<MarkPaidInvoice>(_markPaidInvoice);
+    on<DeleteInvoice>(_deleteInvoice);
   }
 
   FutureOr<void> _onLoadInvoice(
@@ -37,6 +42,77 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     result.fold(
       (failure) => emit(InvoiceState.error(failure.message)),
       (invoice) => emit(InvoiceState.singleInvoiceLoaded(invoice)),
+    );
+  }
+
+  Future<void> _createInvoice(
+    CreateInvoice event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.loading());
+    final result = await invoiceRepository.createInvoice(event.request);
+    result.fold(
+      (failure) => emit(InvoiceState.error(failure.message)),
+      (invoice) => emit(InvoiceState.success('Invoice created successfully')),
+    );
+  }
+
+  Future<void> _updateInvoice(
+    UpdateInvoice event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.loading());
+    final result = await invoiceRepository.updateInvoice(
+      event.id,
+      event.request,
+    );
+    result.fold(
+      (failure) => emit(InvoiceState.error(failure.message)),
+      (_) => emit(const InvoiceState.success('Invoice updated successfully')),
+    );
+  }
+
+  Future<void> _deleteInvoice(
+    DeleteInvoice event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.loading());
+    final result = await invoiceRepository.deleteInvoice(event.id);
+    result.fold(
+      (failure) => emit(InvoiceState.error(failure.message)),
+      (_) => emit(const InvoiceState.success('Invoice deleted successfully')),
+    );
+  }
+
+  Future<void> _markPaidInvoice(
+    MarkPaidInvoice event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.loading());
+    final result = await invoiceRepository.updateInvoice(
+      event.id,
+      event.request,
+    );
+    result.fold(
+      (failure) => emit(InvoiceState.error(failure.message)),
+      (_) => emit(const InvoiceState.success('Invoice marked as paid')),
+    );
+  }
+
+  Future<void> _searchInvoices(
+    SearchInvoices event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.loading());
+    final result = await invoiceRepository.searchInvoices(
+      invoiceNumber: event.invoiceNumber,
+      clientName: event.clientName,
+      fromDate: event.fromDate,
+      toDate: event.toDate,
+    );
+    result.fold(
+      (failure) => emit(InvoiceState.error(failure.message)),
+      (invoices) => emit(InvoiceState.loaded(invoices)),
     );
   }
 }

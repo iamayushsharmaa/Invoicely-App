@@ -23,6 +23,8 @@ mixin _$InvoiceEvent {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -35,6 +37,7 @@ mixin _$InvoiceEvent {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -47,6 +50,7 @@ mixin _$InvoiceEvent {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -60,6 +64,7 @@ mixin _$InvoiceEvent {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) =>
@@ -70,6 +75,7 @@ mixin _$InvoiceEvent {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) =>
@@ -80,6 +86,7 @@ mixin _$InvoiceEvent {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -154,6 +161,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -169,6 +178,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -184,6 +194,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -203,6 +214,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -216,6 +228,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -229,6 +242,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -318,6 +332,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -333,6 +349,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -348,6 +365,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -367,6 +385,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -380,6 +399,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -393,6 +413,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -489,6 +510,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -504,6 +527,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -519,6 +543,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -538,6 +563,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -551,6 +577,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -564,6 +591,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -669,6 +697,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -684,6 +714,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -699,6 +730,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -718,6 +750,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -731,6 +764,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -744,6 +778,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -767,6 +802,196 @@ abstract class UpdateInvoice implements InvoiceEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateInvoiceImplCopyWith<_$UpdateInvoiceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MarkPaidInvoiceImplCopyWith<$Res> {
+  factory _$$MarkPaidInvoiceImplCopyWith(_$MarkPaidInvoiceImpl value,
+          $Res Function(_$MarkPaidInvoiceImpl) then) =
+      __$$MarkPaidInvoiceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, InvoiceRequestEntity request});
+}
+
+/// @nodoc
+class __$$MarkPaidInvoiceImplCopyWithImpl<$Res>
+    extends _$InvoiceEventCopyWithImpl<$Res, _$MarkPaidInvoiceImpl>
+    implements _$$MarkPaidInvoiceImplCopyWith<$Res> {
+  __$$MarkPaidInvoiceImplCopyWithImpl(
+      _$MarkPaidInvoiceImpl _value, $Res Function(_$MarkPaidInvoiceImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? request = null,
+  }) {
+    return _then(_$MarkPaidInvoiceImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as InvoiceRequestEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
+  const _$MarkPaidInvoiceImpl(this.id, this.request);
+
+  @override
+  final String id;
+  @override
+  final InvoiceRequestEntity request;
+
+  @override
+  String toString() {
+    return 'InvoiceEvent.markPaidInvoice(id: $id, request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MarkPaidInvoiceImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, request);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MarkPaidInvoiceImplCopyWith<_$MarkPaidInvoiceImpl> get copyWith =>
+      __$$MarkPaidInvoiceImplCopyWithImpl<_$MarkPaidInvoiceImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInvoices,
+    required TResult Function(String id) getInvoiceById,
+    required TResult Function(InvoiceRequestEntity request) createInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
+    required TResult Function(String id) deleteInvoice,
+    required TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)
+        searchInvoices,
+  }) {
+    return markPaidInvoice(id, request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInvoices,
+    TResult? Function(String id)? getInvoiceById,
+    TResult? Function(InvoiceRequestEntity request)? createInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult? Function(String id)? deleteInvoice,
+    TResult? Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+  }) {
+    return markPaidInvoice?.call(id, request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInvoices,
+    TResult Function(String id)? getInvoiceById,
+    TResult Function(InvoiceRequestEntity request)? createInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult Function(String id)? deleteInvoice,
+    TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+    required TResult orElse(),
+  }) {
+    if (markPaidInvoice != null) {
+      return markPaidInvoice(id, request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInvoices value) loadInvoices,
+    required TResult Function(GetInvoiceById value) getInvoiceById,
+    required TResult Function(CreateInvoice value) createInvoice,
+    required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
+    required TResult Function(DeleteInvoice value) deleteInvoice,
+    required TResult Function(SearchInvoices value) searchInvoices,
+  }) {
+    return markPaidInvoice(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadInvoices value)? loadInvoices,
+    TResult? Function(GetInvoiceById value)? getInvoiceById,
+    TResult? Function(CreateInvoice value)? createInvoice,
+    TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult? Function(DeleteInvoice value)? deleteInvoice,
+    TResult? Function(SearchInvoices value)? searchInvoices,
+  }) {
+    return markPaidInvoice?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInvoices value)? loadInvoices,
+    TResult Function(GetInvoiceById value)? getInvoiceById,
+    TResult Function(CreateInvoice value)? createInvoice,
+    TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult Function(DeleteInvoice value)? deleteInvoice,
+    TResult Function(SearchInvoices value)? searchInvoices,
+    required TResult orElse(),
+  }) {
+    if (markPaidInvoice != null) {
+      return markPaidInvoice(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MarkPaidInvoice implements InvoiceEvent {
+  const factory MarkPaidInvoice(
+          final String id, final InvoiceRequestEntity request) =
+      _$MarkPaidInvoiceImpl;
+
+  String get id;
+  InvoiceRequestEntity get request;
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MarkPaidInvoiceImplCopyWith<_$MarkPaidInvoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -843,6 +1068,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -858,6 +1085,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -873,6 +1101,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -892,6 +1121,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -905,6 +1135,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -918,6 +1149,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
@@ -1048,6 +1280,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function(InvoiceRequestEntity request) createInvoice,
     required TResult Function(String id, InvoiceRequestEntity request)
         updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
     required TResult Function(String id) deleteInvoice,
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
@@ -1063,6 +1297,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function(String id)? getInvoiceById,
     TResult? Function(InvoiceRequestEntity request)? createInvoice,
     TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult? Function(String id)? deleteInvoice,
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -1078,6 +1313,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function(String id)? getInvoiceById,
     TResult Function(InvoiceRequestEntity request)? createInvoice,
     TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
     TResult Function(String id)? deleteInvoice,
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
@@ -1097,6 +1333,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function(GetInvoiceById value) getInvoiceById,
     required TResult Function(CreateInvoice value) createInvoice,
     required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
   }) {
@@ -1110,6 +1347,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function(GetInvoiceById value)? getInvoiceById,
     TResult? Function(CreateInvoice value)? createInvoice,
     TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
   }) {
@@ -1123,6 +1361,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function(GetInvoiceById value)? getInvoiceById,
     TResult Function(CreateInvoice value)? createInvoice,
     TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
     required TResult orElse(),
