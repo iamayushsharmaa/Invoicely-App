@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:invoice/features/invoice/domain/entities/invoice_request_entity.dart';
 
 part 'invoice_event.freezed.dart';
@@ -13,11 +12,15 @@ class InvoiceEvent with _$InvoiceEvent {
   const factory InvoiceEvent.createInvoice(InvoiceRequestEntity request) =
       CreateInvoice;
 
-  const factory InvoiceEvent.updateInvoice(String id, InvoiceRequestEntity request) =
-      UpdateInvoice;
+  const factory InvoiceEvent.updateInvoice(
+    String id,
+    InvoiceRequestEntity request,
+  ) = UpdateInvoice;
 
-  const factory InvoiceEvent.markPaidInvoice(String id, InvoiceRequestEntity request) =
-      MarkPaidInvoice;
+  const factory InvoiceEvent.markPaidInvoice(
+    String id,
+    InvoiceRequestEntity request,
+  ) = MarkPaidInvoice;
 
   const factory InvoiceEvent.deleteInvoice(String id) = DeleteInvoice;
 
@@ -27,4 +30,12 @@ class InvoiceEvent with _$InvoiceEvent {
     DateTime? fromDate,
     DateTime? toDate,
   }) = SearchInvoices;
+
+  const factory InvoiceEvent.sendInvoiceEmail(String invoiceId) =
+      SendInvoiceEmail;
+
+  const factory InvoiceEvent.downloadInvoicePdf({
+    required String invoiceId,
+    @Default('default') String template,
+  }) = DownloadInvoicePdf;
 }

@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
 
@@ -17,4 +19,8 @@ class InvoiceState with _$InvoiceState {
   const factory InvoiceState.success(String message) = _Success;
 
   const factory InvoiceState.error(String error) = _Error;
+
+  const factory InvoiceState.emailSent(String message) = _EmailSent;
+
+  const factory InvoiceState.pdfDownloaded(Uint8List pdfData) = _PdfDownloaded;
 }

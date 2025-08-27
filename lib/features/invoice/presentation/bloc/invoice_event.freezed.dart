@@ -29,6 +29,9 @@ mixin _$InvoiceEvent {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +45,8 @@ mixin _$InvoiceEvent {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,8 @@ mixin _$InvoiceEvent {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +74,8 @@ mixin _$InvoiceEvent {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +87,8 @@ mixin _$InvoiceEvent {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +100,8 @@ mixin _$InvoiceEvent {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,6 +180,9 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return loadInvoices();
   }
@@ -183,6 +199,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return loadInvoices?.call();
   }
@@ -199,6 +217,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (loadInvoices != null) {
@@ -217,6 +237,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return loadInvoices(this);
   }
@@ -231,6 +253,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return loadInvoices?.call(this);
   }
@@ -245,6 +269,8 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (loadInvoices != null) {
@@ -338,6 +364,9 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return getInvoiceById(id);
   }
@@ -354,6 +383,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return getInvoiceById?.call(id);
   }
@@ -370,6 +401,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (getInvoiceById != null) {
@@ -388,6 +421,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return getInvoiceById(this);
   }
@@ -402,6 +437,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return getInvoiceById?.call(this);
   }
@@ -416,6 +453,8 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (getInvoiceById != null) {
@@ -516,6 +555,9 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return createInvoice(request);
   }
@@ -532,6 +574,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return createInvoice?.call(request);
   }
@@ -548,6 +592,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (createInvoice != null) {
@@ -566,6 +612,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return createInvoice(this);
   }
@@ -580,6 +628,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return createInvoice?.call(this);
   }
@@ -594,6 +644,8 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (createInvoice != null) {
@@ -703,6 +755,9 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return updateInvoice(id, request);
   }
@@ -719,6 +774,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return updateInvoice?.call(id, request);
   }
@@ -735,6 +792,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (updateInvoice != null) {
@@ -753,6 +812,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return updateInvoice(this);
   }
@@ -767,6 +828,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return updateInvoice?.call(this);
   }
@@ -781,6 +844,8 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (updateInvoice != null) {
@@ -893,6 +958,9 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return markPaidInvoice(id, request);
   }
@@ -909,6 +977,8 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return markPaidInvoice?.call(id, request);
   }
@@ -925,6 +995,8 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (markPaidInvoice != null) {
@@ -943,6 +1015,8 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return markPaidInvoice(this);
   }
@@ -957,6 +1031,8 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return markPaidInvoice?.call(this);
   }
@@ -971,6 +1047,8 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (markPaidInvoice != null) {
@@ -1074,6 +1152,9 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return deleteInvoice(id);
   }
@@ -1090,6 +1171,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return deleteInvoice?.call(id);
   }
@@ -1106,6 +1189,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (deleteInvoice != null) {
@@ -1124,6 +1209,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return deleteInvoice(this);
   }
@@ -1138,6 +1225,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return deleteInvoice?.call(this);
   }
@@ -1152,6 +1241,8 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (deleteInvoice != null) {
@@ -1286,6 +1377,9 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)
         searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
   }) {
     return searchInvoices(invoiceNumber, clientName, fromDate, toDate);
   }
@@ -1302,6 +1396,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
   }) {
     return searchInvoices?.call(invoiceNumber, clientName, fromDate, toDate);
   }
@@ -1318,6 +1414,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function(String? invoiceNumber, String? clientName,
             DateTime? fromDate, DateTime? toDate)?
         searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (searchInvoices != null) {
@@ -1336,6 +1434,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function(MarkPaidInvoice value) markPaidInvoice,
     required TResult Function(DeleteInvoice value) deleteInvoice,
     required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
   }) {
     return searchInvoices(this);
   }
@@ -1350,6 +1450,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult? Function(DeleteInvoice value)? deleteInvoice,
     TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
   }) {
     return searchInvoices?.call(this);
   }
@@ -1364,6 +1466,8 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function(MarkPaidInvoice value)? markPaidInvoice,
     TResult Function(DeleteInvoice value)? deleteInvoice,
     TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
     required TResult orElse(),
   }) {
     if (searchInvoices != null) {
@@ -1389,5 +1493,406 @@ abstract class SearchInvoices implements InvoiceEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchInvoicesImplCopyWith<_$SearchInvoicesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SendInvoiceEmailImplCopyWith<$Res> {
+  factory _$$SendInvoiceEmailImplCopyWith(_$SendInvoiceEmailImpl value,
+          $Res Function(_$SendInvoiceEmailImpl) then) =
+      __$$SendInvoiceEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String invoiceId});
+}
+
+/// @nodoc
+class __$$SendInvoiceEmailImplCopyWithImpl<$Res>
+    extends _$InvoiceEventCopyWithImpl<$Res, _$SendInvoiceEmailImpl>
+    implements _$$SendInvoiceEmailImplCopyWith<$Res> {
+  __$$SendInvoiceEmailImplCopyWithImpl(_$SendInvoiceEmailImpl _value,
+      $Res Function(_$SendInvoiceEmailImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? invoiceId = null,
+  }) {
+    return _then(_$SendInvoiceEmailImpl(
+      null == invoiceId
+          ? _value.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendInvoiceEmailImpl implements SendInvoiceEmail {
+  const _$SendInvoiceEmailImpl(this.invoiceId);
+
+  @override
+  final String invoiceId;
+
+  @override
+  String toString() {
+    return 'InvoiceEvent.sendInvoiceEmail(invoiceId: $invoiceId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendInvoiceEmailImpl &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, invoiceId);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
+      __$$SendInvoiceEmailImplCopyWithImpl<_$SendInvoiceEmailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInvoices,
+    required TResult Function(String id) getInvoiceById,
+    required TResult Function(InvoiceRequestEntity request) createInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
+    required TResult Function(String id) deleteInvoice,
+    required TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)
+        searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
+  }) {
+    return sendInvoiceEmail(invoiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInvoices,
+    TResult? Function(String id)? getInvoiceById,
+    TResult? Function(InvoiceRequestEntity request)? createInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult? Function(String id)? deleteInvoice,
+    TResult? Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
+  }) {
+    return sendInvoiceEmail?.call(invoiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInvoices,
+    TResult Function(String id)? getInvoiceById,
+    TResult Function(InvoiceRequestEntity request)? createInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult Function(String id)? deleteInvoice,
+    TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
+    required TResult orElse(),
+  }) {
+    if (sendInvoiceEmail != null) {
+      return sendInvoiceEmail(invoiceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInvoices value) loadInvoices,
+    required TResult Function(GetInvoiceById value) getInvoiceById,
+    required TResult Function(CreateInvoice value) createInvoice,
+    required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
+    required TResult Function(DeleteInvoice value) deleteInvoice,
+    required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
+  }) {
+    return sendInvoiceEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadInvoices value)? loadInvoices,
+    TResult? Function(GetInvoiceById value)? getInvoiceById,
+    TResult? Function(CreateInvoice value)? createInvoice,
+    TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult? Function(DeleteInvoice value)? deleteInvoice,
+    TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
+  }) {
+    return sendInvoiceEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInvoices value)? loadInvoices,
+    TResult Function(GetInvoiceById value)? getInvoiceById,
+    TResult Function(CreateInvoice value)? createInvoice,
+    TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult Function(DeleteInvoice value)? deleteInvoice,
+    TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
+    required TResult orElse(),
+  }) {
+    if (sendInvoiceEmail != null) {
+      return sendInvoiceEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendInvoiceEmail implements InvoiceEvent {
+  const factory SendInvoiceEmail(final String invoiceId) =
+      _$SendInvoiceEmailImpl;
+
+  String get invoiceId;
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DownloadInvoicePdfImplCopyWith<$Res> {
+  factory _$$DownloadInvoicePdfImplCopyWith(_$DownloadInvoicePdfImpl value,
+          $Res Function(_$DownloadInvoicePdfImpl) then) =
+      __$$DownloadInvoicePdfImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String invoiceId, String template});
+}
+
+/// @nodoc
+class __$$DownloadInvoicePdfImplCopyWithImpl<$Res>
+    extends _$InvoiceEventCopyWithImpl<$Res, _$DownloadInvoicePdfImpl>
+    implements _$$DownloadInvoicePdfImplCopyWith<$Res> {
+  __$$DownloadInvoicePdfImplCopyWithImpl(_$DownloadInvoicePdfImpl _value,
+      $Res Function(_$DownloadInvoicePdfImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? invoiceId = null,
+    Object? template = null,
+  }) {
+    return _then(_$DownloadInvoicePdfImpl(
+      invoiceId: null == invoiceId
+          ? _value.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      template: null == template
+          ? _value.template
+          : template // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DownloadInvoicePdfImpl implements DownloadInvoicePdf {
+  const _$DownloadInvoicePdfImpl(
+      {required this.invoiceId, this.template = 'default'});
+
+  @override
+  final String invoiceId;
+  @override
+  @JsonKey()
+  final String template;
+
+  @override
+  String toString() {
+    return 'InvoiceEvent.downloadInvoicePdf(invoiceId: $invoiceId, template: $template)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DownloadInvoicePdfImpl &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.template, template) ||
+                other.template == template));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, invoiceId, template);
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DownloadInvoicePdfImplCopyWith<_$DownloadInvoicePdfImpl> get copyWith =>
+      __$$DownloadInvoicePdfImplCopyWithImpl<_$DownloadInvoicePdfImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInvoices,
+    required TResult Function(String id) getInvoiceById,
+    required TResult Function(InvoiceRequestEntity request) createInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        updateInvoice,
+    required TResult Function(String id, InvoiceRequestEntity request)
+        markPaidInvoice,
+    required TResult Function(String id) deleteInvoice,
+    required TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)
+        searchInvoices,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+    required TResult Function(String invoiceId, String template)
+        downloadInvoicePdf,
+  }) {
+    return downloadInvoicePdf(invoiceId, template);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInvoices,
+    TResult? Function(String id)? getInvoiceById,
+    TResult? Function(InvoiceRequestEntity request)? createInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult? Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult? Function(String id)? deleteInvoice,
+    TResult? Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+    TResult? Function(String invoiceId, String template)? downloadInvoicePdf,
+  }) {
+    return downloadInvoicePdf?.call(invoiceId, template);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInvoices,
+    TResult Function(String id)? getInvoiceById,
+    TResult Function(InvoiceRequestEntity request)? createInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? updateInvoice,
+    TResult Function(String id, InvoiceRequestEntity request)? markPaidInvoice,
+    TResult Function(String id)? deleteInvoice,
+    TResult Function(String? invoiceNumber, String? clientName,
+            DateTime? fromDate, DateTime? toDate)?
+        searchInvoices,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    TResult Function(String invoiceId, String template)? downloadInvoicePdf,
+    required TResult orElse(),
+  }) {
+    if (downloadInvoicePdf != null) {
+      return downloadInvoicePdf(invoiceId, template);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInvoices value) loadInvoices,
+    required TResult Function(GetInvoiceById value) getInvoiceById,
+    required TResult Function(CreateInvoice value) createInvoice,
+    required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(MarkPaidInvoice value) markPaidInvoice,
+    required TResult Function(DeleteInvoice value) deleteInvoice,
+    required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+    required TResult Function(DownloadInvoicePdf value) downloadInvoicePdf,
+  }) {
+    return downloadInvoicePdf(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadInvoices value)? loadInvoices,
+    TResult? Function(GetInvoiceById value)? getInvoiceById,
+    TResult? Function(CreateInvoice value)? createInvoice,
+    TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult? Function(DeleteInvoice value)? deleteInvoice,
+    TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult? Function(DownloadInvoicePdf value)? downloadInvoicePdf,
+  }) {
+    return downloadInvoicePdf?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInvoices value)? loadInvoices,
+    TResult Function(GetInvoiceById value)? getInvoiceById,
+    TResult Function(CreateInvoice value)? createInvoice,
+    TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(MarkPaidInvoice value)? markPaidInvoice,
+    TResult Function(DeleteInvoice value)? deleteInvoice,
+    TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    TResult Function(DownloadInvoicePdf value)? downloadInvoicePdf,
+    required TResult orElse(),
+  }) {
+    if (downloadInvoicePdf != null) {
+      return downloadInvoicePdf(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DownloadInvoicePdf implements InvoiceEvent {
+  const factory DownloadInvoicePdf(
+      {required final String invoiceId,
+      final String template}) = _$DownloadInvoicePdfImpl;
+
+  String get invoiceId;
+  String get template;
+
+  /// Create a copy of InvoiceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DownloadInvoicePdfImplCopyWith<_$DownloadInvoicePdfImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
