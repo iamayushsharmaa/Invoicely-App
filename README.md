@@ -10,12 +10,19 @@ Invoicely helps businesses and freelancers **manage invoices, clients, and payme
 # ✨ **Features**
 
 ✔️ **Create, update, and delete invoices**
+
 ✔️ **Manage client information**
+
 ✔️ **Apply discounts, taxes, and multiple currencies**
+
 ✔️ **Offline caching with Hive for better performance**
+
 ✔️ **Search and filter invoices by client, date, or invoice number**
+
 ✔️ **Sync with remote API for real-time updates**
+
 ✔️ **Follows Clean Architecture** (Domain, Data, Presentation layers)
+
 ✔️ **Supports Bloc for state management**
 
 ---
