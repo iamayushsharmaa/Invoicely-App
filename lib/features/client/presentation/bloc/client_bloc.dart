@@ -60,12 +60,28 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
     DeleteClient event,
     Emitter<ClientState> emit,
   ) async {
-    emit(const ClientState.loading());
-    final result = await clientRepository.deleteClient(event.clientId);
-    result.fold(
-      (failure) => emit(ClientState.error(failure.message)),
-      (_) =>
-          emit(const ClientState.clientSuccess('Client deleted successfully')),
+    await state.maybeWhen(
+      clientsLoaded: (clients) async {
+        final updatedClients = clients
+            .where((c) => c.id != event.clientId)
+            .toList();
+        emit(ClientState.clientsLoaded(updatedClients));
+
+        final result = await clientRepository.deleteClient(event.clientId);
+
+        result.fold(
+          (failure) {
+            emit(ClientState.error(failure.message));
+            add(FetchClients());
+          },
+          (_) {
+            emit(
+              const ClientState.clientSuccess('Client deleted successfully'),
+            );
+          },
+        );
+      },
+      orElse: () {},
     );
   }
 
