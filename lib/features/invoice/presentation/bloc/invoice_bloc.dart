@@ -86,11 +86,27 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     DeleteInvoice event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.deleteInvoice(event.id);
-    result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (_) => emit(const InvoiceState.success('Invoice deleted successfully')),
+    emit(InvoiceState.loading());
+    await state.maybeWhen(
+      loaded: (invoices) async {
+        final updatedList = invoices
+            .where((invoice) => invoice.id != event.id)
+            .toList();
+        emit(InvoiceState.loaded(updatedList));
+
+        final result = await invoiceRepository.deleteInvoice(event.id);
+
+        result.fold(
+          (failure) {
+            emit(InvoiceState.error(failure.message));
+            add(LoadInvoices()); // Reload list if needed
+          },
+          (_) {
+            emit(const InvoiceState.success('Invoice deleted successfully'));
+          },
+        );
+      },
+      orElse: () {},
     );
   }
 

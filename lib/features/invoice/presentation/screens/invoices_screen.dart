@@ -71,6 +71,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () => context.pushNamed("invoiceDetails"),
+              onLongPress: () => _showInvoiceOptions(context),
               child: MainInvoiceCard(),
             ),
             const SizedBox(height: 10),
@@ -78,5 +79,71 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
         ),
       ),
     );
+  }
+
+  void _showInvoiceOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Icon(Icons.delete, color: Colors.red),
+                title: Text(
+                  "Delete Invoice",
+                  style: TextStyle(color: Colors.red),
+                ),
+                onTap: () {
+                  Navigator.pop(context); // Close bottom sheet
+                  _showDeleteConfirmation(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showDeleteConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          title: Text("Delete Invoice"),
+          content: Text(
+            "Are you sure you want to delete this invoice? This action cannot be undone.",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close dialog
+                _deleteInvoice(); // Call delete logic
+              },
+              child: Text("Delete", style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteInvoice() {
+    // Example: Using BLoC
+    // context.read<InvoiceBloc>().add(DeleteInvoiceEvent(invoiceId));
+
+    print("Invoice deleted"); // Placeholder
   }
 }
