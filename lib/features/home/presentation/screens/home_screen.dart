@@ -122,4 +122,92 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+
+  Widget _buildInvoiceItem(BuildContext context,
+      String invoiceNumber,
+      String amount,
+      String status,
+      String date,) {
+    return GestureDetector(
+      onLongPress: () {
+        showModalBottomSheet(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          ),
+          builder: (ctx) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('View Details'),
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      context.pushNamed("invoiceDetails");
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.delete_outline,
+                      color: Colors.red,
+                    ),
+                    title: const Text(
+                      'Delete Invoice',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      _showDeleteInvoiceDialog(context, invoiceNumber);
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+      child: ClientInvoiceList(
+        invoiceNumber: invoiceNumber,
+        amount: amount,
+        status: status,
+        date: date,
+      ),
+    );
+  }
+
+  void _showDeleteInvoiceDialog(BuildContext context, String invoiceId) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          title: const Text('Delete Invoice'),
+          content: const Text(
+            'Are you sure you want to delete this invoice? This action cannot be undone.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                // context.read<InvoiceBloc>().add(DeleteInvoice(invoiceId));
+              },
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

@@ -88,7 +88,7 @@ class ClientDetailScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () => context.pushNamed('addInvoice'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF3F51B5),
                   padding: const EdgeInsets.symmetric(vertical: 14),
