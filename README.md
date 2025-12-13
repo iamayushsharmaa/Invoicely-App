@@ -65,38 +65,6 @@ lib/
 
 ---
 
-# 📦 **Installation**
-
-### 1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/your-username/invoicely.git
-cd invoicely
-```
-
-### 2️⃣ Install dependencies
-
-```bash
-flutter pub get
-```
-
-### 3️⃣ Run the app
-
-```bash
-flutter run
-```
-
----
-
-# 🔑 **Environment Setup**
-
-Create a `.env` file for API configuration (or use `flutter_dotenv`):
-
-```
-API_BASE_URL=https://api.yourdomain.com
-```
-
----
 
 # 🔄 **Data Flow**
 
@@ -108,29 +76,9 @@ UI (Bloc) → UseCase → Repository → DataSource → API / Cache → Reposito
 
 # 📱 **Screenshots**
 
-*(Add some cool screenshots or GIFs here)*
+*(Screenshot are coming soon)*
 
 ---
-
-# 🚀 **Roadmap**
-
-* [ ] Add **PDF generation** for invoices
-* [ ] Add **authentication & user profiles**
-* [ ] Add **multi-language support**
-* [ ] Add **dark mode**
-
----
-
-# 🤝 **Contributing**
-
-Contributions are welcome!
-Please **fork this repository** and submit a **pull request**.
-
----
-
-# 📄 **License**
-
-This project is licensed under the **MIT License**.
 
 ---
 
