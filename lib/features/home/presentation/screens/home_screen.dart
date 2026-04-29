@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../client/presentation/widgets/client_invoice_list.dart';
 import '../widgets/invoice_card.dart';
 import '../widgets/overview_widget.dart';
 

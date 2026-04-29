@@ -16,7 +16,7 @@ class _InvoiceSplashState extends State<InvoiceSplash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      final authState = context.read<AuthBloc>().state;
+      //final authState = context.read<AuthBloc>().state;
       //if (authState is Authenticated) {
         context.go('/home');
       // } else {

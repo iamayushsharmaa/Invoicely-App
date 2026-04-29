@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class DioClient {
   static Dio create(FlutterSecureStorage storage) {
     final options = BaseOptions(
-      baseUrl: 'https://invoicely-367c.onrender.com',
+      baseUrl: 'https://localhost:8080/',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       responseType: ResponseType.json,
