@@ -1,34 +1,25 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'interceptors/auth_interceptor.dart';
+import 'interceptors/log_interceptor.dart';
 
 class DioClient {
   static Dio create(FlutterSecureStorage storage) {
     final options = BaseOptions(
-      baseUrl: 'https://localhost:8080/',
+      baseUrl: dotenv.env["BASE_URL"] ?? "http://192.168.1.5:8080/",
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
-      responseType: ResponseType.json,
+      headers: {'Content-Type': 'application/json'},
     );
 
     final dio = Dio(options);
 
-    dio.interceptors.add(LogInterceptor(
-      requestBody: true,
-      responseBody: true,
-    ));
-
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          final token = await storage.read(key: 'token');
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          return handler.next(options);
-        },
-      ),
-    );
-
+    dio.interceptors.addAll([
+      AuthInterceptor(dio, storage),
+      AppLogInterceptor(),
+    ]);
     return dio;
   }
 }
