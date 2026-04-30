@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:invoice/core/network/dio_client.dart';
 import 'package:invoice/features/analytics/presentation/screens/analytics_screen.dart';
-import 'package:invoice/features/auth/domain/repository/auth_repository_impl.dart';
+import 'package:invoice/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
@@ -17,7 +17,7 @@ import 'package:invoice/features/home/presentation/screens/widget_tree.dart';
 import 'package:invoice/features/invoice/presentation/screens/add_invoice.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoices_screen.dart';
 
-import '../features/auth/data/remote/auth_api_service.dart';
+import '../features/auth/data/remote/auth_remote_datasource_impl.dart';
 import '../features/client/presentation/screens/edit_client_info.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/invoice/presentation/screens/edit_invoice.dart';

@@ -6,11 +6,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:invoice/config/routes.dart';
 import 'package:invoice/core/theme/app_theme.dart';
-import 'package:invoice/features/auth/data/remote/auth_api_service.dart';
-import 'package:invoice/features/auth/domain/repository/auth_repository_impl.dart';
+import 'package:invoice/features/auth/data/remote/auth_remote_datasource_impl.dart';
+import 'package:invoice/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
-import 'features/auth/data/repository/auth_repository.dart';
+import 'features/auth/domain/repository/auth_repository.dart';
 import 'features/invoice/data/model/invoice_response.dart';
 
 void main() async {

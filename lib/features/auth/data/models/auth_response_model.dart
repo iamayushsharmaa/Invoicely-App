@@ -7,12 +7,7 @@ class AuthenticationResponse {
   factory AuthenticationResponse.fromJson(Map<String, dynamic> json) {
     return AuthenticationResponse(
       token: json['token'],
-      error: json.containsKey('error') ? json['error'] : null,
+      error: json['error'],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    if (token != null) 'token': token,
-    if (error != null) 'error': error,
-  };
 }

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:invoice/features/auth/data/repository/auth_repository.dart';
+import 'package:invoice/features/auth/domain/repository/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

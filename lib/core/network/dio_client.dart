@@ -8,7 +8,7 @@ import 'interceptors/log_interceptor.dart';
 class DioClient {
   static Dio create(FlutterSecureStorage storage) {
     final options = BaseOptions(
-      baseUrl: dotenv.env["BASE_URL"] ?? "http://192.168.1.5:8080/",
+      baseUrl: dotenv.env["BASE_URL"] ?? "http://192.168.1.5:8080/api",
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       headers: {'Content-Type': 'application/json'},
