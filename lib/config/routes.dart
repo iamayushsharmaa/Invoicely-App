@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:invoice/core/network/dio_client.dart';
 import 'package:invoice/features/analytics/presentation/screens/analytics_screen.dart';
-import 'package:invoice/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:invoice/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:invoice/features/auth/presentation/screens/signin_screen.dart';
@@ -17,73 +12,57 @@ import 'package:invoice/features/home/presentation/screens/widget_tree.dart';
 import 'package:invoice/features/invoice/presentation/screens/add_invoice.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoices_screen.dart';
 
-import '../features/auth/data/remote/auth_remote_datasource_impl.dart';
 import '../features/client/presentation/screens/edit_client_info.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/invoice/presentation/screens/edit_invoice.dart';
 import '../features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
-  final initialLocation = '/splash';
-
-  final storage = FlutterSecureStorage();
-  final dio = DioClient.create(storage);
-  final authService = AuthService(
-    dio: dio,
-    googleSignIn: GoogleSignIn(),
-    storage: storage,
-  );
-  final authRepository = AuthRepositoryImpl(authService);
-
   return GoRouter(
     debugLogDiagnostics: true,
-    initialLocation: initialLocation,
+    initialLocation: '/splash',
     refreshListenable: GoRouterRefresh(authBloc),
     routes: [
       GoRoute(
         path: '/splash',
         name: 'splash',
-        builder: (context, state) =>
-            BlocProvider.value(value: authBloc, child: const InvoiceSplash()),
+        builder: (context, state) => const InvoiceSplash(),
       ),
       GoRoute(
         path: '/onboarding',
         name: 'onBoarding',
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthBloc(repository: authRepository),
-          child: OnBoardingScreen(),
-        ),
+        builder: (context, state) => const OnBoardingScreen(),
       ),
       GoRoute(
         path: '/signin',
         name: 'signIn',
-        builder: (context, state) => SigninScreen(),
+        builder: (context, state) => const SigninScreen(),
       ),
       GoRoute(
         path: '/signup',
         name: 'signUp',
-        builder: (context, state) => SignupScreen(),
+        builder: (context, state) => const SignupScreen(),
       ),
       GoRoute(
         path: '/add-invoice',
         name: 'addInvoice',
-        builder: (context, state) => AddInvoiceScreen(),
+        builder: (context, state) => const AddInvoiceScreen(),
       ),
       GoRoute(
         path: '/invoice-details',
         name: 'invoiceDetails',
-        builder: (context, state) => InvoiceDetailScreen(),
+        builder: (context, state) => const InvoiceDetailScreen(),
       ),
 
       GoRoute(
         path: '/client-details',
         name: 'clientDetails',
-        builder: (context, state) => ClientDetailScreen(),
+        builder: (context, state) => const ClientDetailScreen(),
       ),
       GoRoute(
         path: '/edit-invoice',
         name: 'editInvoice',
-        builder: (context, state) => EditInvoice(
+        builder: (context, state) => const EditInvoice(
           invoiceNumber: "#0111",
           date: "2025-08-30",
           amount: "\$1200",
@@ -93,7 +72,7 @@ GoRouter createRouter(AuthBloc authBloc) {
       GoRoute(
         path: '/edit-client',
         name: 'editClient',
-        builder: (context, state) => EditClientInfo(
+        builder: (context, state) => const EditClientInfo(
           name: "Noah Henry",
           phone: "919999999999",
           email: "naohghr@gmail.com",
@@ -107,28 +86,28 @@ GoRouter createRouter(AuthBloc authBloc) {
           GoRoute(
             path: '/home',
             name: 'home',
-            builder: (context, state) => HomeScreen(),
+            builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
             path: '/invoices',
             name: 'invoices',
-            builder: (context, state) => InvoiceScreen(),
+            builder: (context, state) => const InvoiceScreen(),
           ),
           GoRoute(
             path: '/clients',
             name: 'clients',
-            builder: (context, state) => ClientScreen(),
+            builder: (context, state) => const ClientScreen(),
           ),
           GoRoute(
             path: '/analytics',
             name: 'analytics',
-            builder: (context, state) => AnalyticsScreen(),
+            builder: (context, state) => const AnalyticsScreen(),
           ),
         ],
       ),
     ],
     redirect: (context, state) {
-      final authState = context.read<AuthBloc>().state;
+      final authState = authBloc.state;
       final currentPath = state.uri.path;
       final isPublicRoute = [
         '/onboarding',
@@ -136,12 +115,8 @@ GoRouter createRouter(AuthBloc authBloc) {
         '/signup',
       ].contains(currentPath);
 
-      if (authState is Authenticated && isPublicRoute) {
-        return '/home';
-      }
-      if (authState is Unauthenticated && !isPublicRoute) {
-        return '/onboarding';
-      }
+      if (authState is Authenticated && isPublicRoute) return '/home';
+      if (authState is Unauthenticated && !isPublicRoute) return '/onboarding';
       return null;
     },
     errorBuilder: (context, state) =>
@@ -150,11 +125,7 @@ GoRouter createRouter(AuthBloc authBloc) {
 }
 
 class GoRouterRefresh extends ChangeNotifier {
-  final AuthBloc bloc;
-
-  GoRouterRefresh(this.bloc) {
-    bloc.stream.listen((_) {
-      notifyListeners();
-    });
+  GoRouterRefresh(AuthBloc bloc) {
+    bloc.stream.listen((_) => notifyListeners());
   }
 }
