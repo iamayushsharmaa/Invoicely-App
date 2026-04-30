@@ -2,10 +2,10 @@ import 'package:invoice/core/type_def.dart';
 
 import '../repository/auth_repository.dart';
 
-class SignOut {
+class SignOutUsecase {
   final AuthRepository repository;
 
-  SignOut(this.repository);
+  SignOutUsecase(this.repository);
 
   FutureVoid call() async {
     return await repository.signOut();

@@ -3,10 +3,10 @@ import 'package:invoice/features/auth/domain/repository/auth_repository.dart';
 
 import '../entity/auth_token.dart';
 
-class GoogleSignIn {
+class GoogleSignInUsecase {
   final AuthRepository repository;
 
-  GoogleSignIn(this.repository);
+  GoogleSignInUsecase(this.repository);
 
   FutureEither<AuthToken> call() async {
     return repository.continueWithGoogle();

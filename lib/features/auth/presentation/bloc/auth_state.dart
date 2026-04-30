@@ -11,9 +11,12 @@ class AuthLoading extends AuthState {}
 
 class Authenticated extends AuthState {
   final String token;
+  final User? user;
 
-  Authenticated(this.token);
+  Authenticated({required this.token, this.user});
 }
+
+class Unauthenticated extends AuthState {}
 
 class AuthError extends AuthState {
   final String message;
@@ -23,5 +26,3 @@ class AuthError extends AuthState {
   @override
   List<Object?> get props => [];
 }
-
-class Unauthenticated extends AuthState {}

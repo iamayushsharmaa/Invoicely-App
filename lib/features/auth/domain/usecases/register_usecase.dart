@@ -3,10 +3,10 @@ import 'package:invoice/features/auth/domain/repository/auth_repository.dart';
 
 import '../entity/auth_token.dart';
 
-class Register {
+class RegisterUsecase {
   final AuthRepository repository;
 
-  Register(this.repository);
+  RegisterUsecase(this.repository);
 
   FutureEither<AuthToken> call(String name, String email, String password) {
     return repository.register(name, email, password);
