@@ -7,6 +7,7 @@ import 'package:invoice/core/di/injections.dart';
 import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
+import 'features/invoice/data/model/invoice_item_model.dart';
 import 'features/invoice/data/model/invoice_model.dart';
 
 void main() async {
@@ -15,8 +16,9 @@ void main() async {
   await dotenv.load(fileName: '.env');
 
   await Hive.initFlutter();
-  Hive.registerAdapter(InvoiceResponseAdapter());
-  await Hive.openBox<InvoiceResponse>('invoiceCache');
+  Hive.registerAdapter(InvoiceItemModelAdapter());
+  Hive.registerAdapter(InvoiceModelAdapter());
+  await Hive.openBox<InvoiceModel>('invoices');
   await initDependencies();
 
   runApp(const MyApp());

@@ -123,9 +123,6 @@ class _$InvoiceEventCopyWithImpl<$Res, $Val extends InvoiceEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -142,9 +139,6 @@ class __$$LoadInvoicesImplCopyWithImpl<$Res>
   __$$LoadInvoicesImplCopyWithImpl(
       _$LoadInvoicesImpl _value, $Res Function(_$LoadInvoicesImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -301,8 +295,6 @@ class __$$GetInvoiceByIdImplCopyWithImpl<$Res>
       _$GetInvoiceByIdImpl _value, $Res Function(_$GetInvoiceByIdImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -341,9 +333,7 @@ class _$GetInvoiceByIdImpl implements GetInvoiceById {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GetInvoiceByIdImplCopyWith<_$GetInvoiceByIdImpl> get copyWith =>
@@ -468,10 +458,7 @@ abstract class GetInvoiceById implements InvoiceEvent {
   const factory GetInvoiceById(final String id) = _$GetInvoiceByIdImpl;
 
   String get id;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GetInvoiceByIdImplCopyWith<_$GetInvoiceByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -493,15 +480,13 @@ class __$$CreateInvoiceImplCopyWithImpl<$Res>
       _$CreateInvoiceImpl _value, $Res Function(_$CreateInvoiceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? request = null,
+    Object? request = freezed,
   }) {
     return _then(_$CreateInvoiceImpl(
-      null == request
+      freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as InvoiceRequestEntity,
@@ -527,15 +512,14 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateInvoiceImpl &&
-            (identical(other.request, request) || other.request == request));
+            const DeepCollectionEquality().equals(other.request, request));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, request);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(request));
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateInvoiceImplCopyWith<_$CreateInvoiceImpl> get copyWith =>
@@ -660,10 +644,7 @@ abstract class CreateInvoice implements InvoiceEvent {
       _$CreateInvoiceImpl;
 
   InvoiceRequestEntity get request;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CreateInvoiceImplCopyWith<_$CreateInvoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -685,20 +666,18 @@ class __$$UpdateInvoiceImplCopyWithImpl<$Res>
       _$UpdateInvoiceImpl _value, $Res Function(_$UpdateInvoiceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? request = null,
+    Object? request = freezed,
   }) {
     return _then(_$UpdateInvoiceImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      null == request
+      freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as InvoiceRequestEntity,
@@ -727,15 +706,14 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
         (other.runtimeType == runtimeType &&
             other is _$UpdateInvoiceImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.request, request) || other.request == request));
+            const DeepCollectionEquality().equals(other.request, request));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, request);
+  int get hashCode => Object.hash(
+      runtimeType, id, const DeepCollectionEquality().hash(request));
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateInvoiceImplCopyWith<_$UpdateInvoiceImpl> get copyWith =>
@@ -862,10 +840,7 @@ abstract class UpdateInvoice implements InvoiceEvent {
 
   String get id;
   InvoiceRequestEntity get request;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UpdateInvoiceImplCopyWith<_$UpdateInvoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -887,20 +862,18 @@ class __$$MarkPaidInvoiceImplCopyWithImpl<$Res>
       _$MarkPaidInvoiceImpl _value, $Res Function(_$MarkPaidInvoiceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? request = null,
+    Object? request = freezed,
   }) {
     return _then(_$MarkPaidInvoiceImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      null == request
+      freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as InvoiceRequestEntity,
@@ -929,15 +902,14 @@ class _$MarkPaidInvoiceImpl implements MarkPaidInvoice {
         (other.runtimeType == runtimeType &&
             other is _$MarkPaidInvoiceImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.request, request) || other.request == request));
+            const DeepCollectionEquality().equals(other.request, request));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, request);
+  int get hashCode => Object.hash(
+      runtimeType, id, const DeepCollectionEquality().hash(request));
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MarkPaidInvoiceImplCopyWith<_$MarkPaidInvoiceImpl> get copyWith =>
@@ -1065,10 +1037,7 @@ abstract class MarkPaidInvoice implements InvoiceEvent {
 
   String get id;
   InvoiceRequestEntity get request;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MarkPaidInvoiceImplCopyWith<_$MarkPaidInvoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1090,8 +1059,6 @@ class __$$DeleteInvoiceImplCopyWithImpl<$Res>
       _$DeleteInvoiceImpl _value, $Res Function(_$DeleteInvoiceImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1130,9 +1097,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteInvoiceImplCopyWith<_$DeleteInvoiceImpl> get copyWith =>
@@ -1256,10 +1221,7 @@ abstract class DeleteInvoice implements InvoiceEvent {
   const factory DeleteInvoice(final String id) = _$DeleteInvoiceImpl;
 
   String get id;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteInvoiceImplCopyWith<_$DeleteInvoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1285,8 +1247,6 @@ class __$$SearchInvoicesImplCopyWithImpl<$Res>
       _$SearchInvoicesImpl _value, $Res Function(_$SearchInvoicesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1354,9 +1314,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
   int get hashCode =>
       Object.hash(runtimeType, invoiceNumber, clientName, fromDate, toDate);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchInvoicesImplCopyWith<_$SearchInvoicesImpl> get copyWith =>
@@ -1488,10 +1446,7 @@ abstract class SearchInvoices implements InvoiceEvent {
   String? get clientName;
   DateTime? get fromDate;
   DateTime? get toDate;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchInvoicesImplCopyWith<_$SearchInvoicesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1513,8 +1468,6 @@ class __$$SendInvoiceEmailImplCopyWithImpl<$Res>
       $Res Function(_$SendInvoiceEmailImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1554,9 +1507,7 @@ class _$SendInvoiceEmailImpl implements SendInvoiceEmail {
   @override
   int get hashCode => Object.hash(runtimeType, invoiceId);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
@@ -1682,10 +1633,7 @@ abstract class SendInvoiceEmail implements InvoiceEvent {
       _$SendInvoiceEmailImpl;
 
   String get invoiceId;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1707,8 +1655,6 @@ class __$$DownloadInvoicePdfImplCopyWithImpl<$Res>
       $Res Function(_$DownloadInvoicePdfImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1759,9 +1705,7 @@ class _$DownloadInvoicePdfImpl implements DownloadInvoicePdf {
   @override
   int get hashCode => Object.hash(runtimeType, invoiceId, template);
 
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DownloadInvoicePdfImplCopyWith<_$DownloadInvoicePdfImpl> get copyWith =>
@@ -1889,10 +1833,7 @@ abstract class DownloadInvoicePdf implements InvoiceEvent {
 
   String get invoiceId;
   String get template;
-
-  /// Create a copy of InvoiceEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DownloadInvoicePdfImplCopyWith<_$DownloadInvoicePdfImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

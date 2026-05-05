@@ -92,9 +92,6 @@ class _$ClientEventCopyWithImpl<$Res, $Val extends ClientEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -111,9 +108,6 @@ class __$$FetchClientsImplCopyWithImpl<$Res>
   __$$FetchClientsImplCopyWithImpl(
       _$FetchClientsImpl _value, $Res Function(_$FetchClientsImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -239,8 +233,6 @@ class __$$CreateClientImplCopyWithImpl<$Res>
       _$CreateClientImpl _value, $Res Function(_$CreateClientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -279,9 +271,7 @@ class _$CreateClientImpl implements CreateClient {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateClientImplCopyWith<_$CreateClientImpl> get copyWith =>
@@ -374,10 +364,7 @@ abstract class CreateClient implements ClientEvent {
   const factory CreateClient(final ClientEntity request) = _$CreateClientImpl;
 
   ClientEntity get request;
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CreateClientImplCopyWith<_$CreateClientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -399,8 +386,6 @@ class __$$UpdateClientImplCopyWithImpl<$Res>
       _$UpdateClientImpl _value, $Res Function(_$UpdateClientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -448,9 +433,7 @@ class _$UpdateClientImpl implements UpdateClient {
   @override
   int get hashCode => Object.hash(runtimeType, clientId, request);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateClientImplCopyWith<_$UpdateClientImpl> get copyWith =>
@@ -545,10 +528,7 @@ abstract class UpdateClient implements ClientEvent {
 
   String get clientId;
   ClientEntity get request;
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UpdateClientImplCopyWith<_$UpdateClientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -570,8 +550,6 @@ class __$$DeleteClientImplCopyWithImpl<$Res>
       _$DeleteClientImpl _value, $Res Function(_$DeleteClientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -611,9 +589,7 @@ class _$DeleteClientImpl implements DeleteClient {
   @override
   int get hashCode => Object.hash(runtimeType, clientId);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteClientImplCopyWith<_$DeleteClientImpl> get copyWith =>
@@ -706,10 +682,7 @@ abstract class DeleteClient implements ClientEvent {
   const factory DeleteClient(final String clientId) = _$DeleteClientImpl;
 
   String get clientId;
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteClientImplCopyWith<_$DeleteClientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -732,8 +705,6 @@ class __$$GetInvoicesByClientIdImplCopyWithImpl<$Res>
       $Res Function(_$GetInvoicesByClientIdImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -773,9 +744,7 @@ class _$GetInvoicesByClientIdImpl implements GetInvoicesByClientId {
   @override
   int get hashCode => Object.hash(runtimeType, clientId);
 
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GetInvoicesByClientIdImplCopyWith<_$GetInvoicesByClientIdImpl>
@@ -870,10 +839,7 @@ abstract class GetInvoicesByClientId implements ClientEvent {
       _$GetInvoicesByClientIdImpl;
 
   String get clientId;
-
-  /// Create a copy of ClientEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GetInvoicesByClientIdImplCopyWith<_$GetInvoicesByClientIdImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

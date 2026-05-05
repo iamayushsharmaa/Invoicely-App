@@ -108,9 +108,6 @@ class _$InvoiceStateCopyWithImpl<$Res, $Val extends InvoiceState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -127,9 +124,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -268,9 +262,6 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -412,8 +403,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -458,9 +447,7 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_invoices));
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -569,10 +556,7 @@ abstract class _Loaded implements InvoiceState {
   const factory _Loaded(final List<InvoiceEntity> invoices) = _$LoadedImpl;
 
   List<InvoiceEntity> get invoices;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -594,8 +578,6 @@ class __$$SingleInvoiceLoadedImplCopyWithImpl<$Res>
       $Res Function(_$SingleInvoiceLoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -634,9 +616,7 @@ class _$SingleInvoiceLoadedImpl implements _SingleInvoiceLoaded {
   @override
   int get hashCode => Object.hash(runtimeType, invoice);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SingleInvoiceLoadedImplCopyWith<_$SingleInvoiceLoadedImpl> get copyWith =>
@@ -747,10 +727,7 @@ abstract class _SingleInvoiceLoaded implements InvoiceState {
       _$SingleInvoiceLoadedImpl;
 
   InvoiceEntity? get invoice;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SingleInvoiceLoadedImplCopyWith<_$SingleInvoiceLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -772,8 +749,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -812,9 +787,7 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -923,10 +896,7 @@ abstract class _Success implements InvoiceState {
   const factory _Success(final String message) = _$SuccessImpl;
 
   String get message;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -948,8 +918,6 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -988,9 +956,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -1099,10 +1065,7 @@ abstract class _Error implements InvoiceState {
   const factory _Error(final String error) = _$ErrorImpl;
 
   String get error;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1124,8 +1087,6 @@ class __$$EmailSentImplCopyWithImpl<$Res>
       _$EmailSentImpl _value, $Res Function(_$EmailSentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1164,9 +1125,7 @@ class _$EmailSentImpl implements _EmailSent {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EmailSentImplCopyWith<_$EmailSentImpl> get copyWith =>
@@ -1275,10 +1234,7 @@ abstract class _EmailSent implements InvoiceState {
   const factory _EmailSent(final String message) = _$EmailSentImpl;
 
   String get message;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EmailSentImplCopyWith<_$EmailSentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1300,8 +1256,6 @@ class __$$PdfDownloadedImplCopyWithImpl<$Res>
       _$PdfDownloadedImpl _value, $Res Function(_$PdfDownloadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1341,9 +1295,7 @@ class _$PdfDownloadedImpl implements _PdfDownloaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(pdfData));
 
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PdfDownloadedImplCopyWith<_$PdfDownloadedImpl> get copyWith =>
@@ -1452,10 +1404,7 @@ abstract class _PdfDownloaded implements InvoiceState {
   const factory _PdfDownloaded(final Uint8List pdfData) = _$PdfDownloadedImpl;
 
   Uint8List get pdfData;
-
-  /// Create a copy of InvoiceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PdfDownloadedImplCopyWith<_$PdfDownloadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

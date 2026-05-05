@@ -96,9 +96,6 @@ class _$ClientStateCopyWithImpl<$Res, $Val extends ClientState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,9 +112,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -244,9 +238,6 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -376,8 +367,6 @@ class __$$ClientsLoadedImplCopyWithImpl<$Res>
       _$ClientsLoadedImpl _value, $Res Function(_$ClientsLoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -423,9 +412,7 @@ class _$ClientsLoadedImpl implements _ClientsLoaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_clients));
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientsLoadedImplCopyWith<_$ClientsLoadedImpl> get copyWith =>
@@ -523,10 +510,7 @@ abstract class _ClientsLoaded implements ClientState {
       _$ClientsLoadedImpl;
 
   List<ClientEntity> get clients;
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientsLoadedImplCopyWith<_$ClientsLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -548,8 +532,6 @@ class __$$ClientSuccessImplCopyWithImpl<$Res>
       _$ClientSuccessImpl _value, $Res Function(_$ClientSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -588,9 +570,7 @@ class _$ClientSuccessImpl implements _ClientSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientSuccessImplCopyWith<_$ClientSuccessImpl> get copyWith =>
@@ -687,10 +667,7 @@ abstract class _ClientSuccess implements ClientState {
   const factory _ClientSuccess(final String message) = _$ClientSuccessImpl;
 
   String get message;
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientSuccessImplCopyWith<_$ClientSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -712,8 +689,6 @@ class __$$InvoicesLoadedImplCopyWithImpl<$Res>
       _$InvoicesLoadedImpl _value, $Res Function(_$InvoicesLoadedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -759,9 +734,7 @@ class _$InvoicesLoadedImpl implements _InvoicesLoaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_invoices));
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InvoicesLoadedImplCopyWith<_$InvoicesLoadedImpl> get copyWith =>
@@ -860,10 +833,7 @@ abstract class _InvoicesLoaded implements ClientState {
       _$InvoicesLoadedImpl;
 
   List<InvoiceEntity> get invoices;
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$InvoicesLoadedImplCopyWith<_$InvoicesLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -885,8 +855,6 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -925,9 +893,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -1024,10 +990,7 @@ abstract class _Error implements ClientState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
-
-  /// Create a copy of ClientState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
