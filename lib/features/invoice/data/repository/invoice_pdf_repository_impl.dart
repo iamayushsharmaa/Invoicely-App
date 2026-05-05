@@ -2,13 +2,13 @@ import 'dart:io';
 import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:invoice/features/invoice/data/repository/invoice_pdf_repository.dart';
+import 'package:invoice/features/invoice/domain/repository/invoice_pdf_repository.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/type_def.dart';
-import '../../data/local/invoice_cache_service.dart';
-import '../../data/remote/InvoiceApiService.dart';
+import '../local/invoice_cache_service.dart';
+import '../remote/InvoiceApiService.dart';
 
 class InvoicePdfRepositoryImpl implements InvoicePdfRepository {
   final InvoiceApiService apiService;

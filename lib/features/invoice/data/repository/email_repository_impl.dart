@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:invoice/features/invoice/data/remote/InvoiceApiService.dart';
-import 'package:invoice/features/invoice/data/repository/email_repository.dart';
+import 'package:invoice/features/invoice/domain/repository/email_repository.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/type_def.dart';

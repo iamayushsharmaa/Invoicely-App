@@ -1,5 +1,6 @@
+import 'package:equatable/equatable.dart';
 
-class InvoiceItemEntity {
+class InvoiceItemEntity extends Equatable {
   final String description;
   final int quantity;
   final double price;
@@ -11,4 +12,7 @@ class InvoiceItemEntity {
     required this.price,
     required this.total,
   });
+
+  @override
+  List<Object?> get props => [description, quantity, price, total];
 }

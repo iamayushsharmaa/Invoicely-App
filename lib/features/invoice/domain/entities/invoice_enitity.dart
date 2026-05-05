@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'invoice_item_entity.dart';
 
-class InvoiceEntity {
+class InvoiceEntity extends Equatable {
   final String id;
   final String clientId;
   final String invoiceNumber;
@@ -9,7 +11,7 @@ class InvoiceEntity {
   final String billingFrom;
   final String billingTo;
   final String? notes;
-  final String status; // e.g., 'pending', 'paid', 'overdue'
+  final String status;
   final double subTotal;
   final double discount;
   final double tax;
@@ -40,4 +42,26 @@ class InvoiceEntity {
     this.paymentDate,
     required this.items,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    clientId,
+    invoiceNumber,
+    invoiceDate,
+    dueDate,
+    billingFrom,
+    billingTo,
+    notes,
+    status,
+    subTotal,
+    discount,
+    tax,
+    totalAmount,
+    logoUrl,
+    currency,
+    paid,
+    paymentDate,
+    items,
+  ];
 }

@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:invoice/features/invoice/data/repository/email_repository.dart';
-import 'package:invoice/features/invoice/data/repository/invoice_pdf_repository.dart';
+import 'package:invoice/features/invoice/domain/repository/email_repository.dart';
+import 'package:invoice/features/invoice/domain/repository/invoice_pdf_repository.dart';
 
-import '../../data/repository/invoice_repository.dart';
+import '../../domain/repository/invoice_repository.dart';
 import 'invoice_event.dart';
 import 'invoice_state.dart';
 

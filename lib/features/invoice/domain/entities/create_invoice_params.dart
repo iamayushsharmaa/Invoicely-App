@@ -1,6 +1,6 @@
-import 'invoice_item_entity.dart';
+import 'invoice_item_params.dart';
 
-class InvoiceRequestEntity {
+class CreateInvoiceParams {
   final String clientId;
   final String invoiceNumber;
   final DateTime invoiceDate;
@@ -8,13 +8,16 @@ class InvoiceRequestEntity {
   final String billingFrom;
   final String billingTo;
   final String? notes;
+  final String status;
   final double discount;
   final double tax;
   final String currency;
   final String? logoUrl;
-  final List<InvoiceItemEntity> items;
+  final List<InvoiceItemParams> items;
+  final double subTotal;
+  final double totalAmount;
 
-  const InvoiceRequestEntity({
+  const CreateInvoiceParams({
     required this.clientId,
     required this.invoiceNumber,
     required this.invoiceDate,
@@ -22,10 +25,13 @@ class InvoiceRequestEntity {
     required this.billingFrom,
     required this.billingTo,
     this.notes,
+    required this.status,
     required this.discount,
     required this.tax,
     required this.currency,
     this.logoUrl,
     required this.items,
+    required this.subTotal,
+    required this.totalAmount,
   });
 }
