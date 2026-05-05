@@ -16,11 +16,10 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(InvoiceResponseAdapter());
-
   await Hive.openBox<InvoiceResponse>('invoiceCache');
   await initDependencies();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
