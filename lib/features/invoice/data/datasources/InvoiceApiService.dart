@@ -3,7 +3,7 @@ import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
 import 'package:dio/dio.dart';
 
 import '../model/invoice_request.dart';
-import '../model/invoice_response.dart';
+import '../model/invoice_model.dart';
 
 class InvoiceApiService {
   final Dio dio;

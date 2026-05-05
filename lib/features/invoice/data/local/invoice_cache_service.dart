@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 
-import '../model/invoice_response.dart';
+import '../model/invoice_model.dart';
 
 class InvoiceCacheService {
   static const String cacheBoxName = 'invoiceCache';

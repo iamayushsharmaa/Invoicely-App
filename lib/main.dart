@@ -7,7 +7,7 @@ import 'package:invoice/core/di/injections.dart';
 import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
-import 'features/invoice/data/model/invoice_response.dart';
+import 'features/invoice/data/model/invoice_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

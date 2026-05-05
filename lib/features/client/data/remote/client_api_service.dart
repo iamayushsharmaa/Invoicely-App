@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:invoice/features/client/data/models/client_response.dart';
 
 import '../../../invoice/data/model/client_request.dart';
-import '../../../invoice/data/model/invoice_response.dart';
+import '../../../invoice/data/model/invoice_model.dart';
 import '../../../invoice/data/remote/InvoiceApiService.dart';
 
 class ClientApiService {
