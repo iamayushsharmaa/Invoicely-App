@@ -4,10 +4,10 @@ import 'package:invoice/features/invoice/data/model/invoice_model.dart';
 
 import '../../../../../core/errors/failure.dart';
 
-class InvoiceLocalDatasourceImpl implements InvoiceLocalDataSource {
+class InvoiceLocalDataSourceImpl implements InvoiceLocalDataSource {
   final Box<InvoiceModel> _invoiceBox;
 
-  InvoiceLocalDatasourceImpl(this._invoiceBox);
+  InvoiceLocalDataSourceImpl(this._invoiceBox);
 
   @override
   Future<List<InvoiceModel>> getCachedInvoices() async {

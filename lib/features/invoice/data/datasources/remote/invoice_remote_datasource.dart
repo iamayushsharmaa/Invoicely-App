@@ -1,7 +1,7 @@
 import 'package:invoice/features/invoice/data/model/invoice_model.dart';
 import 'package:invoice/features/invoice/domain/entities/create_invoice_params.dart';
 
-abstract interface class InvoiceRemoteDatasource {
+abstract interface class InvoiceRemoteDataSource {
   Future<List<InvoiceModel>> getAllInvoices();
 
   Future<InvoiceModel> getInovoiceById(String invoiceId);

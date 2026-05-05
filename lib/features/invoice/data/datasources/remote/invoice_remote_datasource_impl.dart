@@ -5,10 +5,10 @@ import 'package:invoice/features/invoice/domain/entities/create_invoice_params.d
 
 import '../../../../../core/network/api_error_handling.dart';
 
-class InvoiceRemoteDatasourceImpl implements InvoiceRemoteDatasource {
+class InvoiceRemoteDataSourceImpl implements InvoiceRemoteDataSource {
   final Dio _dio;
 
-  InvoiceRemoteDatasourceImpl(this._dio);
+  InvoiceRemoteDataSourceImpl(this._dio);
 
   @override
   Future<List<InvoiceModel>> getAllInvoices() async {

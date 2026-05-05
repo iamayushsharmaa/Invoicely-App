@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
 
 import '../../features/auth/data/datasource/auth_local_datasource.dart';
 import '../../features/auth/data/datasource/auth_local_datasource_impl.dart';
@@ -15,6 +16,20 @@ import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/sign_in_usecase.dart';
 import '../../features/auth/domain/usecases/sign_out_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/invoice/data/datasources/local/invoice_local_datasource.dart';
+import '../../features/invoice/data/datasources/local/invoice_local_datasource_impl.dart';
+import '../../features/invoice/data/datasources/remote/invoice_remote_datasource.dart';
+import '../../features/invoice/data/datasources/remote/invoice_remote_datasource_impl.dart';
+import '../../features/invoice/data/model/invoice_model.dart';
+import '../../features/invoice/data/repository/invoice_repository_imp.dart';
+import '../../features/invoice/domain/repository/invoice_repository.dart';
+import '../../features/invoice/domain/usecases/create_invoice_usecase.dart';
+import '../../features/invoice/domain/usecases/delete_invoice_usecase.dart';
+import '../../features/invoice/domain/usecases/get_all_invoices_usecase.dart';
+import '../../features/invoice/domain/usecases/get_invoice_by_id_usecase.dart';
+import '../../features/invoice/domain/usecases/mark_as_paid_usecase.dart';
+import '../../features/invoice/domain/usecases/search_invoice_usecase.dart';
+import '../../features/invoice/domain/usecases/update_invoice_usecase.dart';
 import '../network/dio_client.dart';
 
 final sl = GetIt.instance;
@@ -22,6 +37,8 @@ final sl = GetIt.instance;
 Future<void> initDependencies() async {
   _initCore();
   _initAuth();
+
+  await _initInvoice();
 }
 
 void _initCore() {
@@ -70,4 +87,40 @@ void _initAuth() {
       signOut: sl<SignOutUsecase>(),
     ),
   );
+}
+
+Future<void> _initInvoice() async {
+  final invoiceBox = await Hive.openBox<InvoiceModel>('invoices');
+  sl.registerSingleton<Box<InvoiceModel>>(invoiceBox);
+
+  sl.registerLazySingleton<InvoiceRemoteDataSource>(
+    () => InvoiceRemoteDataSourceImpl(sl<Dio>()),
+  );
+
+  sl.registerLazySingleton<InvoiceLocalDataSource>(
+    () => InvoiceLocalDataSourceImpl(sl<Box<InvoiceModel>>()),
+  );
+
+  sl.registerLazySingleton<InvoiceRepository>(
+    () => InvoiceRepositoryImpl(
+      sl<InvoiceRemoteDataSource>(),
+      sl<InvoiceLocalDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton(
+    () => GetAllInvoicesUseCase(sl<InvoiceRepository>()),
+  );
+  sl.registerLazySingleton(
+    () => GetInvoiceByIdUseCase(sl<InvoiceRepository>()),
+  );
+  sl.registerLazySingleton(() => CreateInvoiceUseCase(sl<InvoiceRepository>()));
+  sl.registerLazySingleton(() => UpdateInvoiceUseCase(sl<InvoiceRepository>()));
+  sl.registerLazySingleton(() => DeleteInvoiceUseCase(sl<InvoiceRepository>()));
+  sl.registerLazySingleton(() => MarkAsPaidUseCase(sl<InvoiceRepository>()));
+  sl.registerLazySingleton(
+    () => SearchInvoicesUseCase(sl<InvoiceRepository>()),
+  );
+
+  // ── bloc registered later after we write it ───────────────────────────────
 }
