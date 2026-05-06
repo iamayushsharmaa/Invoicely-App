@@ -1,26 +1,21 @@
-import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
-
-part 'invoice_state.freezed.dart';
+part of 'invoice_bloc.dart';
 
 @freezed
 class InvoiceState with _$InvoiceState {
-  const factory InvoiceState.initial() = _Initial;
+  const factory InvoiceState.initial() = InvoiceInitial;
 
-  const factory InvoiceState.loading() = _Loading;
+  // list states
+  const factory InvoiceState.listLoading() = InvoiceListLoading;
+  const factory InvoiceState.listLoaded(List<InvoiceEntity> invoices) = InvoiceListLoaded;
+  const factory InvoiceState.listError(String message) = InvoiceListError;
 
-  const factory InvoiceState.loaded(List<InvoiceEntity> invoices) = _Loaded;
+  // single invoice states
+  const factory InvoiceState.detailLoading() = InvoiceDetailLoading;
+  const factory InvoiceState.detailLoaded(InvoiceEntity invoice) = InvoiceDetailLoaded;
+  const factory InvoiceState.detailError(String message) = InvoiceDetailError;
 
-  const factory InvoiceState.singleInvoiceLoaded(InvoiceEntity? invoice) =
-      _SingleInvoiceLoaded;
-
-  const factory InvoiceState.success(String message) = _Success;
-
-  const factory InvoiceState.error(String error) = _Error;
-
-  const factory InvoiceState.emailSent(String message) = _EmailSent;
-
-  const factory InvoiceState.pdfDownloaded(Uint8List pdfData) = _PdfDownloaded;
+  // action states (create, update, delete, mark paid)
+  const factory InvoiceState.actionLoading() = InvoiceActionLoading;
+  const factory InvoiceState.actionSuccess(String message) = InvoiceActionSuccess;
+  const factory InvoiceState.actionError(String message) = InvoiceActionError;
 }

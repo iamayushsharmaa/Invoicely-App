@@ -2,17 +2,29 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:invoice/features/invoice/domain/repository/email_repository.dart';
 import 'package:invoice/features/invoice/domain/repository/invoice_pdf_repository.dart';
 
+import '../../domain/entities/create_invoice_params.dart';
+import '../../domain/entities/invoice_enitity.dart';
 import '../../domain/repository/invoice_repository.dart';
-import 'invoice_event.dart';
-import 'invoice_state.dart';
+import '../../domain/usecases/get_all_invoices_usecase.dart';
+import '../../domain/usecases/get_invoice_by_id_usecase.dart';
+
+part 'invoice_bloc.freezed.dart';
+part 'invoice_event.dart';
+part 'invoice_state.dart';
 
 class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
-  final InvoiceRepository invoiceRepository;
-  final InvoicePdfRepository pdfRepository;
-  final EmailRepository emailRepository;
+  final GetAllInvoicesUseCase _getAllInvoices;
+  final GetInvoiceByIdUseCase _getInvoiceById;
+  final GetInvoicesByClientUseCase _getInvoicesByClient;
+  final CreateInvoiceUseCase _createInvoice;
+  final UpdateInvoiceUseCase _updateInvoice;
+  final DeleteInvoiceUseCase _deleteInvoice;
+  final MarkAsPaidUseCase _markAsPaid;
+  final SearchInvoicesUseCase _searchInvoices;
 
   InvoiceBloc({
     required this.pdfRepository,

@@ -1,41 +1,33 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:invoice/features/invoice/domain/entities/invoice_request_entity.dart';
-
-part 'invoice_event.freezed.dart';
+part of 'invoice_bloc.dart';
 
 @freezed
 class InvoiceEvent with _$InvoiceEvent {
   const factory InvoiceEvent.loadInvoices() = LoadInvoices;
 
-  const factory InvoiceEvent.getInvoiceById(String id) = GetInvoiceById;
+  const factory InvoiceEvent.loadInvoiceById(String invoiceId) =
+      LoadInvoiceById;
 
-  const factory InvoiceEvent.createInvoice(InvoiceRequestEntity request) =
+  const factory InvoiceEvent.loadInvoicesByClient(String clientId) =
+      LoadInvoicesByClient;
+
+  const factory InvoiceEvent.createInvoice(CreateInvoiceParams params) =
       CreateInvoice;
 
-  const factory InvoiceEvent.updateInvoice(
-    String id,
-    InvoiceRequestEntity request,
-  ) = UpdateInvoice;
+  const factory InvoiceEvent.updateInvoice({
+    required String invoiceId,
+    required CreateInvoiceParams params,
+  }) = UpdateInvoice;
 
-  const factory InvoiceEvent.markPaidInvoice(
-    String id,
-    InvoiceRequestEntity request,
-  ) = MarkPaidInvoice;
+  const factory InvoiceEvent.deleteInvoice(String invoiceId) = DeleteInvoice;
 
-  const factory InvoiceEvent.deleteInvoice(String id) = DeleteInvoice;
+  const factory InvoiceEvent.markAsPaid(String invoiceId) = MarkAsPaid;
 
   const factory InvoiceEvent.searchInvoices({
     String? invoiceNumber,
     String? clientName,
-    DateTime? fromDate,
-    DateTime? toDate,
+    @Default(0) int page,
+    @Default(10) int size,
   }) = SearchInvoices;
 
-  const factory InvoiceEvent.sendInvoiceEmail(String invoiceId) =
-      SendInvoiceEmail;
-
-  const factory InvoiceEvent.downloadInvoicePdf({
-    required String invoiceId,
-    @Default('default') String template,
-  }) = DownloadInvoicePdf;
+  const factory InvoiceEvent.clearSelectedInvoice() = ClearSelectedInvoice;
 }
