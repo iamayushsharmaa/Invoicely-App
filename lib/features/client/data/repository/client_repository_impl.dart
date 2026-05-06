@@ -1,72 +1,87 @@
-import 'package:fpdart/fpdart.dart';
-import 'package:invoice/core/type_def.dart';
-import 'package:invoice/features/client/domain/repository/client_repository.dart';
+import 'package:fpdart/src/either.dart';
+import 'package:invoice/core/errors/failure.dart';
+import 'package:invoice/core/network/api_exceptions.dart';
+import 'package:invoice/features/client/data/datasources/client_local_datasource.dart';
+import 'package:invoice/features/client/data/datasources/client_remote_datasource.dart';
 import 'package:invoice/features/client/domain/entities/client_enitity.dart';
-import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../remote/client_api_service.dart';
+import 'package:invoice/features/client/domain/params/client_params.dart';
+import 'package:invoice/features/client/domain/repository/client_repository.dart';
 
 class ClientRepositoryImpl implements ClientRepository {
-  final ClientApiService apiService;
+  final ClientRemoteDatasource _remote;
+  final ClientLocalDatasource _local;
 
-  ClientRepositoryImpl({required this.apiService});
-
-  @override
-  FutureEither<ClientEntity> createClient(ClientEntity request) async {
-    try {
-      final client = await apiService.createClient(request.toRequest());
-      return Right(client.toEntity());
-    } catch (e) {
-      return Left(Failure(e.toString()));
-    }
-  }
+  ClientRepositoryImpl(this._remote, this._local);
 
   @override
-  FutureEither<List<ClientEntity>> fetchClients() async {
-    try {
-      final clients = await apiService.fetchClients();
-      return Right(clients.map((e) => e.toEntity()).toList());
-    } catch (e) {
-      return Left(Failure(e.toString()));
-    }
-  }
-
-  @override
-  FutureEither<List<InvoiceEntity>> getInvoicesByClientId(
-    String clientId,
+  Future<Either<Failure, ClientEntity>> createClient(
+    CreateClientParams params,
   ) async {
     try {
-      final invoices = await apiService.getInvoicesByClientId(clientId);
-      return Right(invoices.map((e) => e.toEntity()).toList());
+      final remote = await _remote.createClient(params);
+      await _local.cacheClient(remote);
+      return Right(remote.toEntity());
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
     } catch (e) {
-      return Left(Failure(e.toString()));
+      return Left(ServerFailure('Failed to create client'));
     }
   }
 
   @override
-  FutureEither<ClientEntity> updateClient(
-    String clientId,
-    ClientEntity request,
-  ) async {
+  Future<Either<Failure, List<ClientEntity>>> getAllClients() async {
     try {
-      final client = await apiService.updateClient(
-        clientId,
-        request.toRequest(),
-      );
-      return Right(client.toEntity());
+      final response = await _remote.getAllClients();
+      await _local.cacheClients(response);
+      return Right(response.map((e) => e.toEntity()).toList());
+    } on ApiException catch (e) {
+      return _getFallbackList();
+    } on CacheFailure catch (e) {
+      return Left(e);
     } catch (e) {
-      return Left(Failure(e.toString()));
+      return _getFallbackList();
     }
   }
 
   @override
-  FutureVoid deleteClient(String clientId) async {
+  Future<Either<Failure, void>> deleteClient(String clientId) async {
     try {
-      await apiService.deleteClient(clientId);
+      await _remote.deleteClient(clientId);
+      await _local.deleteClientFromCache(clientId);
       return const Right(null);
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
     } catch (e) {
-      return Left(Failure(e.toString()));
+      return Left(ServerFailure('Failed to delete client'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ClientEntity>> updateClient(
+    UpdateClientParams params,
+  ) async {
+    try {
+      final remote = await _remote.updateClient(params);
+      await _local.cacheClient(remote);
+      return Right(remote.toEntity());
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to update client'));
+    }
+  }
+
+  Future<Either<Failure, List<ClientEntity>>> _getFallbackList() async {
+    try {
+      final cached = await _local.getCachedClients();
+      if (cached.isEmpty) {
+        return const Left(
+          ServerFailure('No internet connection and no cached data available.'),
+        );
+      }
+      return Right(cached.map((e) => e.toEntity()).toList());
+    } on CacheFailure catch (e) {
+      return Left(e);
     }
   }
 }

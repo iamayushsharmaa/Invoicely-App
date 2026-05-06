@@ -7,6 +7,7 @@ import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'core/router/app_router.dart';
+import 'features/client/data/models/client_model.dart';
 import 'features/invoice/data/model/invoice_item_model.dart';
 import 'features/invoice/data/model/invoice_model.dart';
 import 'features/invoice/presentation/bloc/invoice_bloc.dart';
@@ -20,6 +21,9 @@ void main() async {
   Hive.registerAdapter(InvoiceItemModelAdapter());
   Hive.registerAdapter(InvoiceModelAdapter());
   await Hive.openBox<InvoiceModel>('invoices');
+
+  Hive.registerAdapter(ClientModelAdapter());
+  await Hive.openBox<ClientModel>('clientCache');
   await initDependencies();
 
   runApp(const MyApp());
