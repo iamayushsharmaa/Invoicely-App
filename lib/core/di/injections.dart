@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
+import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
 
 import '../../features/auth/data/datasource/auth_local_datasource.dart';
 import '../../features/auth/data/datasource/auth_local_datasource_impl.dart';
@@ -26,6 +27,7 @@ import '../../features/invoice/domain/repository/invoice_repository.dart';
 import '../../features/invoice/domain/usecases/create_invoice_usecase.dart';
 import '../../features/invoice/domain/usecases/delete_invoice_usecase.dart';
 import '../../features/invoice/domain/usecases/get_all_invoices_usecase.dart';
+import '../../features/invoice/domain/usecases/get_invoice_by_client_usecase.dart';
 import '../../features/invoice/domain/usecases/get_invoice_by_id_usecase.dart';
 import '../../features/invoice/domain/usecases/mark_as_paid_usecase.dart';
 import '../../features/invoice/domain/usecases/search_invoice_usecase.dart';
@@ -114,6 +116,9 @@ Future<void> _initInvoice() async {
   sl.registerLazySingleton(
     () => GetInvoiceByIdUseCase(sl<InvoiceRepository>()),
   );
+  sl.registerLazySingleton(
+    () => GetInvoicesByClientUseCase(sl<InvoiceRepository>()),
+  );
   sl.registerLazySingleton(() => CreateInvoiceUseCase(sl<InvoiceRepository>()));
   sl.registerLazySingleton(() => UpdateInvoiceUseCase(sl<InvoiceRepository>()));
   sl.registerLazySingleton(() => DeleteInvoiceUseCase(sl<InvoiceRepository>()));
@@ -122,5 +127,16 @@ Future<void> _initInvoice() async {
     () => SearchInvoicesUseCase(sl<InvoiceRepository>()),
   );
 
-  // ── bloc registered later after we write it ───────────────────────────────
+  sl.registerFactory(
+    () => InvoiceBloc(
+      getAllInvoices: sl(),
+      getInvoiceById: sl(),
+      getInvoicesByClient: sl(),
+      createInvoice: sl(),
+      updateInvoice: sl(),
+      deleteInvoice: sl(),
+      markAsPaid: sl(),
+      searchInvoices: sl(),
+    ),
+  );
 }
