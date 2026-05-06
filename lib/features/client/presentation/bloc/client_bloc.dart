@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
-import '../../data/repository/client_repository.dart';
+import '../../domain/repository/client_repository.dart';
 import 'client_event.dart';
 import 'client_state.dart';
 

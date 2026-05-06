@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:invoice/config/routes.dart';
 import 'package:invoice/core/di/injections.dart';
 import 'package:invoice/core/theme/app_theme.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
 
+import 'core/router/app_router.dart';
 import 'features/invoice/data/model/invoice_item_model.dart';
 import 'features/invoice/data/model/invoice_model.dart';
+import 'features/invoice/presentation/bloc/invoice_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +30,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (_) => sl<AuthBloc>()..add(CheckAuthStatusEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => sl<AuthBloc>()..add(CheckAuthStatusEvent()),
+        ),
+        BlocProvider<InvoiceBloc>(
+          create: (_) =>
+              sl<InvoiceBloc>()..add(const InvoiceEvent.loadInvoices()),
+        ),
+      ],
       child: Builder(
         builder: (context) {
           return MaterialApp.router(
-            routerConfig: createRouter(context.read<AuthBloc>()),
+            routerConfig: AppRouter.createRouter(context.read<AuthBloc>()),
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.system,

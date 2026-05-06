@@ -6,12 +6,12 @@ import '../entities/client_enitity.dart';
 import '../params/client_params.dart';
 import '../repository/client_repository.dart';
 
-class CreateClientUseCase implements UseCase<ClientEntity, CreateClientParams> {
+class UpdateClientUseCase implements UseCase<ClientEntity, UpdateClientParams> {
   final ClientRepository _repository;
 
-  const CreateClientUseCase(this._repository);
+  const UpdateClientUseCase(this._repository);
 
   @override
-  Future<Either<Failure, ClientEntity>> call(CreateClientParams params) =>
-      _repository.createClient(params);
+  Future<Either<Failure, ClientEntity>> call(UpdateClientParams params) =>
+      _repository.updateClient(params);
 }

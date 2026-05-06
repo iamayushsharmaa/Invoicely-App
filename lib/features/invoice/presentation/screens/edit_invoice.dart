@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
 
 class EditInvoice extends StatefulWidget {
-  final String invoiceNumber;
-  final String date;
-  final String amount;
-  final String status;
+  final InvoiceEntity invoice;
 
-  const EditInvoice({
-    super.key,
-    required this.invoiceNumber,
-    required this.date,
-    required this.amount,
-    required this.status,
-  });
+  const EditInvoice({super.key, required this.invoice});
 
   @override
   State<EditInvoice> createState() => _EditInvoiceState();
@@ -29,10 +21,16 @@ class _EditInvoiceState extends State<EditInvoice> {
   @override
   void initState() {
     super.initState();
-    invoiceNumberController = TextEditingController(text: widget.invoiceNumber);
-    dateController = TextEditingController(text: widget.date);
-    amountController = TextEditingController(text: widget.amount);
-    selectedStatus = widget.status;
+    invoiceNumberController = TextEditingController(
+      text: widget.invoice.invoiceNumber,
+    );
+    dateController = TextEditingController(
+      text: widget.invoice.invoiceDate.toString(),
+    );
+    amountController = TextEditingController(
+      text: widget.invoice.totalAmount.toString(),
+    );
+    selectedStatus = widget.invoice.status.toString();
   }
 
   @override
@@ -46,7 +44,9 @@ class _EditInvoiceState extends State<EditInvoice> {
   Future<void> _selectDate(BuildContext context) async {
     DateTime initialDate = DateTime.now();
     try {
-      initialDate = DateTime.parse(widget.date); // Attempt to parse
+      initialDate = DateTime.parse(
+        widget.invoice.invoiceDate.toString(),
+      ); // Attempt to parse
     } catch (_) {}
     final DateTime? picked = await showDatePicker(
       context: context,

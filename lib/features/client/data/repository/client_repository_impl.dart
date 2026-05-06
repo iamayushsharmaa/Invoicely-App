@@ -1,13 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:invoice/core/type_def.dart';
-import 'package:invoice/features/client/data/repository/client_repository.dart';
+import 'package:invoice/features/client/domain/repository/client_repository.dart';
 import 'package:invoice/features/client/domain/entities/client_enitity.dart';
-import 'package:invoice/features/client/domain/mapper/client_mapper.dart';
 import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
-import 'package:invoice/features/invoice/domain/mapper/invoice_mapper.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../data/remote/client_api_service.dart';
+import '../remote/client_api_service.dart';
 
 class ClientRepositoryImpl implements ClientRepository {
   final ClientApiService apiService;
