@@ -11,7 +11,11 @@ class ClientRepositoryImpl implements ClientRepository {
   final ClientRemoteDatasource _remote;
   final ClientLocalDatasource _local;
 
-  ClientRepositoryImpl(this._remote, this._local);
+  ClientRepositoryImpl({
+    required ClientRemoteDatasource remote,
+    required ClientLocalDatasource local,
+  }) : _remote = remote,
+       _local = local;
 
   @override
   Future<Either<Failure, ClientEntity>> createClient(

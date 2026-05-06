@@ -3,6 +3,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
+import 'package:invoice/features/client/data/datasources/client_local_datasource.dart';
+import 'package:invoice/features/client/data/datasources/client_local_datasource_impl.dart';
+import 'package:invoice/features/client/data/datasources/client_remote_datasource.dart';
+import 'package:invoice/features/client/data/datasources/client_remote_datasource_impl.dart';
+import 'package:invoice/features/client/data/models/client_model.dart';
+import 'package:invoice/features/client/data/repository/client_repository_impl.dart';
+import 'package:invoice/features/client/domain/repository/client_repository.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
 
 import '../../features/auth/data/datasource/auth_local_datasource.dart';
@@ -17,6 +24,10 @@ import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/sign_in_usecase.dart';
 import '../../features/auth/domain/usecases/sign_out_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/client/domain/usecases/create_client_usecase.dart';
+import '../../features/client/domain/usecases/delete_client_usecase.dart';
+import '../../features/client/domain/usecases/get_all_clients_usecase.dart';
+import '../../features/client/domain/usecases/update_client_usecase.dart';
 import '../../features/invoice/data/datasources/local/invoice_local_datasource.dart';
 import '../../features/invoice/data/datasources/local/invoice_local_datasource_impl.dart';
 import '../../features/invoice/data/datasources/remote/invoice_remote_datasource.dart';
@@ -139,4 +150,30 @@ Future<void> _initInvoice() async {
       searchInvoices: sl(),
     ),
   );
+}
+
+Future<void> _initClient() async {
+  sl.registerLazySingleton<Box<ClientModel>>(
+    () => Hive.box<ClientModel>('clientCache'),
+  );
+
+  sl.registerLazySingleton<ClientRemoteDatasource>(
+    () => ClientRemoteDatasourceImpl(sl<Dio>()),
+  );
+
+  sl.registerLazySingleton<ClientLocalDatasource>(
+    () => ClientLocalDatasourceImpl(sl<Box<ClientModel>>()),
+  );
+
+  sl.registerLazySingleton<ClientRepository>(
+    () => ClientRepositoryImpl(
+      remote: sl<ClientRemoteDatasource>(),
+      local: sl<ClientLocalDatasource>(),
+    ),
+  );
+
+  sl.registerLazySingleton(() => GetAllClientsUseCase(sl<ClientRepository>()));
+  sl.registerLazySingleton(() => CreateClientUseCase(sl<ClientRepository>()));
+  sl.registerLazySingleton(() => UpdateClientUseCase(sl<ClientRepository>()));
+  sl.registerLazySingleton(() => DeleteClientUseCase(sl<ClientRepository>()));
 }
