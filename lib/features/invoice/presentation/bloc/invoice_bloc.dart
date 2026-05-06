@@ -3,14 +3,18 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:invoice/features/invoice/domain/repository/email_repository.dart';
-import 'package:invoice/features/invoice/domain/repository/invoice_pdf_repository.dart';
 
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/create_invoice_params.dart';
 import '../../domain/entities/invoice_enitity.dart';
-import '../../domain/repository/invoice_repository.dart';
+import '../../domain/usecases/create_invoice_usecase.dart';
+import '../../domain/usecases/delete_invoice_usecase.dart';
 import '../../domain/usecases/get_all_invoices_usecase.dart';
+import '../../domain/usecases/get_invoice_by_client_usecase.dart';
 import '../../domain/usecases/get_invoice_by_id_usecase.dart';
+import '../../domain/usecases/mark_as_paid_usecase.dart';
+import '../../domain/usecases/search_invoice_usecase.dart';
+import '../../domain/usecases/update_invoice_usecase.dart';
 
 part 'invoice_bloc.freezed.dart';
 part 'invoice_event.dart';
@@ -27,158 +31,143 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   final SearchInvoicesUseCase _searchInvoices;
 
   InvoiceBloc({
-    required this.pdfRepository,
-    required this.emailRepository,
-    required this.invoiceRepository,
-  }) : super(const InvoiceState.initial()) {
-    on<LoadInvoices>(_onLoadInvoice);
-    on<GetInvoiceById>(_getInvoiceById);
-    on<CreateInvoice>(_createInvoice);
-    on<SearchInvoices>(_searchInvoices);
-    on<UpdateInvoice>(_updateInvoice);
-    on<MarkPaidInvoice>(_markPaidInvoice);
-    on<DeleteInvoice>(_deleteInvoice);
+    required GetAllInvoicesUseCase getAllInvoices,
+    required GetInvoiceByIdUseCase getInvoiceById,
+    required GetInvoicesByClientUseCase getInvoicesByClient,
+    required CreateInvoiceUseCase createInvoice,
+    required UpdateInvoiceUseCase updateInvoice,
+    required DeleteInvoiceUseCase deleteInvoice,
+    required MarkAsPaidUseCase markAsPaid,
+    required SearchInvoicesUseCase searchInvoices,
+  }) : _getAllInvoices = getAllInvoices,
+       _getInvoiceById = getInvoiceById,
+       _getInvoicesByClient = getInvoicesByClient,
+       _createInvoice = createInvoice,
+       _updateInvoice = updateInvoice,
+       _deleteInvoice = deleteInvoice,
+       _markAsPaid = markAsPaid,
+       _searchInvoices = searchInvoices,
+       super(const InvoiceState.initial()) {
+    on<LoadInvoices>(_onLoadInvoices);
+    on<LoadInvoiceById>(_onLoadInvoiceById);
+    on<LoadInvoicesByClient>(_onLoadInvoicesByClient);
+    on<CreateInvoice>(_onCreateInvoice);
+    on<UpdateInvoice>(_onUpdateInvoice);
+    on<DeleteInvoice>(_onDeleteInvoice);
+    on<MarkAsPaid>(_onMarkAsPaid);
+    on<SearchInvoices>(_onSearchInvoices);
+    on<ClearSelectedInvoice>(_onClearSelectedInvoice);
 
-    on<SendInvoiceEmail>(_onSendInvoiceEmail);
-    on<DownloadInvoicePdf>(_onDownloadInvoicePdf);
+    // on<SendInvoiceEmail>(_onSendInvoiceEmail);
+    // on<DownloadInvoicePdf>(_onDownloadInvoicePdf);
   }
 
-  FutureOr<void> _onLoadInvoice(
+  Future<void> _onLoadInvoices(
     LoadInvoices event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.initial());
-    final result = await invoiceRepository.getAllInvoices();
+    emit(const InvoiceState.listLoading());
+    final result = await _getAllInvoices(const NoParams());
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (invoices) => emit(InvoiceState.loaded(invoices)),
+      (failure) => emit(InvoiceState.listError(failure.message)),
+      (invoices) => emit(InvoiceState.listLoaded(invoices)),
     );
   }
 
-  Future<void> _getInvoiceById(
-    GetInvoiceById event,
+  Future<void> _onLoadInvoiceById(
+    LoadInvoiceById event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.getInvoiceById(event.id);
+    emit(const InvoiceState.detailLoading());
+    final result = await _getInvoiceById(event.invoiceId);
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (invoice) => emit(InvoiceState.singleInvoiceLoaded(invoice)),
+      (failure) => emit(InvoiceState.detailError(failure.message)),
+      (invoice) => emit(InvoiceState.detailLoaded(invoice)),
     );
   }
 
-  Future<void> _createInvoice(
+  Future<void> _onLoadInvoicesByClient(
+    LoadInvoicesByClient event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.listLoading());
+    final result = await _getInvoicesByClient(event.clientId);
+    result.fold(
+      (failure) => emit(InvoiceState.listError(failure.message)),
+      (invoices) => emit(InvoiceState.listLoaded(invoices)),
+    );
+  }
+
+  Future<void> _onCreateInvoice(
     CreateInvoice event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.createInvoice(event.request);
+    emit(const InvoiceState.actionLoading());
+    final result = await _createInvoice(event.params);
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (invoice) => emit(InvoiceState.success('Invoice created successfully')),
+      (failure) => emit(InvoiceState.actionError(failure.message)),
+      (invoice) =>
+          emit(InvoiceState.actionSuccess('Invoice created successfully')),
     );
   }
 
-  Future<void> _updateInvoice(
+  Future<void> _onUpdateInvoice(
     UpdateInvoice event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.updateInvoice(
-      event.id,
-      event.request,
-    );
+    emit(const InvoiceState.actionLoading());
+    final result = await _updateInvoice(event.params);
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (_) => emit(const InvoiceState.success('Invoice updated successfully')),
+      (failure) => emit(InvoiceState.actionError(failure.message)),
+      (invoice) => emit(
+        const InvoiceState.actionSuccess('Invoice updated successfully'),
+      ),
     );
   }
 
-  Future<void> _deleteInvoice(
+  Future<void> _onDeleteInvoice(
     DeleteInvoice event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(InvoiceState.loading());
-    await state.maybeWhen(
-      loaded: (invoices) async {
-        final updatedList = invoices
-            .where((invoice) => invoice.id != event.id)
-            .toList();
-        emit(InvoiceState.loaded(updatedList));
-
-        final result = await invoiceRepository.deleteInvoice(event.id);
-
-        result.fold(
-          (failure) {
-            emit(InvoiceState.error(failure.message));
-            add(LoadInvoices()); // Reload list if needed
-          },
-          (_) {
-            emit(const InvoiceState.success('Invoice deleted successfully'));
-          },
-        );
-      },
-      orElse: () {},
+    emit(const InvoiceState.actionLoading());
+    final result = await _deleteInvoice(event.invoiceId);
+    result.fold(
+      (failure) => emit(InvoiceState.actionError(failure.message)),
+      (_) => emit(
+        const InvoiceState.actionSuccess('Invoice deleted successfully'),
+      ),
     );
   }
 
-  Future<void> _markPaidInvoice(
-    MarkPaidInvoice event,
+  Future<void> _onMarkAsPaid(
+    MarkAsPaid event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.markPaidInvoice(
-      event.id,
-      event.request,
-    );
+    emit(const InvoiceState.actionLoading());
+    final result = await _markAsPaid(event.invoiceId);
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (_) => emit(const InvoiceState.success('Invoice marked as paid')),
+      (failure) => emit(InvoiceState.actionError(failure.message)),
+      (invoice) =>
+          emit(const InvoiceState.actionSuccess('Invoice marked as paid')),
     );
   }
 
-  Future<void> _searchInvoices(
+  Future<void> _onSearchInvoices(
     SearchInvoices event,
     Emitter<InvoiceState> emit,
   ) async {
-    emit(const InvoiceState.loading());
-    final result = await invoiceRepository.searchInvoices(
-      invoiceNumber: event.invoiceNumber,
-      clientName: event.clientName,
-      fromDate: event.fromDate,
-      toDate: event.toDate,
-    );
+    emit(const InvoiceState.listLoading());
+    final result = await _searchInvoices(event.params);
     result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (invoices) => emit(InvoiceState.loaded(invoices)),
+      (failure) => emit(InvoiceState.listError(failure.message)),
+      (invoices) => emit(InvoiceState.listLoaded(invoices)),
     );
   }
 
-  Future<void> _onSendInvoiceEmail(
-    SendInvoiceEmail event,
+  void _onClearSelectedInvoice(
+    ClearSelectedInvoice event,
     Emitter<InvoiceState> emit,
-  ) async {
-    emit(const InvoiceState.loading());
-    final result = await emailRepository.sendInvoiceEmail(event.invoiceId);
-    result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (_) =>
-          emit(const InvoiceState.emailSent('Invoice email sent successfully')),
-    );
-  }
-
-  Future<void> _onDownloadInvoicePdf(
-    DownloadInvoicePdf event,
-    Emitter<InvoiceState> emit,
-  ) async {
-    emit(const InvoiceState.loading());
-    final result = await pdfRepository.downloadInvoicePdf(
-      event.invoiceId,
-      template: event.template,
-    );
-    result.fold(
-      (failure) => emit(InvoiceState.error(failure.message)),
-      (pdfData) => emit(InvoiceState.pdfDownloaded(pdfData)),
-    );
+  ) {
+    emit(const InvoiceState.initial());
   }
 }

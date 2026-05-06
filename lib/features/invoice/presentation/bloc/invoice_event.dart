@@ -13,21 +13,15 @@ class InvoiceEvent with _$InvoiceEvent {
   const factory InvoiceEvent.createInvoice(CreateInvoiceParams params) =
       CreateInvoice;
 
-  const factory InvoiceEvent.updateInvoice({
-    required String invoiceId,
-    required CreateInvoiceParams params,
-  }) = UpdateInvoice;
+  const factory InvoiceEvent.updateInvoice(UpdateInvoiceParams params) =
+      UpdateInvoice;
 
   const factory InvoiceEvent.deleteInvoice(String invoiceId) = DeleteInvoice;
 
   const factory InvoiceEvent.markAsPaid(String invoiceId) = MarkAsPaid;
 
-  const factory InvoiceEvent.searchInvoices({
-    String? invoiceNumber,
-    String? clientName,
-    @Default(0) int page,
-    @Default(10) int size,
-  }) = SearchInvoices;
+  const factory InvoiceEvent.searchInvoices(SearchInvoiceParams params) =
+      SearchInvoices;
 
   const factory InvoiceEvent.clearSelectedInvoice() = ClearSelectedInvoice;
 }
