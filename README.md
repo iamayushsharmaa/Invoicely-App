@@ -1,9 +1,9 @@
 
 # 📄 **Invoicely**
 
-### A modern **invoice management application** built with **Flutter**, following **Clean Architecture** principles.
+### A modern **Invoice management application** built with **Flutter**, following **Clean Architecture** principles.
 
-Invoicely helps businesses and freelancers **manage invoices, clients, and payments efficiently** with **offline support** and **real-time API integration**.
+Invoicely helps businesses and freelancers **manage invoices, clients, and payments tracking** with **offline support** and **real-time API integration**.
 
 ---
 
@@ -79,9 +79,3 @@ UI (Bloc) → UseCase → Repository → DataSource → API / Cache → Reposito
 *(Screenshot are coming soon)*
 
 ---
-
----
-
-✅ This version looks **professional, clean, and GitHub-friendly** with emoji, headings, and spacing.
-
-👉 Do you want me to **add a Clean Architecture diagram (image)** and **sample code snippets (like InvoiceEntity, mapper)** in the README for extra clarity? Or keep it minimal and clean like this?
