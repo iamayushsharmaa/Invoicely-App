@@ -78,9 +78,18 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
 
     final result = await _createClientUseCase(event.params);
 
-    result.fold(
-      (l) => emit(ClientState.error(l.message)),
-      (r) => emit(ClientState.clientSuccess('Client created successfully')),
+    await result.fold(
+      (failure) async {
+        emit(ClientState.error(_mapFailureMessage(failure)));
+      },
+      (_) async {
+        final clientsResult = await _getAllClientsUseCase(NoParams());
+
+        clientsResult.fold(
+          (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
+          (clients) => emit(ClientState.loaded(clients)),
+        );
+      },
     );
   }
 
@@ -89,42 +98,39 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
     Emitter<ClientState> emit,
   ) async {
     emit(ClientState.loading());
-    final result = await clientRepository.updateClient(
-      event.clientId,
-      event.request,
-    );
-    result.fold(
-      (l) => emit(ClientState.error(l.message)),
-      (r) => emit(ClientState.clientSuccess('Client updated successfully')),
-    );
+
+    final result = await _updateClientUseCase(event.params);
+
+    result.fold((l) => emit(ClientState.error(l.message)), (_) async {
+      final clientsResult = await _getAllClientsUseCase(NoParams());
+
+      clientsResult.fold(
+        (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
+        (clients) => emit(ClientState.loaded(clients)),
+      );
+    });
   }
 
   Future<void> _onDeleteClient(
     _DeleteClient event,
     Emitter<ClientState> emit,
   ) async {
-    await state.maybeWhen(
-      clientsLoaded: (clients) async {
-        final updatedClients = clients
-            .where((c) => c.id != event.clientId)
-            .toList();
-        emit(ClientState.clientsLoaded(updatedClients));
+    emit(const ClientState.loading());
 
-        final result = await clientRepository.deleteClient(event.clientId);
+    final result = await _deleteClientUseCase(event.clientId);
 
-        result.fold(
-          (failure) {
-            emit(ClientState.error(failure.message));
-            add(FetchClients());
-          },
-          (_) {
-            emit(
-              const ClientState.clientSuccess('Client deleted successfully'),
-            );
-          },
+    await result.fold(
+      (failure) async {
+        emit(ClientState.error(_mapFailureMessage(failure)));
+      },
+      (_) async {
+        final clientsResult = await _getAllClientsUseCase(NoParams());
+
+        clientsResult.fold(
+          (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
+          (clients) => emit(ClientState.loaded(clients)),
         );
       },
-      orElse: () {},
     );
   }
 
