@@ -19,7 +19,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -28,7 +27,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -37,7 +35,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -47,7 +44,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -56,7 +52,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -65,7 +60,6 @@ mixin _$ClientEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -131,7 +125,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -143,7 +136,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -155,7 +147,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -171,7 +162,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -183,7 +173,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -195,7 +184,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -210,160 +198,6 @@ class _$GetAllClientsImpl implements _GetAllClients {
 
 abstract class _GetAllClients implements ClientEvent {
   const factory _GetAllClients() = _$GetAllClientsImpl;
-}
-
-/// @nodoc
-abstract class _$$GetClientInvoicesImplCopyWith<$Res> {
-  factory _$$GetClientInvoicesImplCopyWith(_$GetClientInvoicesImpl value,
-          $Res Function(_$GetClientInvoicesImpl) then) =
-      __$$GetClientInvoicesImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String clientId});
-}
-
-/// @nodoc
-class __$$GetClientInvoicesImplCopyWithImpl<$Res>
-    extends _$ClientEventCopyWithImpl<$Res, _$GetClientInvoicesImpl>
-    implements _$$GetClientInvoicesImplCopyWith<$Res> {
-  __$$GetClientInvoicesImplCopyWithImpl(_$GetClientInvoicesImpl _value,
-      $Res Function(_$GetClientInvoicesImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? clientId = null,
-  }) {
-    return _then(_$GetClientInvoicesImpl(
-      null == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetClientInvoicesImpl implements _GetClientInvoices {
-  const _$GetClientInvoicesImpl(this.clientId);
-
-  @override
-  final String clientId;
-
-  @override
-  String toString() {
-    return 'ClientEvent.getClientInvoices(clientId: $clientId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetClientInvoicesImpl &&
-            (identical(other.clientId, clientId) ||
-                other.clientId == clientId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, clientId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetClientInvoicesImplCopyWith<_$GetClientInvoicesImpl> get copyWith =>
-      __$$GetClientInvoicesImplCopyWithImpl<_$GetClientInvoicesImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
-    required TResult Function(CreateClientParams params) createClient,
-    required TResult Function(UpdateClientParams params) updateClient,
-    required TResult Function(String clientId) deleteClient,
-  }) {
-    return getClientInvoices(clientId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
-    TResult? Function(CreateClientParams params)? createClient,
-    TResult? Function(UpdateClientParams params)? updateClient,
-    TResult? Function(String clientId)? deleteClient,
-  }) {
-    return getClientInvoices?.call(clientId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
-    TResult Function(CreateClientParams params)? createClient,
-    TResult Function(UpdateClientParams params)? updateClient,
-    TResult Function(String clientId)? deleteClient,
-    required TResult orElse(),
-  }) {
-    if (getClientInvoices != null) {
-      return getClientInvoices(clientId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
-    required TResult Function(_CreateClient value) createClient,
-    required TResult Function(_UpdateClient value) updateClient,
-    required TResult Function(_DeleteClient value) deleteClient,
-  }) {
-    return getClientInvoices(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
-    TResult? Function(_CreateClient value)? createClient,
-    TResult? Function(_UpdateClient value)? updateClient,
-    TResult? Function(_DeleteClient value)? deleteClient,
-  }) {
-    return getClientInvoices?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
-    TResult Function(_CreateClient value)? createClient,
-    TResult Function(_UpdateClient value)? updateClient,
-    TResult Function(_DeleteClient value)? deleteClient,
-    required TResult orElse(),
-  }) {
-    if (getClientInvoices != null) {
-      return getClientInvoices(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetClientInvoices implements ClientEvent {
-  const factory _GetClientInvoices(final String clientId) =
-      _$GetClientInvoicesImpl;
-
-  String get clientId;
-  @JsonKey(ignore: true)
-  _$$GetClientInvoicesImplCopyWith<_$GetClientInvoicesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -431,7 +265,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -443,7 +276,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -455,7 +287,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -471,7 +302,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -483,7 +313,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -495,7 +324,6 @@ class _$CreateClientImpl implements _CreateClient {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -583,7 +411,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -595,7 +422,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -607,7 +433,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -623,7 +448,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -635,7 +459,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -647,7 +470,6 @@ class _$UpdateClientImpl implements _UpdateClient {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -736,7 +558,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
-    required TResult Function(String clientId) getClientInvoices,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -748,7 +569,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
-    TResult? Function(String clientId)? getClientInvoices,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -760,7 +580,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
-    TResult Function(String clientId)? getClientInvoices,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -776,7 +595,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
-    required TResult Function(_GetClientInvoices value) getClientInvoices,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -788,7 +606,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
-    TResult? Function(_GetClientInvoices value)? getClientInvoices,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -800,7 +617,6 @@ class _$DeleteClientImpl implements _DeleteClient {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
-    TResult Function(_GetClientInvoices value)? getClientInvoices,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -829,8 +645,6 @@ mixin _$ClientState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -839,7 +653,6 @@ mixin _$ClientState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -848,7 +661,6 @@ mixin _$ClientState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -858,7 +670,6 @@ mixin _$ClientState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -867,7 +678,6 @@ mixin _$ClientState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -876,7 +686,6 @@ mixin _$ClientState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -942,8 +751,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -955,7 +762,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -967,7 +773,6 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -983,7 +788,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -995,7 +799,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -1007,7 +810,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1063,8 +865,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -1076,7 +876,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -1088,7 +887,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1104,7 +902,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -1116,7 +913,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -1128,7 +924,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1216,8 +1011,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
     required TResult Function(String message) error,
   }) {
     return loaded(clients);
@@ -1229,7 +1022,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(clients);
@@ -1241,7 +1033,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1257,7 +1048,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -1269,7 +1059,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -1281,7 +1070,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1299,168 +1087,6 @@ abstract class _Loaded implements ClientState {
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ClientInvoicesLoadedImplCopyWith<$Res> {
-  factory _$$ClientInvoicesLoadedImplCopyWith(_$ClientInvoicesLoadedImpl value,
-          $Res Function(_$ClientInvoicesLoadedImpl) then) =
-      __$$ClientInvoicesLoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<InvoiceEntity> invoices});
-}
-
-/// @nodoc
-class __$$ClientInvoicesLoadedImplCopyWithImpl<$Res>
-    extends _$ClientStateCopyWithImpl<$Res, _$ClientInvoicesLoadedImpl>
-    implements _$$ClientInvoicesLoadedImplCopyWith<$Res> {
-  __$$ClientInvoicesLoadedImplCopyWithImpl(_$ClientInvoicesLoadedImpl _value,
-      $Res Function(_$ClientInvoicesLoadedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? invoices = null,
-  }) {
-    return _then(_$ClientInvoicesLoadedImpl(
-      null == invoices
-          ? _value._invoices
-          : invoices // ignore: cast_nullable_to_non_nullable
-              as List<InvoiceEntity>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ClientInvoicesLoadedImpl implements _ClientInvoicesLoaded {
-  const _$ClientInvoicesLoadedImpl(final List<InvoiceEntity> invoices)
-      : _invoices = invoices;
-
-  final List<InvoiceEntity> _invoices;
-  @override
-  List<InvoiceEntity> get invoices {
-    if (_invoices is EqualUnmodifiableListView) return _invoices;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_invoices);
-  }
-
-  @override
-  String toString() {
-    return 'ClientState.clientInvoicesLoaded(invoices: $invoices)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ClientInvoicesLoadedImpl &&
-            const DeepCollectionEquality().equals(other._invoices, _invoices));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_invoices));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ClientInvoicesLoadedImplCopyWith<_$ClientInvoicesLoadedImpl>
-      get copyWith =>
-          __$$ClientInvoicesLoadedImplCopyWithImpl<_$ClientInvoicesLoadedImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
-    required TResult Function(String message) error,
-  }) {
-    return clientInvoicesLoaded(invoices);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
-    TResult? Function(String message)? error,
-  }) {
-    return clientInvoicesLoaded?.call(invoices);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (clientInvoicesLoaded != null) {
-      return clientInvoicesLoaded(invoices);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
-    required TResult Function(_Error value) error,
-  }) {
-    return clientInvoicesLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
-    TResult? Function(_Error value)? error,
-  }) {
-    return clientInvoicesLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (clientInvoicesLoaded != null) {
-      return clientInvoicesLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ClientInvoicesLoaded implements ClientState {
-  const factory _ClientInvoicesLoaded(final List<InvoiceEntity> invoices) =
-      _$ClientInvoicesLoadedImpl;
-
-  List<InvoiceEntity> get invoices;
-  @JsonKey(ignore: true)
-  _$$ClientInvoicesLoadedImplCopyWith<_$ClientInvoicesLoadedImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1530,8 +1156,6 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ClientEntity> clients) loaded,
-    required TResult Function(List<InvoiceEntity> invoices)
-        clientInvoicesLoaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1543,7 +1167,6 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ClientEntity> clients)? loaded,
-    TResult? Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1555,7 +1178,6 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ClientEntity> clients)? loaded,
-    TResult Function(List<InvoiceEntity> invoices)? clientInvoicesLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1571,7 +1193,6 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_ClientInvoicesLoaded value) clientInvoicesLoaded,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1583,7 +1204,6 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1595,7 +1215,6 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_ClientInvoicesLoaded value)? clientInvoicesLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

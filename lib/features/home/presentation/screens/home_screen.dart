@@ -124,12 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
-  Widget _buildInvoiceItem(BuildContext context,
-      String invoiceNumber,
-      String amount,
-      String status,
-      String date,) {
+  Widget _buildInvoiceItem(
+    BuildContext context,
+    String invoiceNumber,
+    String amount,
+    String status,
+    String date,
+  ) {
     return GestureDetector(
       onLongPress: () {
         showModalBottomSheet(

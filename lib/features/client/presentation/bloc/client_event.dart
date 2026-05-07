@@ -4,10 +4,6 @@ part of 'client_bloc.dart';
 class ClientEvent with _$ClientEvent {
   const factory ClientEvent.getAllClients() = _GetAllClients;
 
-  const factory ClientEvent.getClientInvoices(
-      String clientId
-      ) = _GetClientInvoices;
-
   const factory ClientEvent.createClient(CreateClientParams params) =
       _CreateClient;
 

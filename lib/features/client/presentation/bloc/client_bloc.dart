@@ -5,10 +5,8 @@ import 'package:invoice/features/client/domain/usecases/create_client_usecase.da
 import 'package:invoice/features/client/domain/usecases/delete_client_usecase.dart';
 import 'package:invoice/features/client/domain/usecases/get_all_clients_usecase.dart';
 import 'package:invoice/features/client/domain/usecases/update_client_usecase.dart';
-import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../invoice/domain/usecases/get_invoice_by_client_usecase.dart';
 import '../../domain/entities/client_enitity.dart';
 import '../../domain/params/client_params.dart';
 
@@ -21,22 +19,18 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
   final CreateClientUseCase _createClientUseCase;
   final UpdateClientUseCase _updateClientUseCase;
   final DeleteClientUseCase _deleteClientUseCase;
-  final GetInvoicesByClientUseCase _getInvoicesByClientUseCase;
 
   ClientBloc({
     required GetAllClientsUseCase getAllClientsUseCase,
     required CreateClientUseCase createClientUseCase,
     required UpdateClientUseCase updateClientUseCase,
     required DeleteClientUseCase deleteClientUseCase,
-    required GetInvoicesByClientUseCase getInvoicesByClientUseCase,
   }) : _getAllClientsUseCase = getAllClientsUseCase,
        _createClientUseCase = createClientUseCase,
        _updateClientUseCase = updateClientUseCase,
        _deleteClientUseCase = deleteClientUseCase,
-       _getInvoicesByClientUseCase = getInvoicesByClientUseCase,
        super(ClientState.initial()) {
     on<_GetAllClients>(_onGetAllClients);
-    on<_GetClientInvoices>(_onGetClientInvoices);
     on<_CreateClient>(_onCreateClient);
     on<_UpdateClient>(_onUpdateClient);
     on<_DeleteClient>(_onDeleteClient);
@@ -53,20 +47,6 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
     result.fold(
       (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
       (clients) => emit(ClientState.loaded(clients)),
-    );
-  }
-
-  Future<void> _onGetClientInvoices(
-    _GetClientInvoices event,
-    Emitter<ClientState> emit,
-  ) async {
-    emit(const ClientState.loading());
-
-    final result = await _getInvoicesByClientUseCase(event.clientId);
-
-    result.fold(
-      (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
-      (invoices) => emit(ClientState.clientInvoicesLoaded(invoices)),
     );
   }
 
