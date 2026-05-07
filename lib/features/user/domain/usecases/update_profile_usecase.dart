@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../entity/user_entity.dart';
+import '../entities/user_entity.dart';
 import '../repository/user_repository.dart';
 
 class UpdateProfileUseCase implements UseCase<UserEntity, UpdateProfileParams> {
