@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:invoice/features/invoice/domain/usecases/send_invoice_email_usecase.dart';
 
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/create_invoice_params.dart';
@@ -33,6 +34,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   final MarkAsPaidUseCase _markAsPaid;
   final SearchInvoicesUseCase _searchInvoices;
   final GeneratePdfUseCase _generatePdf;
+  final SendInvoiceEmailUseCase _sendInvoiceEmail;
 
   InvoiceBloc({
     required GetAllInvoicesUseCase getAllInvoices,
@@ -44,6 +46,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     required MarkAsPaidUseCase markAsPaid,
     required SearchInvoicesUseCase searchInvoices,
     required GeneratePdfUseCase generatePdf,
+    required SendInvoiceEmailUseCase sendInvoiceEmail,
   }) : _getAllInvoices = getAllInvoices,
        _getInvoiceById = getInvoiceById,
        _getInvoicesByClient = getInvoicesByClient,
@@ -53,6 +56,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
        _markAsPaid = markAsPaid,
        _searchInvoices = searchInvoices,
        _generatePdf = generatePdf,
+       _sendInvoiceEmail = sendInvoiceEmail,
        super(const InvoiceState.initial()) {
     on<LoadInvoices>(_onLoadInvoices);
     on<LoadInvoiceById>(_onLoadInvoiceById);
@@ -66,6 +70,8 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
 
     on<GeneratePdf>(_onGeneratePdf);
     on<ClearPdf>(_onClearPdf);
+
+    on<SendInvoiceEmail>(_onSendInvoiceEmail);
   }
 
   Future<void> _onLoadInvoices(
@@ -192,4 +198,51 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   void _onClearPdf(ClearPdf event, Emitter<InvoiceState> emit) {
     emit(const InvoiceState.initial());
   }
+
+  Future<void> _onSendInvoiceEmail(
+    SendInvoiceEmail event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.emailSending());
+    final result = await _sendInvoiceEmail(event.invoiceId);
+    result.fold(
+      (failure) => emit(InvoiceState.emailError(failure.message)),
+      (message) => emit(InvoiceState.emailSent(message)),
+    );
+  }
 }
+
+//this code for email send button,
+
+
+// dispatch from invoice detail screen
+// context.read<InvoiceBloc>().add(
+// InvoiceEvent.sendInvoiceEmail(invoice.id),
+// );
+//
+// listen for result
+// BlocListener<InvoiceBloc, InvoiceState>(
+// listener: (context, state) {
+// state.whenOrNull(
+// emailSending: () {
+// // show loading indicator
+// },
+// emailSent: (message) {
+// ScaffoldMessenger.of(context).showSnackBar(
+// SnackBar(
+// content: Text(message),
+// backgroundColor: Colors.green,
+// ),
+// );
+// },
+// emailError: (message) {
+// ScaffoldMessenger.of(context).showSnackBar(
+// SnackBar(
+// content: Text(message),
+// backgroundColor: Colors.redAccent,
+// ),
+// );
+// },
+// );
+// },
+// )

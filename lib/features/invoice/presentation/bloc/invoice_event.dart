@@ -29,4 +29,7 @@ class InvoiceEvent with _$InvoiceEvent {
       GeneratePdf;
 
   const factory InvoiceEvent.clearPdf() = ClearPdf;
+
+  const factory InvoiceEvent.sendInvoiceEmail(String invoiceId) =
+      SendInvoiceEmail;
 }

@@ -11,6 +11,7 @@ import 'package:invoice/features/client/data/models/client_model.dart';
 import 'package:invoice/features/client/data/repository/client_repository_impl.dart';
 import 'package:invoice/features/client/domain/repository/client_repository.dart';
 import 'package:invoice/features/client/presentation/bloc/client_bloc.dart';
+import 'package:invoice/features/invoice/domain/usecases/send_invoice_email_usecase.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
 import 'package:invoice/features/user/data/datasources/user_remote_datasource.dart';
 import 'package:invoice/features/user/data/datasources/user_remote_datasource_impl.dart';
@@ -153,6 +154,9 @@ Future<void> _initInvoice() async {
     () => SearchInvoicesUseCase(sl<InvoiceRepository>()),
   );
   sl.registerLazySingleton(() => GeneratePdfUseCase(sl<InvoiceRepository>()));
+  sl.registerLazySingleton(
+    () => SendInvoiceEmailUseCase(sl<InvoiceRepository>()),
+  );
 
   sl.registerFactory(
     () => InvoiceBloc(
@@ -165,6 +169,7 @@ Future<void> _initInvoice() async {
       markAsPaid: sl(),
       searchInvoices: sl(),
       generatePdf: sl(),
+      sendInvoiceEmail: sl(),
     ),
   );
 }

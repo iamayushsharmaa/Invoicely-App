@@ -33,4 +33,11 @@ class InvoiceState with _$InvoiceState {
   const factory InvoiceState.pdfLoaded(Uint8List bytes) = InvoicePdfLoaded;
 
   const factory InvoiceState.pdfError(String message) = InvoicePdfError;
+
+
+  const factory InvoiceState.emailSending() = InvoiceEmailSending;
+
+  const factory InvoiceState.emailSent(String message) = InvoiceEmailSent;
+
+  const factory InvoiceState.emailError(String message) = InvoiceEmailError;
 }

@@ -29,6 +29,7 @@ mixin _$InvoiceEvent {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +45,7 @@ mixin _$InvoiceEvent {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +61,7 @@ mixin _$InvoiceEvent {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,6 +78,7 @@ mixin _$InvoiceEvent {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +94,7 @@ mixin _$InvoiceEvent {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +110,7 @@ mixin _$InvoiceEvent {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -177,6 +183,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return loadInvoices();
   }
@@ -195,6 +202,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return loadInvoices?.call();
   }
@@ -213,6 +221,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoices != null) {
@@ -235,6 +244,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return loadInvoices(this);
   }
@@ -253,6 +263,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return loadInvoices?.call(this);
   }
@@ -271,6 +282,7 @@ class _$LoadInvoicesImpl implements LoadInvoices {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoices != null) {
@@ -361,6 +373,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return loadInvoiceById(invoiceId);
   }
@@ -379,6 +392,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return loadInvoiceById?.call(invoiceId);
   }
@@ -397,6 +411,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoiceById != null) {
@@ -419,6 +434,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return loadInvoiceById(this);
   }
@@ -437,6 +453,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return loadInvoiceById?.call(this);
   }
@@ -455,6 +472,7 @@ class _$LoadInvoiceByIdImpl implements LoadInvoiceById {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoiceById != null) {
@@ -551,6 +569,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return loadInvoicesByClient(clientId);
   }
@@ -569,6 +588,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return loadInvoicesByClient?.call(clientId);
   }
@@ -587,6 +607,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoicesByClient != null) {
@@ -609,6 +630,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return loadInvoicesByClient(this);
   }
@@ -627,6 +649,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return loadInvoicesByClient?.call(this);
   }
@@ -645,6 +668,7 @@ class _$LoadInvoicesByClientImpl implements LoadInvoicesByClient {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (loadInvoicesByClient != null) {
@@ -739,6 +763,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return createInvoice(params);
   }
@@ -757,6 +782,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return createInvoice?.call(params);
   }
@@ -775,6 +801,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (createInvoice != null) {
@@ -797,6 +824,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return createInvoice(this);
   }
@@ -815,6 +843,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return createInvoice?.call(this);
   }
@@ -833,6 +862,7 @@ class _$CreateInvoiceImpl implements CreateInvoice {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (createInvoice != null) {
@@ -927,6 +957,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return updateInvoice(params);
   }
@@ -945,6 +976,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return updateInvoice?.call(params);
   }
@@ -963,6 +995,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (updateInvoice != null) {
@@ -985,6 +1018,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return updateInvoice(this);
   }
@@ -1003,6 +1037,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return updateInvoice?.call(this);
   }
@@ -1021,6 +1056,7 @@ class _$UpdateInvoiceImpl implements UpdateInvoice {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (updateInvoice != null) {
@@ -1116,6 +1152,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return deleteInvoice(invoiceId);
   }
@@ -1134,6 +1171,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return deleteInvoice?.call(invoiceId);
   }
@@ -1152,6 +1190,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (deleteInvoice != null) {
@@ -1174,6 +1213,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return deleteInvoice(this);
   }
@@ -1192,6 +1232,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return deleteInvoice?.call(this);
   }
@@ -1210,6 +1251,7 @@ class _$DeleteInvoiceImpl implements DeleteInvoice {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (deleteInvoice != null) {
@@ -1304,6 +1346,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return markAsPaid(invoiceId);
   }
@@ -1322,6 +1365,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return markAsPaid?.call(invoiceId);
   }
@@ -1340,6 +1384,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (markAsPaid != null) {
@@ -1362,6 +1407,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return markAsPaid(this);
   }
@@ -1380,6 +1426,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return markAsPaid?.call(this);
   }
@@ -1398,6 +1445,7 @@ class _$MarkAsPaidImpl implements MarkAsPaid {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (markAsPaid != null) {
@@ -1492,6 +1540,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return searchInvoices(params);
   }
@@ -1510,6 +1559,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return searchInvoices?.call(params);
   }
@@ -1528,6 +1578,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (searchInvoices != null) {
@@ -1550,6 +1601,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return searchInvoices(this);
   }
@@ -1568,6 +1620,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return searchInvoices?.call(this);
   }
@@ -1586,6 +1639,7 @@ class _$SearchInvoicesImpl implements SearchInvoices {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (searchInvoices != null) {
@@ -1655,6 +1709,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return clearSelectedInvoice();
   }
@@ -1673,6 +1728,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return clearSelectedInvoice?.call();
   }
@@ -1691,6 +1747,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (clearSelectedInvoice != null) {
@@ -1713,6 +1770,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return clearSelectedInvoice(this);
   }
@@ -1731,6 +1789,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return clearSelectedInvoice?.call(this);
   }
@@ -1749,6 +1808,7 @@ class _$ClearSelectedInvoiceImpl implements ClearSelectedInvoice {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (clearSelectedInvoice != null) {
@@ -1837,6 +1897,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return generatePdf(params);
   }
@@ -1855,6 +1916,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return generatePdf?.call(params);
   }
@@ -1873,6 +1935,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (generatePdf != null) {
@@ -1895,6 +1958,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return generatePdf(this);
   }
@@ -1913,6 +1977,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return generatePdf?.call(this);
   }
@@ -1931,6 +1996,7 @@ class _$GeneratePdfImpl implements GeneratePdf {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (generatePdf != null) {
@@ -1998,6 +2064,7 @@ class _$ClearPdfImpl implements ClearPdf {
     required TResult Function() clearSelectedInvoice,
     required TResult Function(GeneratePdfParams params) generatePdf,
     required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
   }) {
     return clearPdf();
   }
@@ -2016,6 +2083,7 @@ class _$ClearPdfImpl implements ClearPdf {
     TResult? Function()? clearSelectedInvoice,
     TResult? Function(GeneratePdfParams params)? generatePdf,
     TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
   }) {
     return clearPdf?.call();
   }
@@ -2034,6 +2102,7 @@ class _$ClearPdfImpl implements ClearPdf {
     TResult Function()? clearSelectedInvoice,
     TResult Function(GeneratePdfParams params)? generatePdf,
     TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (clearPdf != null) {
@@ -2056,6 +2125,7 @@ class _$ClearPdfImpl implements ClearPdf {
     required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
     required TResult Function(GeneratePdf value) generatePdf,
     required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
   }) {
     return clearPdf(this);
   }
@@ -2074,6 +2144,7 @@ class _$ClearPdfImpl implements ClearPdf {
     TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult? Function(GeneratePdf value)? generatePdf,
     TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
   }) {
     return clearPdf?.call(this);
   }
@@ -2092,6 +2163,7 @@ class _$ClearPdfImpl implements ClearPdf {
     TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
     TResult Function(GeneratePdf value)? generatePdf,
     TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
     required TResult orElse(),
   }) {
     if (clearPdf != null) {
@@ -2103,6 +2175,202 @@ class _$ClearPdfImpl implements ClearPdf {
 
 abstract class ClearPdf implements InvoiceEvent {
   const factory ClearPdf() = _$ClearPdfImpl;
+}
+
+/// @nodoc
+abstract class _$$SendInvoiceEmailImplCopyWith<$Res> {
+  factory _$$SendInvoiceEmailImplCopyWith(_$SendInvoiceEmailImpl value,
+          $Res Function(_$SendInvoiceEmailImpl) then) =
+      __$$SendInvoiceEmailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String invoiceId});
+}
+
+/// @nodoc
+class __$$SendInvoiceEmailImplCopyWithImpl<$Res>
+    extends _$InvoiceEventCopyWithImpl<$Res, _$SendInvoiceEmailImpl>
+    implements _$$SendInvoiceEmailImplCopyWith<$Res> {
+  __$$SendInvoiceEmailImplCopyWithImpl(_$SendInvoiceEmailImpl _value,
+      $Res Function(_$SendInvoiceEmailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? invoiceId = null,
+  }) {
+    return _then(_$SendInvoiceEmailImpl(
+      null == invoiceId
+          ? _value.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendInvoiceEmailImpl implements SendInvoiceEmail {
+  const _$SendInvoiceEmailImpl(this.invoiceId);
+
+  @override
+  final String invoiceId;
+
+  @override
+  String toString() {
+    return 'InvoiceEvent.sendInvoiceEmail(invoiceId: $invoiceId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendInvoiceEmailImpl &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, invoiceId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
+      __$$SendInvoiceEmailImplCopyWithImpl<_$SendInvoiceEmailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInvoices,
+    required TResult Function(String invoiceId) loadInvoiceById,
+    required TResult Function(String clientId) loadInvoicesByClient,
+    required TResult Function(CreateInvoiceParams params) createInvoice,
+    required TResult Function(UpdateInvoiceParams params) updateInvoice,
+    required TResult Function(String invoiceId) deleteInvoice,
+    required TResult Function(String invoiceId) markAsPaid,
+    required TResult Function(SearchInvoiceParams params) searchInvoices,
+    required TResult Function() clearSelectedInvoice,
+    required TResult Function(GeneratePdfParams params) generatePdf,
+    required TResult Function() clearPdf,
+    required TResult Function(String invoiceId) sendInvoiceEmail,
+  }) {
+    return sendInvoiceEmail(invoiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInvoices,
+    TResult? Function(String invoiceId)? loadInvoiceById,
+    TResult? Function(String clientId)? loadInvoicesByClient,
+    TResult? Function(CreateInvoiceParams params)? createInvoice,
+    TResult? Function(UpdateInvoiceParams params)? updateInvoice,
+    TResult? Function(String invoiceId)? deleteInvoice,
+    TResult? Function(String invoiceId)? markAsPaid,
+    TResult? Function(SearchInvoiceParams params)? searchInvoices,
+    TResult? Function()? clearSelectedInvoice,
+    TResult? Function(GeneratePdfParams params)? generatePdf,
+    TResult? Function()? clearPdf,
+    TResult? Function(String invoiceId)? sendInvoiceEmail,
+  }) {
+    return sendInvoiceEmail?.call(invoiceId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInvoices,
+    TResult Function(String invoiceId)? loadInvoiceById,
+    TResult Function(String clientId)? loadInvoicesByClient,
+    TResult Function(CreateInvoiceParams params)? createInvoice,
+    TResult Function(UpdateInvoiceParams params)? updateInvoice,
+    TResult Function(String invoiceId)? deleteInvoice,
+    TResult Function(String invoiceId)? markAsPaid,
+    TResult Function(SearchInvoiceParams params)? searchInvoices,
+    TResult Function()? clearSelectedInvoice,
+    TResult Function(GeneratePdfParams params)? generatePdf,
+    TResult Function()? clearPdf,
+    TResult Function(String invoiceId)? sendInvoiceEmail,
+    required TResult orElse(),
+  }) {
+    if (sendInvoiceEmail != null) {
+      return sendInvoiceEmail(invoiceId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadInvoices value) loadInvoices,
+    required TResult Function(LoadInvoiceById value) loadInvoiceById,
+    required TResult Function(LoadInvoicesByClient value) loadInvoicesByClient,
+    required TResult Function(CreateInvoice value) createInvoice,
+    required TResult Function(UpdateInvoice value) updateInvoice,
+    required TResult Function(DeleteInvoice value) deleteInvoice,
+    required TResult Function(MarkAsPaid value) markAsPaid,
+    required TResult Function(SearchInvoices value) searchInvoices,
+    required TResult Function(ClearSelectedInvoice value) clearSelectedInvoice,
+    required TResult Function(GeneratePdf value) generatePdf,
+    required TResult Function(ClearPdf value) clearPdf,
+    required TResult Function(SendInvoiceEmail value) sendInvoiceEmail,
+  }) {
+    return sendInvoiceEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadInvoices value)? loadInvoices,
+    TResult? Function(LoadInvoiceById value)? loadInvoiceById,
+    TResult? Function(LoadInvoicesByClient value)? loadInvoicesByClient,
+    TResult? Function(CreateInvoice value)? createInvoice,
+    TResult? Function(UpdateInvoice value)? updateInvoice,
+    TResult? Function(DeleteInvoice value)? deleteInvoice,
+    TResult? Function(MarkAsPaid value)? markAsPaid,
+    TResult? Function(SearchInvoices value)? searchInvoices,
+    TResult? Function(ClearSelectedInvoice value)? clearSelectedInvoice,
+    TResult? Function(GeneratePdf value)? generatePdf,
+    TResult? Function(ClearPdf value)? clearPdf,
+    TResult? Function(SendInvoiceEmail value)? sendInvoiceEmail,
+  }) {
+    return sendInvoiceEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadInvoices value)? loadInvoices,
+    TResult Function(LoadInvoiceById value)? loadInvoiceById,
+    TResult Function(LoadInvoicesByClient value)? loadInvoicesByClient,
+    TResult Function(CreateInvoice value)? createInvoice,
+    TResult Function(UpdateInvoice value)? updateInvoice,
+    TResult Function(DeleteInvoice value)? deleteInvoice,
+    TResult Function(MarkAsPaid value)? markAsPaid,
+    TResult Function(SearchInvoices value)? searchInvoices,
+    TResult Function(ClearSelectedInvoice value)? clearSelectedInvoice,
+    TResult Function(GeneratePdf value)? generatePdf,
+    TResult Function(ClearPdf value)? clearPdf,
+    TResult Function(SendInvoiceEmail value)? sendInvoiceEmail,
+    required TResult orElse(),
+  }) {
+    if (sendInvoiceEmail != null) {
+      return sendInvoiceEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendInvoiceEmail implements InvoiceEvent {
+  const factory SendInvoiceEmail(final String invoiceId) =
+      _$SendInvoiceEmailImpl;
+
+  String get invoiceId;
+  @JsonKey(ignore: true)
+  _$$SendInvoiceEmailImplCopyWith<_$SendInvoiceEmailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2122,6 +2390,9 @@ mixin _$InvoiceState {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2139,6 +2410,9 @@ mixin _$InvoiceState {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2156,6 +2430,9 @@ mixin _$InvoiceState {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2174,6 +2451,9 @@ mixin _$InvoiceState {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2191,6 +2471,9 @@ mixin _$InvoiceState {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2208,6 +2491,9 @@ mixin _$InvoiceState {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2282,6 +2568,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return initial();
   }
@@ -2302,6 +2591,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return initial?.call();
   }
@@ -2322,6 +2614,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2346,6 +2641,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return initial(this);
   }
@@ -2366,6 +2664,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return initial?.call(this);
   }
@@ -2386,6 +2687,9 @@ class _$InvoiceInitialImpl implements InvoiceInitial {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -2450,6 +2754,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return listLoading();
   }
@@ -2470,6 +2777,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return listLoading?.call();
   }
@@ -2490,6 +2800,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (listLoading != null) {
@@ -2514,6 +2827,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return listLoading(this);
   }
@@ -2534,6 +2850,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return listLoading?.call(this);
   }
@@ -2554,6 +2873,9 @@ class _$InvoiceListLoadingImpl implements InvoiceListLoading {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (listLoading != null) {
@@ -2652,6 +2974,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return listLoaded(invoices);
   }
@@ -2672,6 +2997,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return listLoaded?.call(invoices);
   }
@@ -2692,6 +3020,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (listLoaded != null) {
@@ -2716,6 +3047,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return listLoaded(this);
   }
@@ -2736,6 +3070,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return listLoaded?.call(this);
   }
@@ -2756,6 +3093,9 @@ class _$InvoiceListLoadedImpl implements InvoiceListLoaded {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (listLoaded != null) {
@@ -2853,6 +3193,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return listError(message);
   }
@@ -2873,6 +3216,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return listError?.call(message);
   }
@@ -2893,6 +3239,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (listError != null) {
@@ -2917,6 +3266,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return listError(this);
   }
@@ -2937,6 +3289,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return listError?.call(this);
   }
@@ -2957,6 +3312,9 @@ class _$InvoiceListErrorImpl implements InvoiceListError {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (listError != null) {
@@ -3027,6 +3385,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return detailLoading();
   }
@@ -3047,6 +3408,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return detailLoading?.call();
   }
@@ -3067,6 +3431,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (detailLoading != null) {
@@ -3091,6 +3458,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return detailLoading(this);
   }
@@ -3111,6 +3481,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return detailLoading?.call(this);
   }
@@ -3131,6 +3504,9 @@ class _$InvoiceDetailLoadingImpl implements InvoiceDetailLoading {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (detailLoading != null) {
@@ -3222,6 +3598,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return detailLoaded(invoice);
   }
@@ -3242,6 +3621,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return detailLoaded?.call(invoice);
   }
@@ -3262,6 +3644,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (detailLoaded != null) {
@@ -3286,6 +3671,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return detailLoaded(this);
   }
@@ -3306,6 +3694,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return detailLoaded?.call(this);
   }
@@ -3326,6 +3717,9 @@ class _$InvoiceDetailLoadedImpl implements InvoiceDetailLoaded {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (detailLoaded != null) {
@@ -3423,6 +3817,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return detailError(message);
   }
@@ -3443,6 +3840,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return detailError?.call(message);
   }
@@ -3463,6 +3863,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (detailError != null) {
@@ -3487,6 +3890,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return detailError(this);
   }
@@ -3507,6 +3913,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return detailError?.call(this);
   }
@@ -3527,6 +3936,9 @@ class _$InvoiceDetailErrorImpl implements InvoiceDetailError {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (detailError != null) {
@@ -3598,6 +4010,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return actionLoading();
   }
@@ -3618,6 +4033,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return actionLoading?.call();
   }
@@ -3638,6 +4056,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (actionLoading != null) {
@@ -3662,6 +4083,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return actionLoading(this);
   }
@@ -3682,6 +4106,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return actionLoading?.call(this);
   }
@@ -3702,6 +4129,9 @@ class _$InvoiceActionLoadingImpl implements InvoiceActionLoading {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (actionLoading != null) {
@@ -3794,6 +4224,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return actionSuccess(message);
   }
@@ -3814,6 +4247,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return actionSuccess?.call(message);
   }
@@ -3834,6 +4270,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (actionSuccess != null) {
@@ -3858,6 +4297,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return actionSuccess(this);
   }
@@ -3878,6 +4320,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return actionSuccess?.call(this);
   }
@@ -3898,6 +4343,9 @@ class _$InvoiceActionSuccessImpl implements InvoiceActionSuccess {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (actionSuccess != null) {
@@ -3995,6 +4443,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return actionError(message);
   }
@@ -4015,6 +4466,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return actionError?.call(message);
   }
@@ -4035,6 +4489,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (actionError != null) {
@@ -4059,6 +4516,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return actionError(this);
   }
@@ -4079,6 +4539,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return actionError?.call(this);
   }
@@ -4099,6 +4562,9 @@ class _$InvoiceActionErrorImpl implements InvoiceActionError {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (actionError != null) {
@@ -4169,6 +4635,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return pdfLoading();
   }
@@ -4189,6 +4658,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return pdfLoading?.call();
   }
@@ -4209,6 +4681,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (pdfLoading != null) {
@@ -4233,6 +4708,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return pdfLoading(this);
   }
@@ -4253,6 +4731,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return pdfLoading?.call(this);
   }
@@ -4273,6 +4754,9 @@ class _$InvoicePdfLoadingImpl implements InvoicePdfLoading {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (pdfLoading != null) {
@@ -4365,6 +4849,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return pdfLoaded(bytes);
   }
@@ -4385,6 +4872,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return pdfLoaded?.call(bytes);
   }
@@ -4405,6 +4895,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (pdfLoaded != null) {
@@ -4429,6 +4922,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return pdfLoaded(this);
   }
@@ -4449,6 +4945,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return pdfLoaded?.call(this);
   }
@@ -4469,6 +4968,9 @@ class _$InvoicePdfLoadedImpl implements InvoicePdfLoaded {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (pdfLoaded != null) {
@@ -4566,6 +5068,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     required TResult Function() pdfLoading,
     required TResult Function(Uint8List bytes) pdfLoaded,
     required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
   }) {
     return pdfError(message);
   }
@@ -4586,6 +5091,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     TResult? Function()? pdfLoading,
     TResult? Function(Uint8List bytes)? pdfLoaded,
     TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
   }) {
     return pdfError?.call(message);
   }
@@ -4606,6 +5114,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     TResult Function()? pdfLoading,
     TResult Function(Uint8List bytes)? pdfLoaded,
     TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
     required TResult orElse(),
   }) {
     if (pdfError != null) {
@@ -4630,6 +5141,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     required TResult Function(InvoicePdfLoading value) pdfLoading,
     required TResult Function(InvoicePdfLoaded value) pdfLoaded,
     required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
   }) {
     return pdfError(this);
   }
@@ -4650,6 +5164,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     TResult? Function(InvoicePdfLoading value)? pdfLoading,
     TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
   }) {
     return pdfError?.call(this);
   }
@@ -4670,6 +5187,9 @@ class _$InvoicePdfErrorImpl implements InvoicePdfError {
     TResult Function(InvoicePdfLoading value)? pdfLoading,
     TResult Function(InvoicePdfLoaded value)? pdfLoaded,
     TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
     required TResult orElse(),
   }) {
     if (pdfError != null) {
@@ -4685,5 +5205,629 @@ abstract class InvoicePdfError implements InvoiceState {
   String get message;
   @JsonKey(ignore: true)
   _$$InvoicePdfErrorImplCopyWith<_$InvoicePdfErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvoiceEmailSendingImplCopyWith<$Res> {
+  factory _$$InvoiceEmailSendingImplCopyWith(_$InvoiceEmailSendingImpl value,
+          $Res Function(_$InvoiceEmailSendingImpl) then) =
+      __$$InvoiceEmailSendingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InvoiceEmailSendingImplCopyWithImpl<$Res>
+    extends _$InvoiceStateCopyWithImpl<$Res, _$InvoiceEmailSendingImpl>
+    implements _$$InvoiceEmailSendingImplCopyWith<$Res> {
+  __$$InvoiceEmailSendingImplCopyWithImpl(_$InvoiceEmailSendingImpl _value,
+      $Res Function(_$InvoiceEmailSendingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InvoiceEmailSendingImpl implements InvoiceEmailSending {
+  const _$InvoiceEmailSendingImpl();
+
+  @override
+  String toString() {
+    return 'InvoiceState.emailSending()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvoiceEmailSendingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() listLoading,
+    required TResult Function(List<InvoiceEntity> invoices) listLoaded,
+    required TResult Function(String message) listError,
+    required TResult Function() detailLoading,
+    required TResult Function(InvoiceEntity invoice) detailLoaded,
+    required TResult Function(String message) detailError,
+    required TResult Function() actionLoading,
+    required TResult Function(String message) actionSuccess,
+    required TResult Function(String message) actionError,
+    required TResult Function() pdfLoading,
+    required TResult Function(Uint8List bytes) pdfLoaded,
+    required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
+  }) {
+    return emailSending();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? listLoading,
+    TResult? Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult? Function(String message)? listError,
+    TResult? Function()? detailLoading,
+    TResult? Function(InvoiceEntity invoice)? detailLoaded,
+    TResult? Function(String message)? detailError,
+    TResult? Function()? actionLoading,
+    TResult? Function(String message)? actionSuccess,
+    TResult? Function(String message)? actionError,
+    TResult? Function()? pdfLoading,
+    TResult? Function(Uint8List bytes)? pdfLoaded,
+    TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
+  }) {
+    return emailSending?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? listLoading,
+    TResult Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult Function(String message)? listError,
+    TResult Function()? detailLoading,
+    TResult Function(InvoiceEntity invoice)? detailLoaded,
+    TResult Function(String message)? detailError,
+    TResult Function()? actionLoading,
+    TResult Function(String message)? actionSuccess,
+    TResult Function(String message)? actionError,
+    TResult Function()? pdfLoading,
+    TResult Function(Uint8List bytes)? pdfLoaded,
+    TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailSending != null) {
+      return emailSending();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvoiceInitial value) initial,
+    required TResult Function(InvoiceListLoading value) listLoading,
+    required TResult Function(InvoiceListLoaded value) listLoaded,
+    required TResult Function(InvoiceListError value) listError,
+    required TResult Function(InvoiceDetailLoading value) detailLoading,
+    required TResult Function(InvoiceDetailLoaded value) detailLoaded,
+    required TResult Function(InvoiceDetailError value) detailError,
+    required TResult Function(InvoiceActionLoading value) actionLoading,
+    required TResult Function(InvoiceActionSuccess value) actionSuccess,
+    required TResult Function(InvoiceActionError value) actionError,
+    required TResult Function(InvoicePdfLoading value) pdfLoading,
+    required TResult Function(InvoicePdfLoaded value) pdfLoaded,
+    required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
+  }) {
+    return emailSending(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvoiceInitial value)? initial,
+    TResult? Function(InvoiceListLoading value)? listLoading,
+    TResult? Function(InvoiceListLoaded value)? listLoaded,
+    TResult? Function(InvoiceListError value)? listError,
+    TResult? Function(InvoiceDetailLoading value)? detailLoading,
+    TResult? Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult? Function(InvoiceDetailError value)? detailError,
+    TResult? Function(InvoiceActionLoading value)? actionLoading,
+    TResult? Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult? Function(InvoiceActionError value)? actionError,
+    TResult? Function(InvoicePdfLoading value)? pdfLoading,
+    TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
+  }) {
+    return emailSending?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvoiceInitial value)? initial,
+    TResult Function(InvoiceListLoading value)? listLoading,
+    TResult Function(InvoiceListLoaded value)? listLoaded,
+    TResult Function(InvoiceListError value)? listError,
+    TResult Function(InvoiceDetailLoading value)? detailLoading,
+    TResult Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult Function(InvoiceDetailError value)? detailError,
+    TResult Function(InvoiceActionLoading value)? actionLoading,
+    TResult Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult Function(InvoiceActionError value)? actionError,
+    TResult Function(InvoicePdfLoading value)? pdfLoading,
+    TResult Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailSending != null) {
+      return emailSending(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvoiceEmailSending implements InvoiceState {
+  const factory InvoiceEmailSending() = _$InvoiceEmailSendingImpl;
+}
+
+/// @nodoc
+abstract class _$$InvoiceEmailSentImplCopyWith<$Res> {
+  factory _$$InvoiceEmailSentImplCopyWith(_$InvoiceEmailSentImpl value,
+          $Res Function(_$InvoiceEmailSentImpl) then) =
+      __$$InvoiceEmailSentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$InvoiceEmailSentImplCopyWithImpl<$Res>
+    extends _$InvoiceStateCopyWithImpl<$Res, _$InvoiceEmailSentImpl>
+    implements _$$InvoiceEmailSentImplCopyWith<$Res> {
+  __$$InvoiceEmailSentImplCopyWithImpl(_$InvoiceEmailSentImpl _value,
+      $Res Function(_$InvoiceEmailSentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$InvoiceEmailSentImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvoiceEmailSentImpl implements InvoiceEmailSent {
+  const _$InvoiceEmailSentImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'InvoiceState.emailSent(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvoiceEmailSentImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvoiceEmailSentImplCopyWith<_$InvoiceEmailSentImpl> get copyWith =>
+      __$$InvoiceEmailSentImplCopyWithImpl<_$InvoiceEmailSentImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() listLoading,
+    required TResult Function(List<InvoiceEntity> invoices) listLoaded,
+    required TResult Function(String message) listError,
+    required TResult Function() detailLoading,
+    required TResult Function(InvoiceEntity invoice) detailLoaded,
+    required TResult Function(String message) detailError,
+    required TResult Function() actionLoading,
+    required TResult Function(String message) actionSuccess,
+    required TResult Function(String message) actionError,
+    required TResult Function() pdfLoading,
+    required TResult Function(Uint8List bytes) pdfLoaded,
+    required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
+  }) {
+    return emailSent(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? listLoading,
+    TResult? Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult? Function(String message)? listError,
+    TResult? Function()? detailLoading,
+    TResult? Function(InvoiceEntity invoice)? detailLoaded,
+    TResult? Function(String message)? detailError,
+    TResult? Function()? actionLoading,
+    TResult? Function(String message)? actionSuccess,
+    TResult? Function(String message)? actionError,
+    TResult? Function()? pdfLoading,
+    TResult? Function(Uint8List bytes)? pdfLoaded,
+    TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
+  }) {
+    return emailSent?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? listLoading,
+    TResult Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult Function(String message)? listError,
+    TResult Function()? detailLoading,
+    TResult Function(InvoiceEntity invoice)? detailLoaded,
+    TResult Function(String message)? detailError,
+    TResult Function()? actionLoading,
+    TResult Function(String message)? actionSuccess,
+    TResult Function(String message)? actionError,
+    TResult Function()? pdfLoading,
+    TResult Function(Uint8List bytes)? pdfLoaded,
+    TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailSent != null) {
+      return emailSent(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvoiceInitial value) initial,
+    required TResult Function(InvoiceListLoading value) listLoading,
+    required TResult Function(InvoiceListLoaded value) listLoaded,
+    required TResult Function(InvoiceListError value) listError,
+    required TResult Function(InvoiceDetailLoading value) detailLoading,
+    required TResult Function(InvoiceDetailLoaded value) detailLoaded,
+    required TResult Function(InvoiceDetailError value) detailError,
+    required TResult Function(InvoiceActionLoading value) actionLoading,
+    required TResult Function(InvoiceActionSuccess value) actionSuccess,
+    required TResult Function(InvoiceActionError value) actionError,
+    required TResult Function(InvoicePdfLoading value) pdfLoading,
+    required TResult Function(InvoicePdfLoaded value) pdfLoaded,
+    required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
+  }) {
+    return emailSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvoiceInitial value)? initial,
+    TResult? Function(InvoiceListLoading value)? listLoading,
+    TResult? Function(InvoiceListLoaded value)? listLoaded,
+    TResult? Function(InvoiceListError value)? listError,
+    TResult? Function(InvoiceDetailLoading value)? detailLoading,
+    TResult? Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult? Function(InvoiceDetailError value)? detailError,
+    TResult? Function(InvoiceActionLoading value)? actionLoading,
+    TResult? Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult? Function(InvoiceActionError value)? actionError,
+    TResult? Function(InvoicePdfLoading value)? pdfLoading,
+    TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
+  }) {
+    return emailSent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvoiceInitial value)? initial,
+    TResult Function(InvoiceListLoading value)? listLoading,
+    TResult Function(InvoiceListLoaded value)? listLoaded,
+    TResult Function(InvoiceListError value)? listError,
+    TResult Function(InvoiceDetailLoading value)? detailLoading,
+    TResult Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult Function(InvoiceDetailError value)? detailError,
+    TResult Function(InvoiceActionLoading value)? actionLoading,
+    TResult Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult Function(InvoiceActionError value)? actionError,
+    TResult Function(InvoicePdfLoading value)? pdfLoading,
+    TResult Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailSent != null) {
+      return emailSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvoiceEmailSent implements InvoiceState {
+  const factory InvoiceEmailSent(final String message) = _$InvoiceEmailSentImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$InvoiceEmailSentImplCopyWith<_$InvoiceEmailSentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvoiceEmailErrorImplCopyWith<$Res> {
+  factory _$$InvoiceEmailErrorImplCopyWith(_$InvoiceEmailErrorImpl value,
+          $Res Function(_$InvoiceEmailErrorImpl) then) =
+      __$$InvoiceEmailErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$InvoiceEmailErrorImplCopyWithImpl<$Res>
+    extends _$InvoiceStateCopyWithImpl<$Res, _$InvoiceEmailErrorImpl>
+    implements _$$InvoiceEmailErrorImplCopyWith<$Res> {
+  __$$InvoiceEmailErrorImplCopyWithImpl(_$InvoiceEmailErrorImpl _value,
+      $Res Function(_$InvoiceEmailErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$InvoiceEmailErrorImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvoiceEmailErrorImpl implements InvoiceEmailError {
+  const _$InvoiceEmailErrorImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'InvoiceState.emailError(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvoiceEmailErrorImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvoiceEmailErrorImplCopyWith<_$InvoiceEmailErrorImpl> get copyWith =>
+      __$$InvoiceEmailErrorImplCopyWithImpl<_$InvoiceEmailErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() listLoading,
+    required TResult Function(List<InvoiceEntity> invoices) listLoaded,
+    required TResult Function(String message) listError,
+    required TResult Function() detailLoading,
+    required TResult Function(InvoiceEntity invoice) detailLoaded,
+    required TResult Function(String message) detailError,
+    required TResult Function() actionLoading,
+    required TResult Function(String message) actionSuccess,
+    required TResult Function(String message) actionError,
+    required TResult Function() pdfLoading,
+    required TResult Function(Uint8List bytes) pdfLoaded,
+    required TResult Function(String message) pdfError,
+    required TResult Function() emailSending,
+    required TResult Function(String message) emailSent,
+    required TResult Function(String message) emailError,
+  }) {
+    return emailError(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? listLoading,
+    TResult? Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult? Function(String message)? listError,
+    TResult? Function()? detailLoading,
+    TResult? Function(InvoiceEntity invoice)? detailLoaded,
+    TResult? Function(String message)? detailError,
+    TResult? Function()? actionLoading,
+    TResult? Function(String message)? actionSuccess,
+    TResult? Function(String message)? actionError,
+    TResult? Function()? pdfLoading,
+    TResult? Function(Uint8List bytes)? pdfLoaded,
+    TResult? Function(String message)? pdfError,
+    TResult? Function()? emailSending,
+    TResult? Function(String message)? emailSent,
+    TResult? Function(String message)? emailError,
+  }) {
+    return emailError?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? listLoading,
+    TResult Function(List<InvoiceEntity> invoices)? listLoaded,
+    TResult Function(String message)? listError,
+    TResult Function()? detailLoading,
+    TResult Function(InvoiceEntity invoice)? detailLoaded,
+    TResult Function(String message)? detailError,
+    TResult Function()? actionLoading,
+    TResult Function(String message)? actionSuccess,
+    TResult Function(String message)? actionError,
+    TResult Function()? pdfLoading,
+    TResult Function(Uint8List bytes)? pdfLoaded,
+    TResult Function(String message)? pdfError,
+    TResult Function()? emailSending,
+    TResult Function(String message)? emailSent,
+    TResult Function(String message)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailError != null) {
+      return emailError(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvoiceInitial value) initial,
+    required TResult Function(InvoiceListLoading value) listLoading,
+    required TResult Function(InvoiceListLoaded value) listLoaded,
+    required TResult Function(InvoiceListError value) listError,
+    required TResult Function(InvoiceDetailLoading value) detailLoading,
+    required TResult Function(InvoiceDetailLoaded value) detailLoaded,
+    required TResult Function(InvoiceDetailError value) detailError,
+    required TResult Function(InvoiceActionLoading value) actionLoading,
+    required TResult Function(InvoiceActionSuccess value) actionSuccess,
+    required TResult Function(InvoiceActionError value) actionError,
+    required TResult Function(InvoicePdfLoading value) pdfLoading,
+    required TResult Function(InvoicePdfLoaded value) pdfLoaded,
+    required TResult Function(InvoicePdfError value) pdfError,
+    required TResult Function(InvoiceEmailSending value) emailSending,
+    required TResult Function(InvoiceEmailSent value) emailSent,
+    required TResult Function(InvoiceEmailError value) emailError,
+  }) {
+    return emailError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvoiceInitial value)? initial,
+    TResult? Function(InvoiceListLoading value)? listLoading,
+    TResult? Function(InvoiceListLoaded value)? listLoaded,
+    TResult? Function(InvoiceListError value)? listError,
+    TResult? Function(InvoiceDetailLoading value)? detailLoading,
+    TResult? Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult? Function(InvoiceDetailError value)? detailError,
+    TResult? Function(InvoiceActionLoading value)? actionLoading,
+    TResult? Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult? Function(InvoiceActionError value)? actionError,
+    TResult? Function(InvoicePdfLoading value)? pdfLoading,
+    TResult? Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult? Function(InvoicePdfError value)? pdfError,
+    TResult? Function(InvoiceEmailSending value)? emailSending,
+    TResult? Function(InvoiceEmailSent value)? emailSent,
+    TResult? Function(InvoiceEmailError value)? emailError,
+  }) {
+    return emailError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvoiceInitial value)? initial,
+    TResult Function(InvoiceListLoading value)? listLoading,
+    TResult Function(InvoiceListLoaded value)? listLoaded,
+    TResult Function(InvoiceListError value)? listError,
+    TResult Function(InvoiceDetailLoading value)? detailLoading,
+    TResult Function(InvoiceDetailLoaded value)? detailLoaded,
+    TResult Function(InvoiceDetailError value)? detailError,
+    TResult Function(InvoiceActionLoading value)? actionLoading,
+    TResult Function(InvoiceActionSuccess value)? actionSuccess,
+    TResult Function(InvoiceActionError value)? actionError,
+    TResult Function(InvoicePdfLoading value)? pdfLoading,
+    TResult Function(InvoicePdfLoaded value)? pdfLoaded,
+    TResult Function(InvoicePdfError value)? pdfError,
+    TResult Function(InvoiceEmailSending value)? emailSending,
+    TResult Function(InvoiceEmailSent value)? emailSent,
+    TResult Function(InvoiceEmailError value)? emailError,
+    required TResult orElse(),
+  }) {
+    if (emailError != null) {
+      return emailError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvoiceEmailError implements InvoiceState {
+  const factory InvoiceEmailError(final String message) =
+      _$InvoiceEmailErrorImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$InvoiceEmailErrorImplCopyWith<_$InvoiceEmailErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
