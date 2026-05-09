@@ -171,4 +171,14 @@ class InvoiceRemoteDataSourceImpl implements InvoiceRemoteDataSource {
       throw handleDioError(e);
     }
   }
+
+  @override
+  Future<String> sendInvoiceEmail(String invoiceId) async {
+    try {
+      final response = await _dio.post('/api/v1/invoices/$invoiceId/send-mail');
+      return response.data as String;
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
 }

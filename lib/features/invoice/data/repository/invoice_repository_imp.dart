@@ -250,4 +250,17 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Failure, String>> sendInvoiceEmail(String invoiceId) async {
+    try {
+      final message = await _remote.sendInvoiceEmail(invoiceId);
+
+      return Right(message);
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to send invoice email'));
+    }
+  }
 }

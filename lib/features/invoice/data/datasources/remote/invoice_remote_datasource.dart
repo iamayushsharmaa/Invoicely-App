@@ -29,4 +29,6 @@ abstract interface class InvoiceRemoteDataSource {
   });
 
   Future<Uint8List> generatePdf(String invoiceId, String template);
+
+  Future<String> sendInvoiceEmail(String invoiceId);
 }

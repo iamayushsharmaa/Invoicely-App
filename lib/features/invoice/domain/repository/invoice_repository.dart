@@ -39,4 +39,6 @@ abstract interface class InvoiceRepository {
     String invoiceId,
     String template,
   );
+
+  Future<Either<Failure, String>> sendInvoiceEmail(String invoiceId);
 }
