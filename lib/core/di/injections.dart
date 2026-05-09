@@ -12,6 +12,15 @@ import 'package:invoice/features/client/data/repository/client_repository_impl.d
 import 'package:invoice/features/client/domain/repository/client_repository.dart';
 import 'package:invoice/features/client/presentation/bloc/client_bloc.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
+import 'package:invoice/features/user/data/datasources/user_remote_datasource.dart';
+import 'package:invoice/features/user/data/datasources/user_remote_datasource_impl.dart';
+import 'package:invoice/features/user/data/repository/user_repository_impl.dart';
+import 'package:invoice/features/user/domain/repository/user_repository.dart';
+import 'package:invoice/features/user/domain/usecases/change_password_usecase.dart';
+import 'package:invoice/features/user/domain/usecases/delete_account_usecase.dart';
+import 'package:invoice/features/user/domain/usecases/get_profile_usecase.dart';
+import 'package:invoice/features/user/domain/usecases/update_profile_usecase.dart';
+import 'package:invoice/features/user/presentation/bloc/user_bloc.dart';
 
 import '../../features/auth/data/datasource/auth_local_datasource.dart';
 import '../../features/auth/data/datasource/auth_local_datasource_impl.dart';
@@ -51,6 +60,7 @@ final sl = GetIt.instance;
 Future<void> initDependencies() async {
   _initCore();
   _initAuth();
+  _initUser();
 
   await _initInvoice();
 }
@@ -184,6 +194,30 @@ Future<void> _initClient() async {
       createClientUseCase: sl(),
       updateClientUseCase: sl(),
       deleteClientUseCase: sl(),
+    ),
+  );
+}
+
+Future<void> _initUser() async {
+  sl.registerLazySingleton<UserRemoteDatasource>(
+    () => UserRemoteDatasourceImpl(sl<Dio>()),
+  );
+
+  sl.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImpl(sl<UserRemoteDatasource>()),
+  );
+
+  sl.registerLazySingleton(() => GetProfileUseCase(sl<UserRepository>()));
+  sl.registerLazySingleton(() => UpdateProfileUseCase(sl<UserRepository>()));
+  sl.registerLazySingleton(() => ChangePasswordUseCase(sl<UserRepository>()));
+  sl.registerLazySingleton(() => DeleteAccountUseCase(sl<UserRepository>()));
+
+  sl.registerFactory<UserBloc>(
+    () => UserBloc(
+      getProfileUseCase: sl(),
+      updateProfileUseCase: sl(),
+      changePasswordUseCase: sl(),
+      deleteAccountUseCase: sl(),
     ),
   );
 }

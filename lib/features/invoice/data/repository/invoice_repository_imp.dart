@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:fpdart/src/either.dart';
 import 'package:invoice/core/errors/failure.dart';
 import 'package:invoice/features/invoice/data/datasources/local/invoice_local_datasource.dart';
@@ -208,6 +210,21 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
       return Right(filtered);
     } on CacheFailure catch (e) {
       return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, Uint8List>> generatePdf(
+    String invoiceId,
+    String template,
+  ) async {
+    try {
+      final bytes = await _remote.generatePdf(invoiceId, template);
+      return Right(bytes);
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to generate PDF'));
     }
   }
 

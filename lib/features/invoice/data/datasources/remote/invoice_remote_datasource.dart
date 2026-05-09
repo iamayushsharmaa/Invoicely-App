@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:invoice/features/invoice/data/model/invoice_model.dart';
 import 'package:invoice/features/invoice/domain/entities/create_invoice_params.dart';
 
@@ -25,4 +27,6 @@ abstract interface class InvoiceRemoteDataSource {
     int page = 0,
     int size = 10,
   });
+
+  Future<Uint8List> generatePdf(String invoiceId, String template);
 }

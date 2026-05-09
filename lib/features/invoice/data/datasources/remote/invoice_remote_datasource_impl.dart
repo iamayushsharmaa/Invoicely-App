@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:invoice/features/invoice/data/datasources/remote/invoice_remote_datasource.dart';
 import 'package:invoice/features/invoice/data/model/invoice_model.dart';
@@ -151,4 +153,22 @@ class InvoiceRemoteDataSourceImpl implements InvoiceRemoteDataSource {
         )
         .toList(),
   };
+
+  @override
+  Future<Uint8List> generatePdf(String invoiceId, String template) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/invoices/$invoiceId/pdf',
+        queryParameters: {'template': template},
+        options: Options(
+          responseType: ResponseType.bytes,
+          headers: {'Accept': 'application/pdf'},
+        ),
+      );
+
+      return Uint8List.fromList(response.data as List<int>);
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
 }

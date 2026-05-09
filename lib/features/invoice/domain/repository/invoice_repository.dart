@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -32,4 +34,9 @@ abstract interface class InvoiceRepository {
     int page = 0,
     int size = 10,
   });
+
+  Future<Either<Failure, Uint8List>> generatePdf(
+    String invoiceId,
+    String template,
+  );
 }
