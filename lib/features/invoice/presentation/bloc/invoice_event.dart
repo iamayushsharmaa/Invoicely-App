@@ -24,4 +24,9 @@ class InvoiceEvent with _$InvoiceEvent {
       SearchInvoices;
 
   const factory InvoiceEvent.clearSelectedInvoice() = ClearSelectedInvoice;
+
+  const factory InvoiceEvent.generatePdf(GeneratePdfParams params) =
+      GeneratePdf;
+
+  const factory InvoiceEvent.clearPdf() = ClearPdf;
 }

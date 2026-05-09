@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/create_invoice_params.dart';
 import '../../domain/entities/invoice_enitity.dart';
+import '../../domain/params/pdf_params.dart';
 import '../../domain/usecases/create_invoice_usecase.dart';
 import '../../domain/usecases/delete_invoice_usecase.dart';
+import '../../domain/usecases/generate_pdf_usecase.dart';
 import '../../domain/usecases/get_all_invoices_usecase.dart';
 import '../../domain/usecases/get_invoice_by_client_usecase.dart';
 import '../../domain/usecases/get_invoice_by_id_usecase.dart';
@@ -29,6 +32,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
   final DeleteInvoiceUseCase _deleteInvoice;
   final MarkAsPaidUseCase _markAsPaid;
   final SearchInvoicesUseCase _searchInvoices;
+  final GeneratePdfUseCase _generatePdf;
 
   InvoiceBloc({
     required GetAllInvoicesUseCase getAllInvoices,
@@ -39,6 +43,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     required DeleteInvoiceUseCase deleteInvoice,
     required MarkAsPaidUseCase markAsPaid,
     required SearchInvoicesUseCase searchInvoices,
+    required GeneratePdfUseCase generatePdf,
   }) : _getAllInvoices = getAllInvoices,
        _getInvoiceById = getInvoiceById,
        _getInvoicesByClient = getInvoicesByClient,
@@ -47,6 +52,7 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
        _deleteInvoice = deleteInvoice,
        _markAsPaid = markAsPaid,
        _searchInvoices = searchInvoices,
+       _generatePdf = generatePdf,
        super(const InvoiceState.initial()) {
     on<LoadInvoices>(_onLoadInvoices);
     on<LoadInvoiceById>(_onLoadInvoiceById);
@@ -58,8 +64,8 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     on<SearchInvoices>(_onSearchInvoices);
     on<ClearSelectedInvoice>(_onClearSelectedInvoice);
 
-    // on<SendInvoiceEmail>(_onSendInvoiceEmail);
-    // on<DownloadInvoicePdf>(_onDownloadInvoicePdf);
+    on<GeneratePdf>(_onGeneratePdf);
+    on<ClearPdf>(_onClearPdf);
   }
 
   Future<void> _onLoadInvoices(
@@ -168,6 +174,22 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
     ClearSelectedInvoice event,
     Emitter<InvoiceState> emit,
   ) {
+    emit(const InvoiceState.initial());
+  }
+
+  Future<void> _onGeneratePdf(
+    GeneratePdf event,
+    Emitter<InvoiceState> emit,
+  ) async {
+    emit(const InvoiceState.pdfLoading());
+    final result = await _generatePdf(event.params);
+    result.fold(
+      (failure) => emit(InvoiceState.pdfError(failure.message)),
+      (bytes) => emit(InvoiceState.pdfLoaded(bytes)),
+    );
+  }
+
+  void _onClearPdf(ClearPdf event, Emitter<InvoiceState> emit) {
     emit(const InvoiceState.initial());
   }
 }

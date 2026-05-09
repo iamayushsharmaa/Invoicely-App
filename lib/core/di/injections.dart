@@ -47,6 +47,7 @@ import '../../features/invoice/data/repository/invoice_repository_imp.dart';
 import '../../features/invoice/domain/repository/invoice_repository.dart';
 import '../../features/invoice/domain/usecases/create_invoice_usecase.dart';
 import '../../features/invoice/domain/usecases/delete_invoice_usecase.dart';
+import '../../features/invoice/domain/usecases/generate_pdf_usecase.dart';
 import '../../features/invoice/domain/usecases/get_all_invoices_usecase.dart';
 import '../../features/invoice/domain/usecases/get_invoice_by_client_usecase.dart';
 import '../../features/invoice/domain/usecases/get_invoice_by_id_usecase.dart';
@@ -148,6 +149,7 @@ Future<void> _initInvoice() async {
   sl.registerLazySingleton(
     () => SearchInvoicesUseCase(sl<InvoiceRepository>()),
   );
+  sl.registerLazySingleton(() => GeneratePdfUseCase(sl<InvoiceRepository>()));
 
   sl.registerFactory(
     () => InvoiceBloc(
@@ -159,6 +161,7 @@ Future<void> _initInvoice() async {
       deleteInvoice: sl(),
       markAsPaid: sl(),
       searchInvoices: sl(),
+      generatePdf: sl(),
     ),
   );
 }
