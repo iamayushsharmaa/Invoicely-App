@@ -55,6 +55,7 @@ import '../../features/invoice/domain/usecases/mark_as_paid_usecase.dart';
 import '../../features/invoice/domain/usecases/search_invoice_usecase.dart';
 import '../../features/invoice/domain/usecases/update_invoice_usecase.dart';
 import '../network/dio_client.dart';
+import '../services/pdf_service.dart';
 
 final sl = GetIt.instance;
 
@@ -76,6 +77,8 @@ void _initCore() {
   sl.registerLazySingleton<Dio>(
     () => DioClient.create(sl<FlutterSecureStorage>()),
   );
+
+  sl.registerLazySingleton(() => PdfService());
 }
 
 void _initAuth() {
