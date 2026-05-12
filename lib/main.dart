@@ -39,15 +39,19 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (_) => sl<AuthBloc>()..add(CheckAuthStatusEvent()),
         ),
+
         BlocProvider<InvoiceBloc>(
           create: (_) =>
               sl<InvoiceBloc>()..add(const InvoiceEvent.loadInvoices()),
         ),
       ],
+
       child: Builder(
         builder: (context) {
+          final authBloc = context.read<AuthBloc>();
+
           return MaterialApp.router(
-            routerConfig: AppRouter.createRouter(context.read<AuthBloc>()),
+            routerConfig: AppRouter.createRouter(authBloc),
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.system,

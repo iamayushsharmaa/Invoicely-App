@@ -13,9 +13,7 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is Authenticated) {
-            context.go('/home');
-          } else if (state is AuthError) {
+          if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
@@ -59,6 +57,7 @@ class OnBoardingScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 25),
+
                   // google sign in
                   BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {

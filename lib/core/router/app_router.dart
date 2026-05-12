@@ -68,7 +68,6 @@ class AppRouter {
     );
   }
 
-  // ── auth routes ────────────────────────────────────────
   static final List<RouteBase> _authRoutes = [
     GoRoute(
       path: RoutePaths.splash,
@@ -83,7 +82,7 @@ class AppRouter {
     GoRoute(
       path: RoutePaths.signIn,
       name: RouteNames.signIn,
-      builder: (context, state) => const SigninScreen(),
+      builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
       path: RoutePaths.signUp,
@@ -92,7 +91,6 @@ class AppRouter {
     ),
   ];
 
-  // ── invoice routes
   static final List<RouteBase> _invoiceRoutes = [
     GoRoute(
       path: RoutePaths.addInvoice,
@@ -114,7 +112,6 @@ class AppRouter {
     ),
   ];
 
-  //  client routes
   static final List<RouteBase> _clientRoutes = [
     GoRoute(
       path: RoutePaths.clientDetails,
@@ -129,7 +126,6 @@ class AppRouter {
     ),
   ];
 
-  // ── shell route (bottom nav)
   static final RouteBase _shellRoute = ShellRoute(
     builder: (context, state, child) => WidgetTree(child: child),
     routes: [
