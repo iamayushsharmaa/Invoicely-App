@@ -52,12 +52,12 @@ class AuthInterceptor extends Interceptor {
 
       final refreshDio = Dio(
         BaseOptions(
-          baseUrl: dotenv.env['BASE_URL'] ?? 'http://192.168.1.5:8080/api',
+          baseUrl: dotenv.env['BASE_URL'] ?? 'http://192.168.1.5:8080',
         ),
       );
 
       final response = await refreshDio.post(
-        '/v1/auth/refresh-token',
+        '/api/v1/auth/refresh-token',
         data: {'refreshToken': refreshToken},
       );
 

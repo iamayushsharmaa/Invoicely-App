@@ -18,7 +18,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<AuthenticationResponse> register(RegisterRequest request) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/register',
+        '/api/v1/auth/register',
         data: request.toMap(),
       );
       return AuthenticationResponse.fromJson(response.data);
@@ -31,7 +31,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   Future<AuthenticationResponse> signIn(SignInRequest request) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/authenticate',
+        '/api/v1/auth/authenticate',
         data: request.toMap(),
       );
       return AuthenticationResponse.fromJson(response.data);
@@ -46,7 +46,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   ) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/google',
+        '/api/v1/auth/google',
         data: request.toJson(),
       );
       return AuthenticationResponse.fromJson(response.data);

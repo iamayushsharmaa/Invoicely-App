@@ -13,7 +13,7 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   @override
   Future<List<ClientModel>> getAllClients() async {
     try {
-      final response = await _dio.get('/api/clients');
+      final response = await _dio.get('/api/v1/clients');
       final list = response.data as List<dynamic>;
       return list
           .map((e) => ClientModel.fromJson(e as Map<String, dynamic>))
@@ -27,7 +27,7 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   Future<ClientModel> createClient(CreateClientParams params) async {
     try {
       final response = await _dio.post(
-        '/api/clients',
+        '/api/v1/clients',
         data: {
           'name': params.name,
           'email': params.email,
@@ -45,7 +45,7 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   Future<ClientModel> updateClient(UpdateClientParams params) async {
     try {
       final response = await _dio.put(
-        '/api/clients/${params.clientId}',
+        '/api/v1/clients/${params.clientId}',
         data: {
           'name': params.name,
           'email': params.email,
@@ -62,7 +62,7 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   @override
   Future<void> deleteClient(String clientId) async {
     try {
-      await _dio.delete('/api/clients/$clientId');
+      await _dio.delete('/api/v1/clients/$clientId');
     } on DioException catch (e) {
       throw handleDioError(e);
     }
