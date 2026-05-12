@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoice/features/analytics/presentation/screens/analytics_screen.dart';
@@ -33,6 +35,7 @@ class AppRouter {
         final currentPath = state.uri.path;
 
         const publicRoutes = [
+          RoutePaths.splash,
           RoutePaths.onboarding,
           RoutePaths.signIn,
           RoutePaths.signUp,
@@ -40,12 +43,18 @@ class AppRouter {
 
         final isPublicRoute = publicRoutes.contains(currentPath);
 
+        if (authState is AuthInitial || authState is AuthLoading) {
+          return currentPath == RoutePaths.splash ? null : RoutePaths.splash;
+        }
+
         if (authState is Authenticated && isPublicRoute) {
           return RoutePaths.home;
         }
+
         if (authState is Unauthenticated && !isPublicRoute) {
           return RoutePaths.onboarding;
         }
+
         return null;
       },
       routes: [
@@ -149,7 +158,17 @@ class AppRouter {
 }
 
 class _GoRouterRefresh extends ChangeNotifier {
+  late final StreamSubscription _subscription;
+
   _GoRouterRefresh(AuthBloc bloc) {
-    bloc.stream.listen((_) => notifyListeners());
+    _subscription = bloc.stream.listen((_) {
+      notifyListeners();
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 }

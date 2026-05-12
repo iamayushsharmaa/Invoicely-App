@@ -214,7 +214,6 @@ class InvoiceBloc extends Bloc<InvoiceEvent, InvoiceState> {
 
 //this code for email send button,
 
-
 // dispatch from invoice detail screen
 // context.read<InvoiceBloc>().add(
 // InvoiceEvent.sendInvoiceEmail(invoice.id),
