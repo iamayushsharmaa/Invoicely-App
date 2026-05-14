@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../invoice_item_ui_model.dart';
 import 'invoice_dark_text_field.dart';
+import 'invoice_item_tile.dart';
 
 class InvoiceItemsStepWidget extends StatelessWidget {
   final TextEditingController taxController;
   final TextEditingController discountController;
-
+  final List<InvoiceItemUiModel> items;
+  final Function(int index) onDeleteItem;
   final VoidCallback onAddItem;
-
-  final bool hasItems;
 
   const InvoiceItemsStepWidget({
     super.key,
     required this.taxController,
     required this.discountController,
     required this.onAddItem,
-    required this.hasItems,
+    required this.items,
+    required this.onDeleteItem,
   });
 
   @override
@@ -85,10 +87,27 @@ class InvoiceItemsStepWidget extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        if (!hasItems)
+        if (items.isEmpty)
           const Text(
             "No items added yet",
             style: TextStyle(color: Colors.grey),
+          ),
+
+        if (items.isNotEmpty)
+          ListView.builder(
+            itemCount: items.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+
+            itemBuilder: (context, index) {
+              return InvoiceItemTile(
+                item: items[index],
+
+                onDelete: () {
+                  onDeleteItem(index);
+                },
+              );
+            },
           ),
       ],
     );

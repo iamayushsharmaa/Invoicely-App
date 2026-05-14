@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../invoice_item_ui_model.dart';
 import 'invoice_dark_text_field.dart';
 
 class AddInvoiceItemBottomSheet extends StatefulWidget {
-  final Function(Map<String, dynamic>) onSave;
+  final Function(InvoiceItemUiModel) onSave;
 
   const AddInvoiceItemBottomSheet({super.key, required this.onSave});
 
@@ -38,12 +39,14 @@ class _AddInvoiceItemBottomSheetState extends State<AddInvoiceItemBottomSheet> {
   }
 
   void _saveItem() {
-    widget.onSave({
-      "name": _nameController.text,
-      "price": double.tryParse(_priceController.text) ?? 0,
-      "quantity": int.tryParse(_quantityController.text) ?? 1,
-      "tax": double.tryParse(_taxController.text) ?? 0,
-    });
+    widget.onSave(
+      InvoiceItemUiModel(
+        name: _nameController.text,
+        price: double.tryParse(_priceController.text) ?? 0,
+        quantity: int.tryParse(_quantityController.text) ?? 1,
+        tax: double.tryParse(_taxController.text) ?? 0,
+      ),
+    );
 
     Navigator.pop(context);
   }
