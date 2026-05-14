@@ -1,7 +1,9 @@
 import 'invoice_item_params.dart';
+import 'new_client_params.dart';
 
 class CreateInvoiceParams {
-  final String clientId;
+  final String? clientId; // existing client
+  final NewClientParams? newClient; // new client (manual entry)
   final String invoiceNumber;
   final DateTime invoiceDate;
   final DateTime dueDate;
@@ -18,7 +20,8 @@ class CreateInvoiceParams {
   final double totalAmount;
 
   const CreateInvoiceParams({
-    required this.clientId,
+    this.clientId,
+    this.newClient,
     required this.invoiceNumber,
     required this.invoiceDate,
     required this.dueDate,
@@ -33,5 +36,8 @@ class CreateInvoiceParams {
     required this.items,
     required this.subTotal,
     required this.totalAmount,
-  });
+  }) : assert(
+         clientId != null || newClient != null,
+         'Either clientId or newClient must be provided',
+       );
 }

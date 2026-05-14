@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoice/features/analytics/presentation/screens/analytics_screen.dart';
 import 'package:invoice/features/auth/presentation/bloc/auth_bloc.dart';
@@ -12,13 +13,17 @@ import 'package:invoice/features/client/presentation/screens/client_screen.dart'
 import 'package:invoice/features/home/presentation/screens/home_screen.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoice_detail_screen.dart';
 
+import '../../features/client/presentation/bloc/client_bloc.dart';
 import '../../features/client/presentation/screens/edit_client_info.dart';
 import '../../features/home/presentation/screens/splash_screen.dart';
 import '../../features/home/presentation/screens/widget_tree.dart';
 import '../../features/invoice/domain/entities/invoice_enitity.dart';
+import '../../features/invoice/presentation/bloc/invoice_bloc.dart';
 import '../../features/invoice/presentation/screens/add_invoice.dart';
 import '../../features/invoice/presentation/screens/edit_invoice.dart';
 import '../../features/invoice/presentation/screens/invoices_screen.dart';
+import '../../features/user/presentation/bloc/user_bloc.dart';
+import '../di/injections.dart';
 import 'route_names.dart';
 import 'route_paths.dart';
 
@@ -95,7 +100,19 @@ class AppRouter {
     GoRoute(
       path: RoutePaths.addInvoice,
       name: RouteNames.addInvoice,
-      builder: (context, state) => const AddInvoiceScreen(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => sl<InvoiceBloc>()),
+          BlocProvider(
+            create: (_) =>
+                sl<ClientBloc>()..add(const ClientEvent.getAllClients()),
+          ),
+          BlocProvider(
+            create: (_) => sl<UserBloc>()..add(const UserEvent.getProfile()),
+          ),
+        ],
+        child: const AddInvoiceScreen(),
+      ),
     ),
     GoRoute(
       path: RoutePaths.invoiceDetails,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../client/domain/entities/client_enitity.dart';
+
 class SelectClientBottomSheet extends StatelessWidget {
-  final List<Map<String, String>> clients;
-  final Function(Map<String, String>) onClientSelected;
+  final List<ClientEntity> clients;
+  final Function(ClientEntity) onClientSelected;
 
   const SelectClientBottomSheet({
     super.key,
@@ -30,19 +32,21 @@ class SelectClientBottomSheet extends StatelessWidget {
 
           const Divider(height: 1),
 
-          ...clients.map(
-            (client) => ListTile(
-              title: Text(client["name"] ?? ""),
-              subtitle: Text(client["email"] ?? ""),
-
-              onTap: () {
-                onClientSelected(client);
-                Navigator.pop(context);
-              },
-            ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: clients.length,
+            itemBuilder: (context, index) {
+              final client = clients[index];
+              return ListTile(
+                title: Text(client.name),
+                subtitle: Text(client.email),
+                onTap: () {
+                  onClientSelected(client);
+                  Navigator.pop(context);
+                },
+              );
+            },
           ),
-
-          const SizedBox(height: 10),
         ],
       ),
     );

@@ -5,7 +5,7 @@ import 'invoice_dark_text_field.dart';
 import 'invoice_item_tile.dart';
 
 class InvoiceItemsStepWidget extends StatelessWidget {
-  final TextEditingController taxController;
+  // final TextEditingController taxController;
   final TextEditingController discountController;
   final List<InvoiceItemUiModel> items;
   final Function(int index) onDeleteItem;
@@ -13,7 +13,7 @@ class InvoiceItemsStepWidget extends StatelessWidget {
 
   const InvoiceItemsStepWidget({
     super.key,
-    required this.taxController,
+    // required this.taxController,
     required this.discountController,
     required this.onAddItem,
     required this.items,
@@ -36,13 +36,13 @@ class InvoiceItemsStepWidget extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 8),
+        // const SizedBox(height: 8),
 
-        InvoiceDarkTextField(
-          controller: taxController,
-          hint: "Enter Tax %",
-          isNumber: true,
-        ),
+        // InvoiceDarkTextField(
+        //   controller: taxController,
+        //   hint: "Enter Tax %",
+        //   isNumber: true,
+        // ),
 
         const SizedBox(height: 12),
 
