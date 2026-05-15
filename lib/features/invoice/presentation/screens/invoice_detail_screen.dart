@@ -1,14 +1,142 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class InvoiceDetailScreen extends StatelessWidget {
-  const InvoiceDetailScreen({super.key});
+import '../../domain/entities/invoice_enitity.dart';
+import '../../domain/params/pdf_params.dart';
+import '../bloc/invoice_bloc.dart';
+import '../widgets/invoice_bill_to_card.dart';
+import '../widgets/invoice_detail_bottom_bar.dart';
+import '../widgets/invoice_info_card.dart';
+import '../widgets/invoice_items_list.dart';
+
+class InvoiceDetailScreen extends StatefulWidget {
+  final String invoiceId;
+
+  const InvoiceDetailScreen({super.key, required this.invoiceId});
+
+  @override
+  State<InvoiceDetailScreen> createState() => _InvoiceDetailScreenState();
+}
+
+class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
+  // fake client data until getClientById is implemented
+  final String _fakeClientEmail = 'client@example.com';
+  final String _fakeClientPhone = '+1 234 567 8900';
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<InvoiceBloc>().add(LoadInvoiceById(widget.invoiceId));
+  }
+
+  void _handleStateChanges(BuildContext context, InvoiceState state) {
+    state.whenOrNull(
+      actionSuccess: (message) {
+        context.read<InvoiceBloc>().add(LoadInvoiceById(widget.invoiceId));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      actionError: (message) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      emailSent: (message) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      emailError: (message) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<InvoiceBloc, InvoiceState>(
+      listenWhen: (previous, current) =>
+          current is InvoiceActionSuccess ||
+          current is InvoiceActionError ||
+          current is InvoiceEmailSent ||
+          current is InvoiceEmailError,
+      listener: _handleStateChanges,
+      buildWhen: (previous, current) =>
+          current is InvoiceDetailLoading ||
+          current is InvoiceDetailLoaded ||
+          current is InvoiceDetailError ||
+          current is InvoicePdfLoading ||
+          current is InvoicePdfLoaded ||
+          current is InvoiceEmailSending ||
+          previous is InvoiceDetailLoading,
+      builder: (context, state) {
+        // handle pdf bytes when ready
+        if (state is InvoicePdfLoaded) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            // TODO: open pdf viewer or share
+          });
+        }
+
+        return state.maybeWhen(
+          detailLoading: () =>
+              const Scaffold(body: Center(child: CircularProgressIndicator())),
+          detailError: (message) => Scaffold(
+            appBar: AppBar(),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(message, style: const TextStyle(color: Colors.red)),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => context.read<InvoiceBloc>().add(
+                      LoadInvoiceById(widget.invoiceId),
+                    ),
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          detailLoaded: (invoice) => _buildContent(context, state, invoice),
+          orElse: () =>
+              const Scaffold(body: Center(child: CircularProgressIndicator())),
+        );
+      },
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    InvoiceState state,
+    InvoiceEntity invoice,
+  ) {
+    final isPdfLoading = state is InvoicePdfLoading;
+    final isActionLoading = state is InvoiceActionLoading;
+    final isEmailSending = state is InvoiceEmailSending;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Invoice Details',
           style: TextStyle(
             fontSize: 18,
@@ -18,360 +146,82 @@ class InvoiceDetailScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      bottomNavigationBar: InvoiceDetailBottomBar(
+        isLoading: isPdfLoading || isEmailSending,
+        onSendEmail: () =>
+            context.read<InvoiceBloc>().add(SendInvoiceEmail(invoice.id)),
+        onDownload: () => context.read<InvoiceBloc>().add(
+          GeneratePdf(GeneratePdfParams(invoiceId: invoice.id)),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _invoiceInformation(context),
+            InvoiceInfoCard(
+                invoice: invoice,
+                onMarkAsPaid: () {}
+            ),
+
             const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF3F51B5),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      12,
-                    ), // Optional: Rounded corners
+
+            // mark as paid — only show if not already paid
+            if (!invoice.paid)
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: isActionLoading
+                      ? null
+                      : () => context.read<InvoiceBloc>().add(
+                          MarkAsPaid(invoice.id),
+                        ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF3F51B5),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                  elevation: 4, // Optional: Shadow depth
-                ),
-                icon: const Icon(Icons.check), // Your desired icon
-                label: const Text(
-                  'Mark as paid',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  icon: isActionLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : const Icon(Icons.check),
+                  label: const Text(
+                    'Mark as paid',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
-            ),
+
             const SizedBox(height: 20),
-            Text(
+            const Text(
               'BILL TO',
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
-
             const SizedBox(height: 12),
-            _billToClientCard(),
+            InvoiceBillToCard(
+              billingTo: invoice.billingTo,
+              clientEmail: _fakeClientEmail,
+              clientPhone: _fakeClientPhone,
+            ),
             const SizedBox(height: 20),
-
-            Text(
+            const Text(
               'ITEMS',
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
             const SizedBox(height: 12),
-
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade900,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _itemCard(),
-
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                    const SizedBox(height: 10),
-                    _itemCard(),
-                  ],
-                ),
-              ),
-            ),
+            InvoiceItemsList(items: invoice.items),
+            const SizedBox(height: 20),
           ],
         ),
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  // TODO: Add send email logic
-                },
-                icon: const Icon(Icons.email, size: 22),
-                label: const Text(
-                  'Send Email',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3F51B5),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 2,
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  // TODO: Add download PDF logic
-                },
-                icon: const Icon(Icons.download, size: 22),
-                label: const Text(
-                  'Download',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 2,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _itemCard() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Item Name',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              '1 x \$300',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ),
-        Text(
-          '\$300',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        ),
-      ],
-    );
-  }
-
-  Widget _invoiceInformation(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade900,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Invoice #0023',
-            style: TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 14),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: SizedBox(
-              height: 45,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  textNumberWidget('Invoice Date', '24 Jan 2025'),
-                  VerticalDivider(
-                    width: 20,
-                    thickness: 1,
-                    color: Colors.grey.shade500,
-                  ),
-                  textNumberWidget('Total Amount', '\$1,200'),
-                  VerticalDivider(
-                    width: 20,
-                    thickness: 1,
-                    color: Colors.grey.shade500,
-                  ),
-                  textNumberWidget('Status', 'Paid'),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 22),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 46,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      border: Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.share),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Share',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                GestureDetector(
-                  onTap: () => context.pushNamed("editInvoice"),
-                  child: Container(
-                    height: 46,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      border: Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.edit),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Edit',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget textNumberWidget(String title, String value) {
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          Text(
-            '$value',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _billToClientCard() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      height: 65,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade900,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 35,
-            width: 35,
-            decoration: BoxDecoration(
-              color: Color(0xFF3F51B5),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Icon(Icons.person),
-          ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Noah Henry',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-              ),
-              Text(
-                'noahhenry@gmail.com',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

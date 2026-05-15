@@ -117,7 +117,10 @@ class AppRouter {
     GoRoute(
       path: RoutePaths.invoiceDetails,
       name: RouteNames.invoiceDetails,
-      builder: (context, state) => const InvoiceDetailScreen(),
+      builder: (context, state) {
+        final invoiceId = state.extra as String;
+        return InvoiceDetailScreen(invoiceId: invoiceId);
+      },
     ),
     GoRoute(
       path: RoutePaths.editInvoice,
