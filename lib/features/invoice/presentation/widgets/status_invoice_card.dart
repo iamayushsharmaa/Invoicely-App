@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/invoice_enitity.dart';
+
 class InvoiceStatusCard extends StatelessWidget {
-  const InvoiceStatusCard({super.key});
+  final List<InvoiceEntity> invoices;
+
+  const InvoiceStatusCard({super.key, required this.invoices});
+
+  int get _paidCount =>
+      invoices.where((i) => i.status.toUpperCase() == 'PAID').length;
+
+  int get _unpaidCount =>
+      invoices.where((i) => i.status.toUpperCase() == 'UNPAID').length;
+
+  int get _overdueCount =>
+      invoices.where((i) => i.status.toUpperCase() == 'OVERDUE').length;
+
+  int get _draftCount =>
+      invoices.where((i) => i.status.toUpperCase() == 'DRAFT').length;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +26,7 @@ class InvoiceStatusCard extends StatelessWidget {
       height: 90,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xFF3F51B5),
+        color: const Color(0xFF3F51B5),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
@@ -23,25 +39,25 @@ class InvoiceStatusCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                textPaidAmount('12', 'Paid'),
+                _textPaidAmount(_paidCount.toString(), 'Paid'),
                 VerticalDivider(
                   width: 20,
                   thickness: 1,
                   color: Colors.grey.shade500,
                 ),
-                textPaidAmount('08', 'Unpaid'),
+                _textPaidAmount(_unpaidCount.toString(), 'Unpaid'),
                 VerticalDivider(
                   width: 20,
                   thickness: 1,
                   color: Colors.grey.shade500,
                 ),
-                textPaidAmount('3', 'Overdue'),
+                _textPaidAmount(_overdueCount.toString(), 'Overdue'),
                 VerticalDivider(
                   width: 20,
                   thickness: 1,
                   color: Colors.grey.shade500,
                 ),
-                textPaidAmount('5', 'Draft'),
+                _textPaidAmount(_draftCount.toString(), 'Draft'),
               ],
             ),
           ),
@@ -50,30 +66,27 @@ class InvoiceStatusCard extends StatelessWidget {
     );
   }
 
-  Widget textPaidAmount(String invoiceNum, String title) {
-    return SizedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$invoiceNum',
-            style: TextStyle(
-              fontSize: 26,
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-            ),
+  Widget _textPaidAmount(String invoiceNum, String title) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          invoiceNum,
+          style: const TextStyle(
+            fontSize: 26,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
           ),
-          const SizedBox(height: 0),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

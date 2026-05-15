@@ -144,7 +144,21 @@ class AppRouter {
   ];
 
   static final RouteBase _shellRoute = ShellRoute(
-    builder: (context, state, child) => WidgetTree(child: child),
+    builder: (context, state, child) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<InvoiceBloc>()..add(const LoadInvoices()),
+        ),
+        BlocProvider(
+          create: (_) =>
+              sl<ClientBloc>()..add(const ClientEvent.getAllClients()),
+        ),
+        BlocProvider(
+          create: (_) => sl<UserBloc>()..add(const UserEvent.getProfile()),
+        ),
+      ],
+      child: WidgetTree(child: child),
+    ),
     routes: [
       GoRoute(
         path: RoutePaths.home,
