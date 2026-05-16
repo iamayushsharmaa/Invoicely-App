@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../../invoice/domain/entities/invoice_enitity.dart';
+
 class ClientInvoiceStatus extends StatelessWidget {
-  const ClientInvoiceStatus({super.key});
+  final List<InvoiceEntity> invoices;
+
+  const ClientInvoiceStatus({super.key, required this.invoices});
+
+  int get _totalInvoices => invoices.length;
+
+  double get _totalBilled => invoices.fold(0, (sum, i) => sum + i.totalAmount);
+
+  double get _totalPaid => invoices
+      .where((i) => i.status.toUpperCase() == 'PAID')
+      .fold(0, (sum, i) => sum + i.totalAmount);
+
+  double get _totalOverdue => invoices
+      .where((i) => i.status.toUpperCase() == 'OVERDUE')
+      .fold(0, (sum, i) => sum + i.totalAmount);
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +31,20 @@ class ClientInvoiceStatus extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildStatusItem('12', 'Total\nInvoices'),
+          _buildStatusItem(_totalInvoices.toString(), 'Total\nInvoices'),
           _divider(),
-          _buildStatusItem('\$1200', 'Billed'),
+          _buildStatusItem('\$${_totalBilled.toStringAsFixed(0)}', 'Billed'),
           _divider(),
-          _buildStatusItem('\$1000', 'Paid'),
+          _buildStatusItem('\$${_totalPaid.toStringAsFixed(0)}', 'Paid'),
           _divider(),
-          _buildStatusItem('\$200', 'Overdue'),
+          _buildStatusItem('\$${_totalOverdue.toStringAsFixed(0)}', 'Overdue'),
         ],
       ),
     );
   }
 
-  Widget _divider() {
-    return Container(width: 1, height: 50, color: Colors.grey.shade700);
-  }
+  Widget _divider() =>
+      Container(width: 1, height: 50, color: Colors.grey.shade700);
 
   Widget _buildStatusItem(String value, String title) {
     return Column(
@@ -38,7 +53,7 @@ class ClientInvoiceStatus extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(
-            fontSize: 20, // Reduced from 26
+            fontSize: 20,
             color: Colors.white,
             fontWeight: FontWeight.w600,
           ),
@@ -48,7 +63,7 @@ class ClientInvoiceStatus extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 14, // Reduced from 16
+            fontSize: 14,
             color: Colors.grey.shade300,
             fontWeight: FontWeight.w500,
           ),

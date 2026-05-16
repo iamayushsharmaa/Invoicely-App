@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ClientInvoiceList extends StatelessWidget {
-  final String invoiceNumber;
-  final String? date;
-  final String amount;
-  final String status;
+import '../../../invoice/domain/entities/invoice_enitity.dart';
 
-  const ClientInvoiceList({
-    super.key,
-    required this.invoiceNumber,
-    required this.amount,
-    required this.status,
-    this.date,
-  });
+class ClientInvoiceList extends StatelessWidget {
+  final InvoiceEntity invoice;
+
+  const ClientInvoiceList({super.key, required this.invoice});
 
   @override
   Widget build(BuildContext context) {
-    final statusColor = _getStatusColor(status);
-
     return Container(
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -29,15 +20,13 @@ class ClientInvoiceList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(Icons.receipt_long, color: Colors.white, size: 32),
-
           const SizedBox(width: 12),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  invoiceNumber,
+                  '#${invoice.invoiceNumber}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -48,15 +37,13 @@ class ClientInvoiceList extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "$date",
+                      _formatDate(invoice.invoiceDate),
                       style: TextStyle(
                         color: Colors.grey.shade400,
                         fontSize: 14,
                       ),
                     ),
-
                     const SizedBox(width: 8),
-
                     Container(
                       width: 5,
                       height: 5,
@@ -65,11 +52,9 @@ class ClientInvoiceList extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-
                     const SizedBox(width: 8),
-
                     Text(
-                      amount,
+                      '${invoice.currency} ${invoice.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
                         color: Colors.grey.shade400,
                         fontSize: 14,
@@ -80,17 +65,16 @@ class ClientInvoiceList extends StatelessWidget {
               ],
             ),
           ),
-
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: statusColor.withOpacity(0.15),
+              color: _statusColor.withOpacity(0.15),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              status,
+              _formatStatus(invoice.status),
               style: TextStyle(
-                color: statusColor,
+                color: _statusColor,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
@@ -101,16 +85,39 @@ class ClientInvoiceList extends StatelessWidget {
     );
   }
 
-  Color _getStatusColor(String status) {
-    switch (status.toLowerCase()) {
-      case 'paid':
+  Color get _statusColor {
+    switch (invoice.status.toUpperCase()) {
+      case 'PAID':
         return Colors.green;
-      case 'unpaid':
+      case 'UNPAID':
         return Colors.red;
-      case 'pending':
+      case 'OVERDUE':
         return Colors.orange;
       default:
         return Colors.blueGrey;
     }
+  }
+
+  String _formatStatus(String status) {
+    final s = status.toUpperCase();
+    return '${s[0]}${s.substring(1).toLowerCase()}';
+  }
+
+  String _formatDate(DateTime date) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 }

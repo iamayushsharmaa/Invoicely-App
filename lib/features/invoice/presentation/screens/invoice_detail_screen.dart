@@ -25,12 +25,6 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
   InvoiceEntity? _cachedInvoice;
   ClientEntity? _cachedClient;
 
-  @override
-  void initState() {
-    super.initState();
-    context.read<InvoiceBloc>().add(LoadInvoiceById(widget.invoiceId));
-  }
-
   void _handleStateChanges(BuildContext context, InvoiceState state) {
     state.whenOrNull(
       detailLoaded: (invoice) {

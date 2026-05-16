@@ -173,12 +173,9 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       },
-      child: ClientInvoiceList(
-        invoiceNumber: invoiceNumber,
-        amount: amount,
-        status: status,
-        date: date,
-      ),
+      // child: ClientInvoiceList(
+      //
+      // ),
     );
   }
 

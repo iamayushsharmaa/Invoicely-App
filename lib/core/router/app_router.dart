@@ -14,7 +14,7 @@ import 'package:invoice/features/home/presentation/screens/home_screen.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoice_detail_screen.dart';
 
 import '../../features/client/presentation/bloc/client_bloc.dart';
-import '../../features/client/presentation/screens/edit_client_info.dart';
+import '../../features/client/presentation/screens/edit_client_screen.dart';
 import '../../features/home/presentation/screens/splash_screen.dart';
 import '../../features/home/presentation/screens/widget_tree.dart';
 import '../../features/invoice/domain/entities/invoice_enitity.dart';
@@ -119,7 +119,13 @@ class AppRouter {
       name: RouteNames.invoiceDetails,
       builder: (context, state) {
         final invoiceId = state.extra as String;
-        return InvoiceDetailScreen(invoiceId: invoiceId);
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<InvoiceBloc>()),
+            BlocProvider(create: (_) => sl<ClientBloc>()),
+          ],
+          child: InvoiceDetailScreen(invoiceId: invoiceId),
+        );
       },
     ),
     GoRoute(
@@ -127,7 +133,10 @@ class AppRouter {
       name: RouteNames.editInvoice,
       builder: (context, state) {
         final invoice = state.extra as InvoiceEntity;
-        return EditInvoice(invoice: invoice);
+        return BlocProvider(
+          create: (_) => sl<InvoiceBloc>(),
+          child: EditInvoice(invoice: invoice),
+        );
       },
     ),
   ];
@@ -136,13 +145,34 @@ class AppRouter {
     GoRoute(
       path: RoutePaths.clientDetails,
       name: RouteNames.clientDetails,
-      builder: (context, state) => const ClientDetailScreen(),
+      builder: (context, state) {
+        final clientId = state.extra as String;
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (_) =>
+                  sl<ClientBloc>()..add(ClientEvent.getClientById(clientId)),
+            ),
+            BlocProvider(
+              create: (_) =>
+                  sl<InvoiceBloc>()..add(LoadInvoicesByClient(clientId)),
+            ),
+          ],
+          child: ClientDetailScreen(clientId: clientId),
+        );
+      },
     ),
     GoRoute(
       path: RoutePaths.editClient,
       name: RouteNames.editClient,
-      builder: (context, state) =>
-          const EditClientInfo(name: '', email: '', phone: '', address: ''),
+      builder: (context, state) {
+        final clientId = state.extra as String;
+        return BlocProvider(
+          create: (_) =>
+              sl<ClientBloc>()..add(ClientEvent.getClientById(clientId)),
+          child: EditClientScreen(clientId: clientId),
+        );
+      },
     ),
   ];
 
