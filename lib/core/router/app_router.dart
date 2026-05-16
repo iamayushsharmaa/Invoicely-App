@@ -135,7 +135,7 @@ class AppRouter {
         final invoice = state.extra as InvoiceEntity;
         return BlocProvider(
           create: (_) => sl<InvoiceBloc>(),
-          child: EditInvoice(invoice: invoice),
+          child: EditInvoiceScreen(invoice: invoice),
         );
       },
     ),

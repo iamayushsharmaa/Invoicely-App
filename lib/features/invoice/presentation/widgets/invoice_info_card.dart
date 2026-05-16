@@ -83,10 +83,8 @@ class InvoiceInfoCard extends StatelessWidget {
                 _ActionButton(
                   icon: Icons.edit,
                   label: 'Edit',
-                  onTap: () => context.pushNamed(
-                    RouteNames.editInvoice,
-                    extra: invoice.id,
-                  ),
+                  onTap: () =>
+                      context.pushNamed(RouteNames.editInvoice, extra: invoice),
                 ),
               ],
             ),
