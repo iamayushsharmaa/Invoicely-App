@@ -33,6 +33,22 @@ class ClientRepositoryImpl implements ClientRepository {
   }
 
   @override
+  Future<Either<Failure, ClientEntity>> getClientById(String clientId) async {
+    try {
+      final cached = await _local.getCachedClientById(clientId);
+      if (cached != null) return Right(cached.toEntity());
+
+      final remote = await _remote.getClientById(clientId);
+      await _local.cacheClient(remote);
+      return Right(remote.toEntity());
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to get client'));
+    }
+  }
+
+  @override
   Future<Either<Failure, List<ClientEntity>>> getAllClients() async {
     try {
       final response = await _remote.getAllClients();

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
 
+import '../../../client/domain/entities/client_enitity.dart';
 import '../../../client/presentation/bloc/client_bloc.dart';
 import '../../../user/presentation/bloc/user_bloc.dart';
 import '../../domain/entities/create_invoice_params.dart';
@@ -404,6 +405,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
           },
         );
       },
+      clientLoaded: (ClientEntity client) {},
     );
   }
 

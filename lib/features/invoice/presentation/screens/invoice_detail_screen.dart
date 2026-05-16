@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../client/domain/entities/client_enitity.dart';
+import '../../../client/presentation/bloc/client_bloc.dart';
 import '../../domain/entities/invoice_enitity.dart';
 import '../../domain/params/pdf_params.dart';
 import '../bloc/invoice_bloc.dart';
@@ -19,9 +21,9 @@ class InvoiceDetailScreen extends StatefulWidget {
 }
 
 class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
-  // fake client data until getClientById is implemented
-  final String _fakeClientEmail = 'client@example.com';
-  final String _fakeClientPhone = '+1 234 567 8900';
+  bool _isMarkingAsPaid = false;
+  InvoiceEntity? _cachedInvoice;
+  ClientEntity? _cachedClient;
 
   @override
   void initState() {
@@ -31,8 +33,15 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
 
   void _handleStateChanges(BuildContext context, InvoiceState state) {
     state.whenOrNull(
+      detailLoaded: (invoice) {
+        context.read<ClientBloc>().add(
+          ClientEvent.getClientById(invoice.clientId),
+        );
+      },
       actionSuccess: (message) {
+        setState(() => _isMarkingAsPaid = false);
         context.read<InvoiceBloc>().add(LoadInvoiceById(widget.invoiceId));
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(message),
@@ -42,6 +51,7 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
         );
       },
       actionError: (message) {
+        setState(() => _isMarkingAsPaid = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(message),
@@ -73,55 +83,72 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<InvoiceBloc, InvoiceState>(
+    return BlocListener<ClientBloc, ClientState>(
       listenWhen: (previous, current) =>
-          current is InvoiceActionSuccess ||
-          current is InvoiceActionError ||
-          current is InvoiceEmailSent ||
-          current is InvoiceEmailError,
-      listener: _handleStateChanges,
-      buildWhen: (previous, current) =>
-          current is InvoiceDetailLoading ||
-          current is InvoiceDetailLoaded ||
-          current is InvoiceDetailError ||
-          current is InvoicePdfLoading ||
-          current is InvoicePdfLoaded ||
-          current is InvoiceEmailSending ||
-          previous is InvoiceDetailLoading,
-      builder: (context, state) {
-        // handle pdf bytes when ready
-        if (state is InvoicePdfLoaded) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            // TODO: open pdf viewer or share
-          });
-        }
-
-        return state.maybeWhen(
-          detailLoading: () =>
-              const Scaffold(body: Center(child: CircularProgressIndicator())),
-          detailError: (message) => Scaffold(
-            appBar: AppBar(),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(message, style: const TextStyle(color: Colors.red)),
-                  const SizedBox(height: 10),
-                  TextButton(
-                    onPressed: () => context.read<InvoiceBloc>().add(
-                      LoadInvoiceById(widget.invoiceId),
-                    ),
-                    child: const Text('Retry'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          detailLoaded: (invoice) => _buildContent(context, state, invoice),
-          orElse: () =>
-              const Scaffold(body: Center(child: CircularProgressIndicator())),
+          current.maybeWhen(clientLoaded: (_) => true, orElse: () => false),
+      listener: (context, state) {
+        state.whenOrNull(
+          clientLoaded: (client) {
+            setState(() => _cachedClient = client);
+          },
         );
       },
+      child: BlocConsumer<InvoiceBloc, InvoiceState>(
+        listenWhen: (previous, current) =>
+            current is InvoiceActionSuccess ||
+            current is InvoiceActionError ||
+            current is InvoiceEmailSent ||
+            current is InvoiceEmailError ||
+            current is InvoiceDetailLoaded,
+        listener: _handleStateChanges,
+        buildWhen: (previous, current) =>
+            current is InvoiceDetailLoading ||
+            current is InvoiceDetailLoaded ||
+            current is InvoiceDetailError ||
+            current is InvoicePdfLoading ||
+            current is InvoicePdfLoaded ||
+            current is InvoiceEmailSending ||
+            previous is InvoiceDetailLoading,
+        builder: (context, state) {
+          state.whenOrNull(detailLoaded: (invoice) => _cachedInvoice = invoice);
+
+          return state.maybeWhen(
+            detailLoading: () => _cachedInvoice == null
+                ? const Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  )
+                : _buildContent(context, state, _cachedInvoice!),
+            detailError: (message) => _cachedInvoice != null
+                ? _buildContent(context, state, _cachedInvoice!)
+                : Scaffold(
+                    appBar: AppBar(),
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            message,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                          const SizedBox(height: 10),
+                          TextButton(
+                            onPressed: () => context.read<InvoiceBloc>().add(
+                              LoadInvoiceById(widget.invoiceId),
+                            ),
+                            child: const Text('Retry'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+            orElse: () => _cachedInvoice != null
+                ? _buildContent(context, state, _cachedInvoice!)
+                : const Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  ),
+          );
+        },
+      ),
     );
   }
 
@@ -131,7 +158,6 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
     InvoiceEntity invoice,
   ) {
     final isPdfLoading = state is InvoicePdfLoading;
-    final isActionLoading = state is InvoiceActionLoading;
     final isEmailSending = state is InvoiceEmailSending;
 
     return Scaffold(
@@ -159,10 +185,7 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InvoiceInfoCard(
-                invoice: invoice,
-                onMarkAsPaid: () {}
-            ),
+            InvoiceInfoCard(invoice: invoice, onMarkAsPaid: () {}),
 
             const SizedBox(height: 16),
 
@@ -171,12 +194,15 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
               SizedBox(
                 width: double.infinity,
                 height: 50,
-                child: ElevatedButton.icon(
-                  onPressed: isActionLoading
+                child: ElevatedButton(
+                  onPressed: _isMarkingAsPaid
                       ? null
-                      : () => context.read<InvoiceBloc>().add(
-                          MarkAsPaid(invoice.id),
-                        ),
+                      : () {
+                          setState(() => _isMarkingAsPaid = true);
+                          context.read<InvoiceBloc>().add(
+                            MarkAsPaid(invoice.id),
+                          );
+                        },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF3F51B5),
                     foregroundColor: Colors.white,
@@ -184,7 +210,7 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  icon: isActionLoading
+                  child: _isMarkingAsPaid
                       ? const SizedBox(
                           height: 20,
                           width: 20,
@@ -193,11 +219,20 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
                             strokeWidth: 2,
                           ),
                         )
-                      : const Icon(Icons.check),
-                  label: const Text(
-                    'Mark as paid',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check),
+                            SizedBox(width: 8),
+                            Text(
+                              'Mark as paid',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                 ),
               ),
 
@@ -209,8 +244,8 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
             const SizedBox(height: 12),
             InvoiceBillToCard(
               billingTo: invoice.billingTo,
-              clientEmail: _fakeClientEmail,
-              clientPhone: _fakeClientPhone,
+              clientEmail: _cachedClient?.email ?? '...',
+              clientPhone: _cachedClient?.phone ?? '...',
             ),
             const SizedBox(height: 20),
             const Text(

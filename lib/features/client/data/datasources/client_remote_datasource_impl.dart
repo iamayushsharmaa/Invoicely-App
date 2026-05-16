@@ -24,6 +24,16 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   }
 
   @override
+  Future<ClientModel> getClientById(String clientId) async {
+    try {
+      final response = await _dio.get('/api/v1/clients/$clientId');
+      return ClientModel.fromJson(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
+
+  @override
   Future<ClientModel> createClient(CreateClientParams params) async {
     try {
       final response = await _dio.post(

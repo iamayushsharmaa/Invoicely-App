@@ -8,5 +8,7 @@ class ClientState with _$ClientState {
 
   const factory ClientState.loaded(List<ClientEntity> clients) = _Loaded;
 
+  const factory ClientState.clientLoaded(ClientEntity client) = _ClientLoaded;
+
   const factory ClientState.error(String message) = _Error;
 }
