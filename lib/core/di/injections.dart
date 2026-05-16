@@ -10,6 +10,7 @@ import 'package:invoice/features/client/data/datasources/client_remote_datasourc
 import 'package:invoice/features/client/data/models/client_model.dart';
 import 'package:invoice/features/client/data/repository/client_repository_impl.dart';
 import 'package:invoice/features/client/domain/repository/client_repository.dart';
+import 'package:invoice/features/client/domain/usecases/get_client_by_id.dart';
 import 'package:invoice/features/client/presentation/bloc/client_bloc.dart';
 import 'package:invoice/features/invoice/domain/usecases/send_invoice_email_usecase.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
@@ -195,6 +196,7 @@ Future<void> _initClient() async {
   );
 
   sl.registerLazySingleton(() => GetAllClientsUseCase(sl<ClientRepository>()));
+  sl.registerLazySingleton(() => GetClientByIdUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => CreateClientUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => UpdateClientUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => DeleteClientUseCase(sl<ClientRepository>()));
@@ -202,6 +204,7 @@ Future<void> _initClient() async {
   sl.registerFactory<ClientBloc>(
     () => ClientBloc(
       getAllClientsUseCase: sl(),
+      getClientByIdUseCase: sl(),
       createClientUseCase: sl(),
       updateClientUseCase: sl(),
       deleteClientUseCase: sl(),
