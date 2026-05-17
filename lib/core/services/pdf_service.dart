@@ -50,22 +50,3 @@ class PdfService {
     return file;
   }
 }
-
-// put this in invoice screen where invoic pdf show and bloc
-
-
-// BlocListener<InvoiceBloc, InvoiceState>(
-// listener: (context, state) async {
-// state.whenOrNull(
-// pdfLoaded: (bytes) async {
-// final pdfService = sl<PdfService>();
-// await pdfService.openPdf(bytes, 'invoice-${invoice.invoiceNumber}.pdf');
-// },
-// pdfError: (message) {
-// ScaffoldMessenger.of(context).showSnackBar(
-// SnackBar(content: Text(message), backgroundColor: Colors.redAccent),
-// );
-// },
-// );
-// },
-// )

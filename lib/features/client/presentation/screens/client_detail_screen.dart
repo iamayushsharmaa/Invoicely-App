@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoice/core/utils/app_snackbar.dart';
 
 import '../../../../core/router/route_names.dart';
 import '../../../invoice/domain/entities/invoice_enitity.dart';
@@ -26,13 +27,7 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
   void _handleClientStateChanges(BuildContext context, ClientState state) {
     state.whenOrNull(
       error: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }
@@ -41,22 +36,10 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
     state.whenOrNull(
       actionSuccess: (message) {
         context.read<InvoiceBloc>().add(const LoadInvoices());
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.success(context, message);
       },
       actionError: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }
@@ -194,7 +177,6 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
           orElse: () => false,
         ),
         builder: (context, clientState) {
-          // cache client
           clientState.whenOrNull(
             clientLoaded: (client) => _cachedClient = client,
           );

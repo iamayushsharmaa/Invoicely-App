@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoice/core/utils/app_snackbar.dart';
+import 'package:invoice/core/utils/date_formatter.dart';
 import 'package:invoice/features/invoice/domain/entities/invoice_enitity.dart';
 
 import '../../../../core/constants/currency_constants.dart';
@@ -41,7 +43,7 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
     _selectedCurrency = widget.invoice.currency;
     _dueDate = widget.invoice.dueDate;
     _invoiceDate = widget.invoice.invoiceDate;
-    _dueDateController.text = _formatDate(widget.invoice.dueDate);
+    _dueDateController.text = DateFormatter.format(widget.invoice.dueDate);
     _discountController.text = widget.invoice.discount.toString();
 
     _items = widget.invoice.items
@@ -50,7 +52,7 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
             name: item.description,
             price: item.price,
             quantity: item.quantity,
-            tax: 0, // InvoiceItemEntity has no tax field, default to 0
+            tax: 0,
           ),
         )
         .toList();
@@ -62,8 +64,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
     _discountController.dispose();
     super.dispose();
   }
-
-  // ─── Calculations ─────────────────────────────────────────────────────────
 
   double get _subtotal => _items.fold(0, (sum, item) => sum + item.subtotal);
 
@@ -77,25 +77,15 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
   double get _grandTotal => _subtotal + _taxAmount - _discountAmount;
 
-  // ─── Validation ───────────────────────────────────────────────────────────
-
   String? _validate() {
     if (_items.isEmpty) return 'Add at least one item';
     return null;
   }
 
-  // ─── Submit ───────────────────────────────────────────────────────────────
-
   void _onUpdate() {
     final error = _validate();
     if (error != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      AppSnackbar.error(context, error);
       return;
     }
 
@@ -141,29 +131,15 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
     state.whenOrNull(
       actionSuccess: (message) {
         setState(() => _isUpdating = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.success(context, message);
         context.pop();
       },
       actionError: (message) {
         setState(() => _isUpdating = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }
-
-  // ─── Date Picker ──────────────────────────────────────────────────────────
 
   Future<void> _selectDueDate() async {
     final date = await showDatePicker(
@@ -175,12 +151,10 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
     if (date != null && mounted) {
       setState(() {
         _dueDate = date;
-        _dueDateController.text = _formatDate(date);
+        _dueDateController.text = DateFormatter.format(date);
       });
     }
   }
-
-  // ─── Bottom Sheet ─────────────────────────────────────────────────────────
 
   void _showAddItemBottomSheet() {
     showModalBottomSheet(
@@ -196,28 +170,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
       },
     );
   }
-
-  // ─── Helpers ──────────────────────────────────────────────────────────────
-
-  String _formatDate(DateTime date) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
-  }
-
-  // ─── Build ────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +195,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ─── Invoice Info (read only) ────────────────────────────────
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -257,14 +208,16 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
                     const SizedBox(height: 8),
                     _infoRow('Client', widget.invoice.billingTo),
                     const SizedBox(height: 8),
-                    _infoRow('Invoice Date', _formatDate(_invoiceDate)),
+                    _infoRow(
+                      'Invoice Date',
+                      DateFormatter.format(_invoiceDate),
+                    ),
                   ],
                 ),
               ),
 
               const SizedBox(height: 20),
 
-              // ─── Due Date ────────────────────────────────────────────────
               const Text(
                 'Due Date',
                 style: TextStyle(color: Colors.white, fontSize: 14),
@@ -279,7 +232,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 16),
 
-              // ─── Status ──────────────────────────────────────────────────
               const Text(
                 'Status',
                 style: TextStyle(color: Colors.white, fontSize: 14),
@@ -311,7 +263,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 16),
 
-              // ─── Currency ────────────────────────────────────────────────
               const Text(
                 'Currency',
                 style: TextStyle(color: Colors.white, fontSize: 14),
@@ -343,7 +294,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 16),
 
-              // ─── Discount ────────────────────────────────────────────────
               const Text(
                 'Discount %',
                 style: TextStyle(color: Colors.white, fontSize: 14),
@@ -357,7 +307,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 20),
 
-              // ─── Items ───────────────────────────────────────────────────
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -454,7 +403,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 20),
 
-              // ─── Totals ──────────────────────────────────────────────────
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -489,7 +437,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
 
               const SizedBox(height: 30),
 
-              // ─── Update Button ───────────────────────────────────────────
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -528,8 +475,6 @@ class _EditInvoiceScreenState extends State<EditInvoiceScreen> {
       ),
     );
   }
-
-  // ─── Helper Widgets ───────────────────────────────────────────────────────
 
   Widget _infoRow(String label, String value) {
     return Row(

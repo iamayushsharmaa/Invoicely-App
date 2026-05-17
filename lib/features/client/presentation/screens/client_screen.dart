@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:invoice/features/client/presentation/widgets/client_card.dart';
 
 import '../../../../core/router/route_names.dart';
+import '../../../../core/utils/app_snackbar.dart';
+import '../../../../core/utils/retry_handler.dart';
 import '../../../home/presentation/widgets/search_text_field.dart';
 import '../bloc/client_bloc.dart';
 
@@ -16,6 +18,7 @@ class ClientScreen extends StatefulWidget {
 
 class _ClientScreenState extends State<ClientScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final _retryHandler = RetryHandler();
 
   @override
   void dispose() {
@@ -95,13 +98,7 @@ class _ClientScreenState extends State<ClientScreen> {
   void _handleStateChanges(BuildContext context, ClientState state) {
     state.whenOrNull(
       error: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }
@@ -184,9 +181,13 @@ class _ClientScreenState extends State<ClientScreen> {
                           ),
                           const SizedBox(height: 10),
                           TextButton(
-                            onPressed: () => context.read<ClientBloc>().add(
-                              const ClientEvent.getAllClients(),
-                            ),
+                            onPressed: () {
+                              if (!_retryHandler.canRetry) return;
+                              _retryHandler.markRetry();
+                              context.read<ClientBloc>().add(
+                                const ClientEvent.getAllClients(),
+                              );
+                            },
                             child: const Text('Retry'),
                           ),
                         ],

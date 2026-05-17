@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:invoice/core/utils/app_snackbar.dart';
 import 'package:invoice/features/invoice/presentation/bloc/invoice_bloc.dart';
 
 import '../../../client/domain/entities/client_enitity.dart';
@@ -154,13 +155,7 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   }
 
   void _showValidationError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    AppSnackbar.error(context, message);
   }
 
   void _handleNext() {
@@ -192,23 +187,11 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   void _handleStateChanges(BuildContext context, InvoiceState state) {
     state.whenOrNull(
       actionSuccess: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.success(context, message);
         context.pop();
       },
       actionError: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }

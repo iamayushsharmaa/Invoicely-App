@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:invoice/core/utils/date_formatter.dart';
 
+import '../../../../core/utils/invoice_status_utils.dart';
 import '../../../invoice/domain/entities/invoice_enitity.dart';
 
 class ClientInvoiceList extends StatelessWidget {
@@ -37,7 +39,7 @@ class ClientInvoiceList extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      _formatDate(invoice.invoiceDate),
+                      DateFormatter.format(invoice.invoiceDate),
                       style: TextStyle(
                         color: Colors.grey.shade400,
                         fontSize: 14,
@@ -68,13 +70,13 @@ class ClientInvoiceList extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: _statusColor.withOpacity(0.15),
+              color: InvoiceStatusUtils.color(invoice.status).withOpacity(0.15),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              _formatStatus(invoice.status),
+              InvoiceStatusUtils.format(invoice.status),
               style: TextStyle(
-                color: _statusColor,
+                color: InvoiceStatusUtils.color(invoice.status),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
@@ -83,41 +85,5 @@ class ClientInvoiceList extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Color get _statusColor {
-    switch (invoice.status.toUpperCase()) {
-      case 'PAID':
-        return Colors.green;
-      case 'UNPAID':
-        return Colors.red;
-      case 'OVERDUE':
-        return Colors.orange;
-      default:
-        return Colors.blueGrey;
-    }
-  }
-
-  String _formatStatus(String status) {
-    final s = status.toUpperCase();
-    return '${s[0]}${s.substring(1).toLowerCase()}';
-  }
-
-  String _formatDate(DateTime date) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
   }
 }

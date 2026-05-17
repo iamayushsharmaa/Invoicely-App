@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/invoice_status_utils.dart';
 import '../../../invoice/domain/entities/invoice_enitity.dart';
 
 class ClientInvoiceStatus extends StatelessWidget {
@@ -8,16 +9,6 @@ class ClientInvoiceStatus extends StatelessWidget {
   const ClientInvoiceStatus({super.key, required this.invoices});
 
   int get _totalInvoices => invoices.length;
-
-  double get _totalBilled => invoices.fold(0, (sum, i) => sum + i.totalAmount);
-
-  double get _totalPaid => invoices
-      .where((i) => i.status.toUpperCase() == 'PAID')
-      .fold(0, (sum, i) => sum + i.totalAmount);
-
-  double get _totalOverdue => invoices
-      .where((i) => i.status.toUpperCase() == 'OVERDUE')
-      .fold(0, (sum, i) => sum + i.totalAmount);
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +24,22 @@ class ClientInvoiceStatus extends StatelessWidget {
         children: [
           _buildStatusItem(_totalInvoices.toString(), 'Total\nInvoices'),
           _divider(),
-          _buildStatusItem('\$${_totalBilled.toStringAsFixed(0)}', 'Billed'),
+          _buildStatusItem(
+            '\$${InvoiceStatusUtils.totalBilled(invoices).toStringAsFixed(0)}',
+            'Billed',
+          ),
           _divider(),
-          _buildStatusItem('\$${_totalPaid.toStringAsFixed(0)}', 'Paid'),
+
+          _buildStatusItem(
+            '\$${InvoiceStatusUtils.totalByStatus(invoices, 'PAID').toStringAsFixed(0)}',
+            'Paid',
+          ),
           _divider(),
-          _buildStatusItem('\$${_totalOverdue.toStringAsFixed(0)}', 'Overdue'),
+
+          _buildStatusItem(
+            '\$${InvoiceStatusUtils.totalByStatus(invoices, 'OVERDUE').toStringAsFixed(0)}',
+            'Overdue',
+          ),
         ],
       ),
     );

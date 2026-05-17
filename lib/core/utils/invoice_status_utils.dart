@@ -53,4 +53,12 @@ class InvoiceStatusUtils {
         return invoices;
     }
   }
+
+  static double totalBilled(List<InvoiceEntity> invoices) =>
+      invoices.fold(0, (sum, i) => sum + i.totalAmount);
+
+  static double totalByStatus(List<InvoiceEntity> invoices, String status) =>
+      invoices
+          .where((i) => i.status.toUpperCase() == status.toUpperCase())
+          .fold(0, (sum, i) => sum + i.totalAmount);
 }

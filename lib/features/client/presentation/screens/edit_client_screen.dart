@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/utils/app_snackbar.dart';
 import '../../domain/params/client_params.dart';
 import '../bloc/client_bloc.dart';
 
@@ -56,13 +57,7 @@ class _EditClientScreenState extends State<EditClientScreen> {
   void _onUpdate() {
     final error = _validate();
     if (error != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      AppSnackbar.error(context, error);
       return;
     }
 
@@ -100,24 +95,13 @@ class _EditClientScreenState extends State<EditClientScreen> {
           },
           loaded: (_) {
             setState(() => _isUpdating = false);
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Client updated successfully'),
-                backgroundColor: Colors.green,
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            AppSnackbar.success(context, 'Client updated successfully');
+
             context.pop();
           },
           error: (message) {
             setState(() => _isUpdating = false);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(message),
-                backgroundColor: Colors.red,
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            AppSnackbar.error(context, message);
           },
         );
       },
