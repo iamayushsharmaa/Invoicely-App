@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/date_formatter.dart';
+import '../../domain/entities/dashboard_overview_entity.dart';
+
 class StatisticWidget extends StatelessWidget {
-  const StatisticWidget({super.key});
+  final DashboardOverviewEntity overview;
+
+  const StatisticWidget({super.key, required this.overview});
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final monthName = DateFormatter.monthName(now.month);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      height: 180,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xFF3F51B5),
+        color: const Color(0xFF3F51B5),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -18,8 +25,8 @@ class StatisticWidget extends StatelessWidget {
         children: [
           const SizedBox(height: 18),
           Text(
-            'November\nInvoicely Summary',
-            style: TextStyle(
+            '$monthName\nInvoicely Summary',
+            style: const TextStyle(
               fontSize: 24,
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -31,39 +38,50 @@ class StatisticWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                textPaidAmount('Paid', '1200'),
+                _statItem('Total', overview.totalInvoices.toString()),
                 VerticalDivider(
                   width: 20,
                   thickness: 1,
                   color: Colors.grey.shade500,
                 ),
-                textPaidAmount('Unpaid', '3000'),
+                _statItem(
+                  'Paid',
+                  '\$${overview.revenueThisMonth.toStringAsFixed(0)}',
+                ),
                 VerticalDivider(
                   width: 20,
                   thickness: 1,
                   color: Colors.grey.shade500,
                 ),
-                textPaidAmount('Overdue', '200'),
+                _statItem('Unpaid', overview.unpaidInvoices.toString()),
               ],
             ),
           ),
+          const SizedBox(height: 18),
         ],
       ),
     );
   }
 
-  Widget textPaidAmount(String title, String amount) {
+  Widget _statItem(String title, String value) {
     return SizedBox(
       height: 70,
       width: 80,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontSize: 16, color: Colors.white)),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
           const SizedBox(height: 6),
           Text(
-            '\$$amount',
-            style: TextStyle(fontSize: 26, color: Colors.white),
+            value,
+            style: const TextStyle(
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
       ),

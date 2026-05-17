@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../core/router/route_names.dart';
+import '../../../../core/utils/date_formatter.dart';
+import '../../../invoice/domain/entities/invoice_enitity.dart';
 
 class TopInvoices extends StatelessWidget {
-  const TopInvoices({super.key});
+  final List<InvoiceEntity> invoices;
+
+  const TopInvoices({super.key, required this.invoices});
+
+  List<InvoiceEntity> get _topInvoices {
+    final sorted = [...invoices]
+      ..sort((a, b) => b.totalAmount.compareTo(a.totalAmount));
+    return sorted.take(4).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +29,43 @@ class TopInvoices extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          Text(
+          const Text(
             'Top Invoices',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 10),
-          _topInvoiceDesign(),
-          const SizedBox(height: 4),
-          _topInvoiceDesign(),
-          const SizedBox(height: 4),
-          _topInvoiceDesign(),
-          const SizedBox(height: 4),
-          _topInvoiceDesign(),
+          _topInvoices.isEmpty
+              ? const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'No invoices yet',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _topInvoices.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 4),
+                  itemBuilder: (context, index) {
+                    final invoice = _topInvoices[index];
+                    return GestureDetector(
+                      onTap: () => context.pushNamed(
+                        RouteNames.invoiceDetails,
+                        extra: invoice.id,
+                      ),
+                      child: _topInvoiceItem(invoice),
+                    );
+                  },
+                ),
         ],
       ),
     );
   }
 
-  Widget _topInvoiceDesign() {
+  Widget _topInvoiceItem(InvoiceEntity invoice) {
     return Container(
       height: 68,
       width: double.infinity,
@@ -54,40 +86,40 @@ class TopInvoices extends StatelessWidget {
                 color: Colors.lightBlue.shade200,
                 borderRadius: BorderRadius.circular(60),
               ),
-
-              child: Icon(Icons.not_interested_outlined),
+              child: const Icon(Icons.receipt),
             ),
-
             const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'LendFlow invoice',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '14 Jan 2023',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
-                ),
-              ],
-            ),
-            const SizedBox(width: 46),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '\$5,000',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    invoice.billingTo,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    DateFormatter.format(invoice.invoiceDate),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              '${invoice.currency} ${invoice.totalAmount.toStringAsFixed(2)}',
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),
