@@ -80,7 +80,7 @@ void _initCore() {
     () => DioClient.create(sl<FlutterSecureStorage>()),
   );
 
-  sl.registerLazySingleton(() => PdfService());
+  sl.registerLazySingleton<PdfService>(() => PdfService());
 }
 
 void _initAuth() {

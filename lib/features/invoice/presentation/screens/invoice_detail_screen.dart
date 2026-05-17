@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:invoice/core/utils/app_snackbar.dart';
 
+import '../../../../core/di/injections.dart';
+import '../../../../core/services/pdf_service.dart';
 import '../../../client/domain/entities/client_enitity.dart';
 import '../../../client/presentation/bloc/client_bloc.dart';
 import '../../domain/entities/invoice_enitity.dart';
@@ -24,6 +27,8 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
   bool _isMarkingAsPaid = false;
   InvoiceEntity? _cachedInvoice;
   ClientEntity? _cachedClient;
+  bool _isShareRequest = false;
+  final _pdfService = sl<PdfService>();
 
   void _handleStateChanges(BuildContext context, InvoiceState state) {
     state.whenOrNull(
@@ -35,42 +40,17 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
       actionSuccess: (message) {
         setState(() => _isMarkingAsPaid = false);
         context.read<InvoiceBloc>().add(LoadInvoiceById(widget.invoiceId));
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.success(context, message);
       },
       actionError: (message) {
         setState(() => _isMarkingAsPaid = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
       emailSent: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.success(context, message);
       },
       emailError: (message) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(message),
-            backgroundColor: Colors.red,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        AppSnackbar.error(context, message);
       },
     );
   }
@@ -104,6 +84,23 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
             current is InvoiceEmailSending ||
             previous is InvoiceDetailLoading,
         builder: (context, state) {
+          if (state is InvoicePdfLoaded) {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              try {
+                final fileName =
+                    'invoice_${_cachedInvoice?.invoiceNumber ?? 'download'}.pdf';
+                if (_isShareRequest) {
+                  await _pdfService.sharePdf(state.bytes, fileName);
+                } else {
+                  await _pdfService.openPdf(state.bytes, fileName);
+                }
+              } catch (e) {
+                if (mounted)
+                  AppSnackbar.error(context, 'Could not process PDF');
+              }
+            });
+          }
+
           state.whenOrNull(detailLoaded: (invoice) => _cachedInvoice = invoice);
 
           return state.maybeWhen(
@@ -166,20 +163,35 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
         ),
         centerTitle: true,
       ),
+
       bottomNavigationBar: InvoiceDetailBottomBar(
         isLoading: isPdfLoading || isEmailSending,
+
         onSendEmail: () =>
             context.read<InvoiceBloc>().add(SendInvoiceEmail(invoice.id)),
-        onDownload: () => context.read<InvoiceBloc>().add(
-          GeneratePdf(GeneratePdfParams(invoiceId: invoice.id)),
-        ),
+
+        onDownload: () {
+          setState(() => _isShareRequest = false);
+          context.read<InvoiceBloc>().add(
+            GeneratePdf(GeneratePdfParams(invoiceId: invoice.id)),
+          );
+        },
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InvoiceInfoCard(invoice: invoice, onMarkAsPaid: () {}),
+            InvoiceInfoCard(
+              invoice: invoice,
+              onShare: () {
+                setState(() => _isShareRequest = true);
+                context.read<InvoiceBloc>().add(
+                  GeneratePdf(GeneratePdfParams(invoiceId: invoice.id)),
+                );
+              },
+            ),
 
             const SizedBox(height: 16),
 

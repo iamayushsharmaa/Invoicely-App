@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/invoice_status_utils.dart';
+import '../../../invoice/domain/entities/invoice_enitity.dart';
+
 class InvoiceCard extends StatelessWidget {
-  const InvoiceCard({super.key});
+  final InvoiceEntity invoice;
+
+  const InvoiceCard({super.key, required this.invoice});
 
   @override
   Widget build(BuildContext context) {
@@ -25,35 +31,42 @@ class InvoiceCard extends StatelessWidget {
                 color: Colors.lightBlue.shade200,
                 borderRadius: BorderRadius.circular(50),
               ),
-
-              child: Icon(Icons.not_interested_outlined),
+              child: const Icon(Icons.receipt),
             ),
-
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    invoice.billingTo,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Created: ${DateFormatter.format(invoice.invoiceDate)}',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(width: 10),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'LendFlow invoice',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Created : 14 Jan 2023',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
-                ),
-              ],
-            ),
-            const SizedBox(width: 46),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '\$5,000',
-                  style: TextStyle(
-                    fontSize: 16,
+                  '${invoice.currency} ${invoice.totalAmount.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 14,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -62,16 +75,16 @@ class InvoiceCard extends StatelessWidget {
                 Row(
                   children: [
                     Icon(
-                      Icons.do_not_disturb_on_total_silence_rounded,
+                      InvoiceStatusUtils.icon(invoice.status),
                       size: 14,
-                      color: Colors.white,
+                      color: InvoiceStatusUtils.color(invoice.status),
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      'Open',
+                      InvoiceStatusUtils.format(invoice.status),
                       style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
+                        fontSize: 13,
+                        color: InvoiceStatusUtils.color(invoice.status),
                         fontWeight: FontWeight.w400,
                       ),
                     ),

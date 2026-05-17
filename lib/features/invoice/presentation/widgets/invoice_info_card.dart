@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/route_names.dart';
+import '../../../../core/utils/date_formatter.dart';
 import '../../domain/entities/invoice_enitity.dart';
 
 class InvoiceInfoCard extends StatelessWidget {
   final InvoiceEntity invoice;
-  final VoidCallback onMarkAsPaid;
+  final VoidCallback onShare;
 
   const InvoiceInfoCard({
     super.key,
     required this.invoice,
-    required this.onMarkAsPaid,
+    required this.onShare,
   });
 
   @override
@@ -44,7 +45,7 @@ class InvoiceInfoCard extends StatelessWidget {
                 children: [
                   _InfoColumn(
                     title: 'Invoice Date',
-                    value: _formatDate(invoice.invoiceDate),
+                    value: DateFormatter.format(invoice.invoiceDate),
                   ),
                   VerticalDivider(
                     width: 20,
@@ -63,7 +64,7 @@ class InvoiceInfoCard extends StatelessWidget {
                   ),
                   _InfoColumn(
                     title: 'Status',
-                    value: _formatStatus(invoice.status),
+                    value: DateFormatter.format(invoice.invoiceDate),
                   ),
                 ],
               ),
@@ -78,7 +79,7 @@ class InvoiceInfoCard extends StatelessWidget {
                 _ActionButton(
                   icon: Icons.share,
                   label: 'Share',
-                  onTap: () {}, // TODO: share logic
+                  onTap: onShare, // TODO: share logic
                 ),
                 _ActionButton(
                   icon: Icons.edit,
@@ -92,29 +93,6 @@ class InvoiceInfoCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _formatDate(DateTime date) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    return '${date.day} ${months[date.month - 1]} ${date.year}';
-  }
-
-  String _formatStatus(String status) {
-    final s = status.toUpperCase();
-    return '${s[0]}${s.substring(1).toLowerCase()}';
   }
 }
 
