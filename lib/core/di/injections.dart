@@ -24,6 +24,13 @@ import 'package:invoice/features/user/domain/usecases/get_profile_usecase.dart';
 import 'package:invoice/features/user/domain/usecases/update_profile_usecase.dart';
 import 'package:invoice/features/user/presentation/bloc/user_bloc.dart';
 
+import '../../features/analytics/data/remote/analytics_remote_datasource.dart';
+import '../../features/analytics/data/remote/analytics_remote_datasource_impl.dart';
+import '../../features/analytics/data/repository/analytics_repository_impl.dart';
+import '../../features/analytics/domain/repository/analytics_repository.dart';
+import '../../features/analytics/domain/usecases/get_overview_usecase.dart';
+import '../../features/analytics/domain/usecases/get_revenue_usecase.dart';
+import '../../features/analytics/presentation/bloc/analytics_bloc.dart';
 import '../../features/auth/data/datasource/auth_local_datasource.dart';
 import '../../features/auth/data/datasource/auth_local_datasource_impl.dart';
 import '../../features/auth/data/datasource/auth_remote_datasource.dart';
@@ -65,8 +72,9 @@ Future<void> initDependencies() async {
   _initCore();
   _initAuth();
   _initUser();
-
   await _initInvoice();
+  await _initClient();
+  _initAnalytics();
 }
 
 void _initCore() {
@@ -176,9 +184,8 @@ Future<void> _initInvoice() async {
 }
 
 Future<void> _initClient() async {
-  sl.registerLazySingleton<Box<ClientModel>>(
-    () => Hive.box<ClientModel>('clientCache'),
-  );
+  final clientBox = await Hive.openBox<ClientModel>('clientCache');
+  sl.registerSingleton<Box<ClientModel>>(clientBox);
 
   sl.registerLazySingleton<ClientRemoteDatasource>(
     () => ClientRemoteDatasourceImpl(sl<Dio>()),
@@ -233,5 +240,22 @@ Future<void> _initUser() async {
       changePasswordUseCase: sl(),
       deleteAccountUseCase: sl(),
     ),
+  );
+}
+
+void _initAnalytics() {
+  sl.registerLazySingleton<AnalyticsRemoteDatasource>(
+    () => AnalyticsRemoteDatasourceImpl(sl<Dio>()),
+  );
+
+  sl.registerLazySingleton<AnalyticsRepository>(
+    () => AnalyticsRepositoryImpl(remote: sl<AnalyticsRemoteDatasource>()),
+  );
+
+  sl.registerLazySingleton(() => GetOverviewUseCase(sl<AnalyticsRepository>()));
+  sl.registerLazySingleton(() => GetRevenueUseCase(sl<AnalyticsRepository>()));
+
+  sl.registerFactory<AnalyticsBloc>(
+    () => AnalyticsBloc(getOverview: sl(), getRevenue: sl()),
   );
 }
