@@ -13,6 +13,7 @@ import 'package:invoice/features/client/presentation/screens/client_screen.dart'
 import 'package:invoice/features/home/presentation/screens/home_screen.dart';
 import 'package:invoice/features/invoice/presentation/screens/invoice_detail_screen.dart';
 
+import '../../features/analytics/presentation/bloc/analytics_bloc.dart';
 import '../../features/client/presentation/bloc/client_bloc.dart';
 import '../../features/client/presentation/screens/edit_client_screen.dart';
 import '../../features/home/presentation/screens/splash_screen.dart';
@@ -188,6 +189,11 @@ class AppRouter {
         ),
         BlocProvider(
           create: (_) => sl<UserBloc>()..add(const UserEvent.getProfile()),
+        ),
+        BlocProvider(
+          create: (_) => sl<AnalyticsBloc>()
+            ..add(const AnalyticsEvent.getOverview())
+            ..add(const AnalyticsEvent.getRevenue(type: 'monthly')),
         ),
       ],
       child: WidgetTree(child: child),
