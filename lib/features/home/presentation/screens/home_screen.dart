@@ -135,6 +135,21 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           centerTitle: false,
+          actions: [
+            GestureDetector(
+              onTap: () => context.pushNamed(RouteNames.profile),
+              child: Container(
+                margin: const EdgeInsets.only(right: 16),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF3F51B5),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: const Icon(Icons.person, color: Colors.white, size: 22),
+              ),
+            ),
+          ],
         ),
         body: BlocBuilder<InvoiceBloc, InvoiceState>(
           buildWhen: (previous, current) =>
