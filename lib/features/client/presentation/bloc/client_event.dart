@@ -6,6 +6,9 @@ class ClientEvent with _$ClientEvent {
 
   const factory ClientEvent.getClientById(String clientId) = _GetClientById;
 
+  const factory ClientEvent.searchClients(SearchClientParams params) = _SearchClients;
+
+
   const factory ClientEvent.createClient(CreateClientParams params) =
       _CreateClient;
 

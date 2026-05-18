@@ -50,17 +50,6 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
   final _discountController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    final userState = context.read<UserBloc>().state;
-    userState.whenOrNull(
-      profileLoaded: (user) {
-        _billingFrom = user.name;
-      },
-    );
-  }
-
-  @override
   void dispose() {
     _clientNameController.dispose();
     _clientAddController.dispose();
@@ -198,54 +187,65 @@ class _AddInvoiceScreenState extends State<AddInvoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<InvoiceBloc, InvoiceState>(
+    return BlocListener<UserBloc, UserState>(
       listenWhen: (previous, current) =>
-          current is InvoiceActionSuccess || current is InvoiceActionError,
-      listener: _handleStateChanges,
-      buildWhen: (previous, current) =>
-          current is InvoiceActionLoading ||
-          current is InvoiceActionSuccess ||
-          current is InvoiceActionError ||
-          previous is InvoiceActionLoading,
-      builder: (context, state) {
-        final isLoading = state is InvoiceActionLoading;
-
-        return Scaffold(
-          appBar: AddInvoiceAppBar(
-            currentStep: _currentStep,
-            onClose: () => context.pop(),
-            onSave: _currentStep == 3 && !isLoading ? _submitInvoice : null,
-          ),
-          body: Theme(
-            data: Theme.of(context).copyWith(
-              canvasColor: Colors.black,
-              colorScheme: ColorScheme.light(
-                primary: Colors.blue,
-                onSurface: Colors.white,
-              ),
-            ),
-            child: Stack(
-              children: [
-                Stepper(
-                  type: StepperType.horizontal,
-                  currentStep: _currentStep,
-                  onStepContinue: isLoading ? null : _handleNext,
-                  onStepCancel: isLoading ? null : _handleBack,
-                  controlsBuilder: (context, details) {
-                    return InvoiceStepControls(
-                      currentStep: _currentStep,
-                      onBack: details.onStepCancel,
-                      onNext: details.onStepContinue,
-                    );
-                  },
-                  steps: _buildSteps(),
-                ),
-                if (isLoading) const _LoadingOverlay(),
-              ],
-            ),
-          ),
+          current.maybeWhen(profileLoaded: (_) => true, orElse: () => false),
+      listener: (context, state) {
+        state.whenOrNull(
+          profileLoaded: (user) {
+            setState(() => _billingFrom = user.name);
+          },
         );
       },
+      child: BlocConsumer<InvoiceBloc, InvoiceState>(
+        listenWhen: (previous, current) =>
+            current is InvoiceActionSuccess || current is InvoiceActionError,
+        listener: _handleStateChanges,
+        buildWhen: (previous, current) =>
+            current is InvoiceActionLoading ||
+            current is InvoiceActionSuccess ||
+            current is InvoiceActionError ||
+            previous is InvoiceActionLoading,
+        builder: (context, state) {
+          final isLoading = state is InvoiceActionLoading;
+
+          return Scaffold(
+            appBar: AddInvoiceAppBar(
+              currentStep: _currentStep,
+              onClose: () => context.pop(),
+              onSave: _currentStep == 3 && !isLoading ? _submitInvoice : null,
+            ),
+            body: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Colors.black,
+                colorScheme: ColorScheme.light(
+                  primary: Colors.blue,
+                  onSurface: Colors.white,
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Stepper(
+                    type: StepperType.horizontal,
+                    currentStep: _currentStep,
+                    onStepContinue: isLoading ? null : _handleNext,
+                    onStepCancel: isLoading ? null : _handleBack,
+                    controlsBuilder: (context, details) {
+                      return InvoiceStepControls(
+                        currentStep: _currentStep,
+                        onBack: details.onStepCancel,
+                        onNext: details.onStepContinue,
+                      );
+                    },
+                    steps: _buildSteps(),
+                  ),
+                  if (isLoading) const _LoadingOverlay(),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

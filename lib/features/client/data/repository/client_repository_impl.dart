@@ -7,6 +7,8 @@ import 'package:invoice/features/client/domain/entities/client_enitity.dart';
 import 'package:invoice/features/client/domain/params/client_params.dart';
 import 'package:invoice/features/client/domain/repository/client_repository.dart';
 
+import '../../domain/params/search_client_params.dart';
+
 class ClientRepositoryImpl implements ClientRepository {
   final ClientRemoteDatasource _remote;
   final ClientLocalDatasource _local;
@@ -45,6 +47,24 @@ class ClientRepositoryImpl implements ClientRepository {
       return Left(ServerFailure(e.message));
     } catch (e) {
       return Left(ServerFailure('Failed to get client'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ClientEntity>>> searchClients(
+    SearchClientParams params,
+  ) async {
+    try {
+      final result = await _remote.searchClients(
+        query: params.query,
+        page: params.page,
+        size: params.size,
+      );
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ApiException catch (e) {
+      return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to search clients'));
     }
   }
 

@@ -10,6 +10,8 @@ import 'package:invoice/features/client/domain/usecases/update_client_usecase.da
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/client_enitity.dart';
 import '../../domain/params/client_params.dart';
+import '../../domain/params/search_client_params.dart';
+import '../../domain/usecases/search_client_usecase.dart';
 
 part 'client_bloc.freezed.dart';
 part 'client_event.dart';
@@ -18,6 +20,7 @@ part 'client_state.dart';
 class ClientBloc extends Bloc<ClientEvent, ClientState> {
   final GetAllClientsUseCase _getAllClientsUseCase;
   final GetClientByIdUseCase _getClientByIdUseCase;
+  final SearchClientsUseCase _searchClientsUseCase;
   final CreateClientUseCase _createClientUseCase;
   final UpdateClientUseCase _updateClientUseCase;
   final DeleteClientUseCase _deleteClientUseCase;
@@ -25,11 +28,13 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
   ClientBloc({
     required GetAllClientsUseCase getAllClientsUseCase,
     required GetClientByIdUseCase getClientByIdUseCase,
+    required SearchClientsUseCase searchClientsUseCase,
     required CreateClientUseCase createClientUseCase,
     required UpdateClientUseCase updateClientUseCase,
     required DeleteClientUseCase deleteClientUseCase,
   }) : _getAllClientsUseCase = getAllClientsUseCase,
        _getClientByIdUseCase = getClientByIdUseCase,
+       _searchClientsUseCase = searchClientsUseCase,
        _createClientUseCase = createClientUseCase,
        _updateClientUseCase = updateClientUseCase,
        _deleteClientUseCase = deleteClientUseCase,
@@ -37,6 +42,7 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
     on<_GetAllClients>(_onGetAllClients);
     on<_GetClientById>(_onGetClientById);
     on<_CreateClient>(_onCreateClient);
+    on<_SearchClients>(_onSearchClients);
     on<_UpdateClient>(_onUpdateClient);
     on<_DeleteClient>(_onDeleteClient);
   }
@@ -66,6 +72,20 @@ class ClientBloc extends Bloc<ClientEvent, ClientState> {
     result.fold(
       (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
       (client) => emit(ClientState.clientLoaded(client)),
+    );
+  }
+
+  Future<void> _onSearchClients(
+    _SearchClients event,
+    Emitter<ClientState> emit,
+  ) async {
+    emit(const ClientState.loading());
+
+    final result = await _searchClientsUseCase(event.params);
+
+    result.fold(
+      (failure) => emit(ClientState.error(_mapFailureMessage(failure))),
+      (clients) => emit(ClientState.loaded(clients)),
     );
   }
 

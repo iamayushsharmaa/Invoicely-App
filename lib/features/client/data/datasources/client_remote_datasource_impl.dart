@@ -34,6 +34,26 @@ class ClientRemoteDatasourceImpl implements ClientRemoteDatasource {
   }
 
   @override
+  Future<List<ClientModel>> searchClients({
+    required String query,
+    required int page,
+    required int size,
+  }) async {
+    try {
+      final response = await _dio.get(
+        '/api/v1/clients/search',
+        queryParameters: {'query': query, 'page': page, 'size': size},
+      );
+      final list = response.data['content'] as List<dynamic>;
+      return list
+          .map((e) => ClientModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
+
+  @override
   Future<ClientModel> createClient(CreateClientParams params) async {
     try {
       final response = await _dio.post(

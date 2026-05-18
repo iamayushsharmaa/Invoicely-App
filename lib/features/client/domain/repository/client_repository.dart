@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failure.dart';
 import '../entities/client_enitity.dart';
 import '../params/client_params.dart';
+import '../params/search_client_params.dart';
 
 abstract interface class ClientRepository {
   Future<Either<Failure, List<ClientEntity>>> getAllClients();
@@ -10,6 +11,10 @@ abstract interface class ClientRepository {
   Future<Either<Failure, ClientEntity>> getClientById(String clientId);
 
   Future<Either<Failure, ClientEntity>> createClient(CreateClientParams params);
+
+  Future<Either<Failure, List<ClientEntity>>> searchClients(
+    SearchClientParams params,
+  );
 
   Future<Either<Failure, ClientEntity>> updateClient(UpdateClientParams params);
 

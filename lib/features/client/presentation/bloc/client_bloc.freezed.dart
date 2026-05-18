@@ -20,6 +20,7 @@ mixin _$ClientEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -29,6 +30,7 @@ mixin _$ClientEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -38,6 +40,7 @@ mixin _$ClientEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -48,6 +51,7 @@ mixin _$ClientEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -57,6 +61,7 @@ mixin _$ClientEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -66,6 +71,7 @@ mixin _$ClientEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -132,6 +138,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -144,6 +151,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -156,6 +164,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -172,6 +181,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -184,6 +194,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -196,6 +207,7 @@ class _$GetAllClientsImpl implements _GetAllClients {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -279,6 +291,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -291,6 +304,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -303,6 +317,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -319,6 +334,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -331,6 +347,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -343,6 +360,7 @@ class _$GetClientByIdImpl implements _GetClientById {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -361,6 +379,164 @@ abstract class _GetClientById implements ClientEvent {
   String get clientId;
   @JsonKey(ignore: true)
   _$$GetClientByIdImplCopyWith<_$GetClientByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchClientsImplCopyWith<$Res> {
+  factory _$$SearchClientsImplCopyWith(
+          _$SearchClientsImpl value, $Res Function(_$SearchClientsImpl) then) =
+      __$$SearchClientsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchClientParams params});
+}
+
+/// @nodoc
+class __$$SearchClientsImplCopyWithImpl<$Res>
+    extends _$ClientEventCopyWithImpl<$Res, _$SearchClientsImpl>
+    implements _$$SearchClientsImplCopyWith<$Res> {
+  __$$SearchClientsImplCopyWithImpl(
+      _$SearchClientsImpl _value, $Res Function(_$SearchClientsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? params = null,
+  }) {
+    return _then(_$SearchClientsImpl(
+      null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as SearchClientParams,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchClientsImpl implements _SearchClients {
+  const _$SearchClientsImpl(this.params);
+
+  @override
+  final SearchClientParams params;
+
+  @override
+  String toString() {
+    return 'ClientEvent.searchClients(params: $params)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchClientsImpl &&
+            (identical(other.params, params) || other.params == params));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, params);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchClientsImplCopyWith<_$SearchClientsImpl> get copyWith =>
+      __$$SearchClientsImplCopyWithImpl<_$SearchClientsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAllClients,
+    required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
+    required TResult Function(CreateClientParams params) createClient,
+    required TResult Function(UpdateClientParams params) updateClient,
+    required TResult Function(String clientId) deleteClient,
+  }) {
+    return searchClients(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAllClients,
+    TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
+    TResult? Function(CreateClientParams params)? createClient,
+    TResult? Function(UpdateClientParams params)? updateClient,
+    TResult? Function(String clientId)? deleteClient,
+  }) {
+    return searchClients?.call(params);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAllClients,
+    TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
+    TResult Function(CreateClientParams params)? createClient,
+    TResult Function(UpdateClientParams params)? updateClient,
+    TResult Function(String clientId)? deleteClient,
+    required TResult orElse(),
+  }) {
+    if (searchClients != null) {
+      return searchClients(params);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAllClients value) getAllClients,
+    required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
+    required TResult Function(_CreateClient value) createClient,
+    required TResult Function(_UpdateClient value) updateClient,
+    required TResult Function(_DeleteClient value) deleteClient,
+  }) {
+    return searchClients(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAllClients value)? getAllClients,
+    TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
+    TResult? Function(_CreateClient value)? createClient,
+    TResult? Function(_UpdateClient value)? updateClient,
+    TResult? Function(_DeleteClient value)? deleteClient,
+  }) {
+    return searchClients?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAllClients value)? getAllClients,
+    TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
+    TResult Function(_CreateClient value)? createClient,
+    TResult Function(_UpdateClient value)? updateClient,
+    TResult Function(_DeleteClient value)? deleteClient,
+    required TResult orElse(),
+  }) {
+    if (searchClients != null) {
+      return searchClients(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchClients implements ClientEvent {
+  const factory _SearchClients(final SearchClientParams params) =
+      _$SearchClientsImpl;
+
+  SearchClientParams get params;
+  @JsonKey(ignore: true)
+  _$$SearchClientsImplCopyWith<_$SearchClientsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -430,6 +606,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -442,6 +619,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -454,6 +632,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -470,6 +649,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -482,6 +662,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -494,6 +675,7 @@ class _$CreateClientImpl implements _CreateClient {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -582,6 +764,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -594,6 +777,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -606,6 +790,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -622,6 +807,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -634,6 +820,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -646,6 +833,7 @@ class _$UpdateClientImpl implements _UpdateClient {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,
@@ -735,6 +923,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult when<TResult extends Object?>({
     required TResult Function() getAllClients,
     required TResult Function(String clientId) getClientById,
+    required TResult Function(SearchClientParams params) searchClients,
     required TResult Function(CreateClientParams params) createClient,
     required TResult Function(UpdateClientParams params) updateClient,
     required TResult Function(String clientId) deleteClient,
@@ -747,6 +936,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllClients,
     TResult? Function(String clientId)? getClientById,
+    TResult? Function(SearchClientParams params)? searchClients,
     TResult? Function(CreateClientParams params)? createClient,
     TResult? Function(UpdateClientParams params)? updateClient,
     TResult? Function(String clientId)? deleteClient,
@@ -759,6 +949,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllClients,
     TResult Function(String clientId)? getClientById,
+    TResult Function(SearchClientParams params)? searchClients,
     TResult Function(CreateClientParams params)? createClient,
     TResult Function(UpdateClientParams params)? updateClient,
     TResult Function(String clientId)? deleteClient,
@@ -775,6 +966,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetAllClients value) getAllClients,
     required TResult Function(_GetClientById value) getClientById,
+    required TResult Function(_SearchClients value) searchClients,
     required TResult Function(_CreateClient value) createClient,
     required TResult Function(_UpdateClient value) updateClient,
     required TResult Function(_DeleteClient value) deleteClient,
@@ -787,6 +979,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetAllClients value)? getAllClients,
     TResult? Function(_GetClientById value)? getClientById,
+    TResult? Function(_SearchClients value)? searchClients,
     TResult? Function(_CreateClient value)? createClient,
     TResult? Function(_UpdateClient value)? updateClient,
     TResult? Function(_DeleteClient value)? deleteClient,
@@ -799,6 +992,7 @@ class _$DeleteClientImpl implements _DeleteClient {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetAllClients value)? getAllClients,
     TResult Function(_GetClientById value)? getClientById,
+    TResult Function(_SearchClients value)? searchClients,
     TResult Function(_CreateClient value)? createClient,
     TResult Function(_UpdateClient value)? updateClient,
     TResult Function(_DeleteClient value)? deleteClient,

@@ -46,6 +46,7 @@ import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/client/domain/usecases/create_client_usecase.dart';
 import '../../features/client/domain/usecases/delete_client_usecase.dart';
 import '../../features/client/domain/usecases/get_all_clients_usecase.dart';
+import '../../features/client/domain/usecases/search_client_usecase.dart';
 import '../../features/client/domain/usecases/update_client_usecase.dart';
 import '../../features/invoice/data/datasources/local/invoice_local_datasource.dart';
 import '../../features/invoice/data/datasources/local/invoice_local_datasource_impl.dart';
@@ -204,6 +205,7 @@ Future<void> _initClient() async {
 
   sl.registerLazySingleton(() => GetAllClientsUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => GetClientByIdUseCase(sl<ClientRepository>()));
+  sl.registerLazySingleton(() => SearchClientsUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => CreateClientUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => UpdateClientUseCase(sl<ClientRepository>()));
   sl.registerLazySingleton(() => DeleteClientUseCase(sl<ClientRepository>()));
@@ -212,6 +214,7 @@ Future<void> _initClient() async {
     () => ClientBloc(
       getAllClientsUseCase: sl(),
       getClientByIdUseCase: sl(),
+      searchClientsUseCase: sl(),
       createClientUseCase: sl(),
       updateClientUseCase: sl(),
       deleteClientUseCase: sl(),
