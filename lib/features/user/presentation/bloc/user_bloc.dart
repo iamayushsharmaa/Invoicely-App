@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/usecase/usecase.dart';
+import '../../domain/entities/change_password_params.dart';
+import '../../domain/entities/update_user_params.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/usecases/change_password_usecase.dart';
 import '../../domain/usecases/delete_account_usecase.dart';

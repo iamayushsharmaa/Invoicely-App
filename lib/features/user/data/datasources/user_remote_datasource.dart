@@ -1,6 +1,5 @@
-import 'package:invoice/features/user/domain/usecases/change_password_usecase.dart';
-import 'package:invoice/features/user/domain/usecases/update_profile_usecase.dart';
-
+import '../../domain/entities/change_password_params.dart';
+import '../../domain/entities/update_user_params.dart';
 import '../models/user_model.dart';
 
 abstract class UserRemoteDatasource {

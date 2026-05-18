@@ -19,14 +19,11 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, UserEntity>> getProfile() async {
     try {
       final result = await _remote.getProfile();
-
       return Right(result);
-    } on DioException catch (e) {
-      final exception = handleDioError(e);
-
-      return Left(ServerFailure(exception.message));
     } on ApiException catch (e) {
       return Left(ServerFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure('Failed to get profile'));
     }
   }
 
