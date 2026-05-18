@@ -24,6 +24,7 @@ import '../../features/invoice/presentation/screens/add_invoice.dart';
 import '../../features/invoice/presentation/screens/edit_invoice.dart';
 import '../../features/invoice/presentation/screens/invoices_screen.dart';
 import '../../features/user/presentation/bloc/user_bloc.dart';
+import '../../features/user/presentation/screens/user_profile_screen.dart';
 import '../di/injections.dart';
 import 'route_names.dart';
 import 'route_paths.dart';
@@ -67,6 +68,7 @@ class AppRouter {
         ..._authRoutes,
         ..._invoiceRoutes,
         ..._clientRoutes,
+        ..._userRoutes,
         _shellRoute,
       ],
       errorBuilder: (context, state) =>
@@ -221,6 +223,17 @@ class AppRouter {
       ),
     ],
   );
+
+  static final List<RouteBase> _userRoutes = [
+    GoRoute(
+      path: RoutePaths.profile,
+      name: RouteNames.profile,
+      builder: (context, state) => BlocProvider(
+        create: (_) => sl<UserBloc>()..add(const UserEvent.getProfile()),
+        child: const UserProfileScreen(),
+      ),
+    ),
+  ];
 }
 
 class _GoRouterRefresh extends ChangeNotifier {

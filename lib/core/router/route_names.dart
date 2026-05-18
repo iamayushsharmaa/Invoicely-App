@@ -5,6 +5,7 @@ class RouteNames {
   static const String onboarding = 'onBoarding';
   static const String signIn = 'signIn';
   static const String signUp = 'signUp';
+  static const String profile = 'profile';
 
   static const String home = 'home';
   static const String invoices = 'invoices';
