@@ -5,9 +5,9 @@ import 'package:invoice/core/network/api_error_handling.dart';
 import 'package:invoice/core/network/api_exceptions.dart';
 import 'package:invoice/features/user/data/datasources/user_remote_datasource.dart';
 import 'package:invoice/features/user/domain/repository/user_repository.dart';
-import 'package:invoice/features/user/domain/usecases/change_password_usecase.dart';
-import 'package:invoice/features/user/domain/usecases/update_profile_usecase.dart';
 
+import '../../domain/entities/change_password_params.dart';
+import '../../domain/entities/update_user_params.dart';
 import '../../domain/entities/user_entity.dart';
 
 class UserRepositoryImpl implements UserRepository {

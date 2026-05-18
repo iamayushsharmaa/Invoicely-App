@@ -11,7 +11,6 @@ class GetProfileUseCase implements UseCase<UserEntity, NoParams> {
   const GetProfileUseCase(this._repository);
 
   @override
-  Future<Either<Failure, UserEntity>> call(NoParams params) {
-    return _repository.getProfile();
-  }
+  Future<Either<Failure, UserEntity>> call(NoParams params) =>
+      _repository.getProfile();
 }
